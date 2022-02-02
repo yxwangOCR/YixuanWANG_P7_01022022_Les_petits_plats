@@ -1,0 +1,32 @@
+{
+  "name": "yixuanwang_p7_01022022_les_petits_plats",
+  "version": "1.0.0",
+  "description": "p7 les petits plats",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch scss:assets/css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yxwangOCR/YixuanWANG_P7_01022022_Les_petits_plats.git"
+  },
+  "keywords": [
+    "Bootstrap",
+    "sass",
+    "p7"
+  ],
+  "author": "yixuan wang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yxwangOCR/YixuanWANG_P7_01022022_Les_petits_plats/issues"
+  },
+  "homepage": "https://github.com/yxwangOCR/YixuanWANG_P7_01022022_Les_petits_plats#readme",
+  "devDependencies": {
+    "sass": "^1.49.7"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "autoprefixer": "^10.4.2",
+    "bootstrap": "^5.1.3"
+  }
+}

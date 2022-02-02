@@ -1,0 +1,21 @@
+.search-bar {
+  display: flex;
+}
+
+.form-control {
+  background-color: #e7e7e7;
+  border-radius: 0.25rem 0 0 0.25rem;
+  border: none;
+}
+
+.search-btn {
+  background-color: #e7e7e7;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 0 0.25rem 0.25rem 0;
+  border: none;
+}
+
+.fas{
+    color: black;
+}

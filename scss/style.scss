@@ -1,0 +1,12 @@
+@use "custom";
+
+// IMPORT sections:
+@use "sections/logo";
+@use "sections/searchbar";
+@use "sections/dropdown";
+@use "sections/cards";
+
+* {
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+}
