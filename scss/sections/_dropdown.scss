@@ -1,0 +1,30 @@
+.dropdown-container {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.dropdown-toggle {
+  width: 10rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-radius: 5px;
+}
+
+.dropdown-toggle::placeholder {
+  color: #fff;
+}
+
+.dropdown-1 {
+  background-color: #3282f7;
+}
+
+.dropdown-2 {
+  background-color: #68d9a4;
+}
+
+.dropdown-3 {
+  background-color: #ed6454;
+}
