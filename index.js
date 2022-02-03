@@ -1,3 +1,7 @@
+import { test } from './src/recipes'
+
+test();
+
 const cardsSection = document.querySelector(".cards");
 const recipesLength = recipes.length;
 let recipeId = [];
