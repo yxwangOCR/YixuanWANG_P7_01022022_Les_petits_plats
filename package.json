@@ -5,8 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "sass": "sass --watch scss:assets/css",
-    "lint": "eslint src --ext .ts,.tsx"
+    "sass": "sass --watch scss:assets/css"
   },
   "repository": {
     "type": "git",
