@@ -2,9 +2,10 @@
   "name": "yixuanwang_p7_01022022_les_petits_plats",
   "version": "1.0.0",
   "description": "p7 les petits plats",
-  "main": "index.js",
+  "main": "app.js",
   "type": "module",
   "scripts": {
+    "start": "parcel index.html",
     "sass": "sass --watch scss:assets/css",
     "lint": "eslint src --ext .ts,.tsx"
   },

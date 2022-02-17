@@ -1,9 +1,9 @@
 import { recipes } from './data'
 
-const cardWrapper = document.createElement("div");
+
+const cards = document.getElementById('cards')
 const imageHolder = document.createElement("div");
 const card = document.createElement("div");
-const cardText = document.createElement("div");
 const cardName = document.createElement("h3");
 const ingredients = document.createElement("div");
 const clock = document.createElement("span");
@@ -11,17 +11,25 @@ const time = document.createElement("div");
 const description = document.createElement("p");
 
 
-export const test = () => {
+
+
+function displayRecipes() {
+  console.log('recipes')
   console.log(recipes)
-}
 
-
-function getRecipes() {
   recipes.forEach((recipe) => {
+    const cardWrapper = document.createElement("div");
+    cardWrapper.innerText = recipe.name
+    cards.appendChild(cardWrapper)
+
+    /*
+    const cardText = document.createElement("div");
     cardWrapper.className = "cards";
+    cardText.className = "card-body";
+
     imageHolder.className = "card-img-top";
     card.className = "card";
-    cardText.className = "card-body";
+
     cardName.className = "name";
     ingredients.className = "ingredients";
     clock.className = "clock";
@@ -48,6 +56,8 @@ function getRecipes() {
 
     cardWrapper.appendChild(imageHolder);
     cardWrapper.appendChild(card);
-    card.appendChild(cardText);
+    card.appendChild(cardText);*/
   });
 }
+
+export default displayRecipes
