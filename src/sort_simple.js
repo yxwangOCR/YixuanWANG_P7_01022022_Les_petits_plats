@@ -5,17 +5,17 @@ barre de recherche;
 3. La recherche principale affiche les premiers résultats le plus rapidement possible;
 */
 
-let upperWord = [];
-let lowerWord = [];
-let keyWord = recipes[0]; // recipe name key work value
+let upperLetters = [];
+let lowerLetters = [];
+let keyLetter = recipes[0]; // recipe name key work value
 
 function simpleSort(recipes) {
   if (recipes.length < 3) return recipes;
   // sort by recipts name:
   for (let i = 0; i < recipes.length; i++) {
-    if (recipes[i].name > keyWord.name) {
-      upperWord.push(recipes[i]);
-    } else lowerWord.push(recipes[i]);
+    if (recipes[i].name > keyLetter.name) {
+      upperLetters.push(recipes[i]);
+    } else lowerLetters.push(recipes[i]);
   }
-  return upperWord.concat(keyWord).concat(lowerWord);
+  return upperLetters.concat(keyLetter).concat(lowerLetters);
 }
