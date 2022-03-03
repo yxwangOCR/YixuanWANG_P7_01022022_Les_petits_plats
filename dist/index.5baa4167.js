@@ -522,9 +522,12 @@ function hmrAcceptRun(bundle, id) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _recipes = require("./src/recipes");
 var _recipesDefault = parcelHelpers.interopDefault(_recipes);
+var _sortSimple = require("./src/sort_simple");
 _recipesDefault.default();
+const searchBar = document.getElementById("searchbar");
+searchBar.addEventListener("keyup", _sortSimple.onSearch);
 
-},{"./src/recipes":"isDyF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"isDyF":[function(require,module,exports) {
+},{"./src/recipes":"isDyF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./src/sort_simple":"3cizc"}],"isDyF":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _data = require("./data");
@@ -2492,6 +2495,42 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}]},["d5kvp","igcvL"], "igcvL", "parcelRequiredaa1")
+},{}],"3cizc":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "onSearch", ()=>onSearch
+);
+var _data = require("./data");
+var _dataDefault = parcelHelpers.interopDefault(_data);
+const onSearch = (event)=>{
+    console.log(' ====== OnSearch ========');
+    console.log(event.target.value) // Valeur ecrite pas le user
+    ;
+    const searchValue = event.target.value;
+    const recipesFiltered = _dataDefault.default.filter((recipe)=>recipe.name.includes(searchValue)
+    );
+    /* TODO En plus du filtre faut rajouter par ingredient et par description  */ // Exemple : coco ou Coco
+    // Limonade de Coco
+    //Poisson Cru à la tahitienne
+    // Poulet coco réunionnais
+    console.log(recipesFiltered);
+} /*
+let upperLetters = [];
+let lowerLetters = [];
+let keyLetter = recipes[0]; // recipe name key work value
+
+function simpleSort(recipes) {
+  if (recipes.length < 3) return recipes;
+  // sort by recipts name:
+  for (let i = 0; i < recipes.length; i++) {
+    if (recipes[i].name > keyLetter.name) {
+      upperLetters.push(recipes[i]);
+    } else lowerLetters.push(recipes[i]);
+  }
+  return upperLetters.concat(keyLetter).concat(lowerLetters);
+}
+*/ ;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./data":"9kapS"}]},["d5kvp","igcvL"], "igcvL", "parcelRequiredaa1")
 
 //# sourceMappingURL=index.5baa4167.js.map
