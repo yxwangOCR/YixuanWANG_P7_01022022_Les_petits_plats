@@ -25,10 +25,11 @@
   },
   "homepage": "https://github.com/yxwangOCR/YixuanWANG_P7_01022022_Les_petits_plats#readme",
   "devDependencies": {
+    "@parcel/transformer-sass": "^2.3.2",
     "eslint": "^8.8.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-react": "^7.28.0",
-    "parcel": "^2.2.1",
+    "parcel": "^2.3.2",
     "sass": "^1.49.7"
   },
   "dependencies": {

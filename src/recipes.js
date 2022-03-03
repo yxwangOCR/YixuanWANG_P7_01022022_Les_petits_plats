@@ -1,4 +1,4 @@
-import { recipes } from "./data";
+import recipes from "./data";
 const cards = document.getElementById("cards");
 
 function displayRecipes() {
@@ -11,8 +11,9 @@ function displayRecipes() {
       ingredientContent.classList.add("ingredients");
       ingredientContent.innerHTML = `<div class="ingredients-quantity"><span>${
         ingredient.ingredient
-      }:</span> ${ingredient.quantity} ${ingredient.unit || ""}</div>`;
-      ingredientsWrapper.appendChild(ingredient);
+      }:</span> ${ingredient?.quantity || ''} ${ingredient?.unit || ""}</div>`;
+
+      ingredientsWrapper.appendChild(ingredientContent);
     });
 
     cardWrapper.classList.add("recipeCard");
@@ -31,5 +32,4 @@ function displayRecipes() {
   });
 }
 
-displayRecipes();
 export default displayRecipes;

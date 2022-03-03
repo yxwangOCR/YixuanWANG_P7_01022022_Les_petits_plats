@@ -5,6 +5,10 @@ barre de recherche;
 3. La recherche principale affiche les premiers résultats le plus rapidement possible;
 */
 
+
+
+
+
 let upperLetters = [];
 let lowerLetters = [];
 let keyLetter = recipes[0]; // recipe name key work value
