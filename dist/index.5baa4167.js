@@ -522,70 +522,42 @@ function hmrAcceptRun(bundle, id) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _recipes = require("./src/recipes");
 var _recipesDefault = parcelHelpers.interopDefault(_recipes);
-_recipesDefault.default();
 
 },{"./src/recipes":"isDyF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"isDyF":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _data = require("./data");
-const cards = document.getElementById('cards');
-const imageHolder = document.createElement("div");
-const card = document.createElement("div");
-const cardName = document.createElement("h3");
-const ingredients = document.createElement("div");
-const clock = document.createElement("span");
-const time = document.createElement("div");
-const description = document.createElement("p");
+const cards = document.getElementById("cards");
 function displayRecipes() {
-    console.log('recipes');
-    console.log(_data.recipes);
     _data.recipes.forEach((recipe)=>{
         const cardWrapper = document.createElement("div");
-        cardWrapper.innerText = recipe.name;
+        const ingredientsWrapper = document.createElement("div");
+        const ingredients = recipe.ingredients;
+        ingredients.forEach((ingredient)=>{
+            const ingredientContent = document.createElement("div");
+            ingredientContent.classList.add("ingredients");
+            ingredientContent.innerHTML = `<div class="ingredients-quantity"><span>${ingredient.ingredient}:</span> ${ingredient.quantity} ${ingredient.unit || ""}</div>`;
+            ingredientsWrapper.appendChild(ingredient);
+        });
+        cardWrapper.classList.add("recipeCard");
+        cardWrapper.innerHTML = `<div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="..." alt="Card image cap">
+                            <div class="card-body">
+                                <div class="recipe-name">${recipe.name}</div>
+                                <div class="time">${recipe.time} min</div>
+                            </div>
+                            <div class="realisation">${ingredientsWrapper.outerHTML}
+                                <p class="preparation">${recipe.description}</p>
+                            </div>
+                        </div>
+                    </div>`;
         cards.appendChild(cardWrapper);
-    /*
-    const cardText = document.createElement("div");
-    cardWrapper.className = "cards";
-    cardText.className = "card-body";
-
-    imageHolder.className = "card-img-top";
-    card.className = "card";
-
-    cardName.className = "name";
-    ingredients.className = "ingredients";
-    clock.className = "clock";
-    time.className = "time";
-    description.className = "description";
-
-    card.innerHTML = ` 
-      <div class="card" style="width: 18rem;">
-        <div class="card-img-top">
-        <div class="card-body">
-          <h3 class="name></h3>
-          <div class="ingredients"></div>
-          <span class="clock"></span>
-          <div class="time"></div>
-          <p class="description"></p>
-        </div>
-      </div>`;
-
-    cardName.textContent = `${recipe.name}`;
-    ingredients.innerHTML = `${recipe.ingredients}`;
-    clock.innerHTML = `<i class="far fa - clock"></i>`;
-    time.innerHTML = `${recipe.time}`;
-    description.innerHTML = `${recipe.description}`;
-
-    cardWrapper.appendChild(imageHolder);
-    cardWrapper.appendChild(card);
-    card.appendChild(cardText);*/ });
+    });
 }
+displayRecipes();
 exports.default = displayRecipes;
 
 },{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9kapS":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "recipes", ()=>recipes
-);
 const recipes = [
     {
         id: 1,
@@ -2486,7 +2458,7 @@ const recipes = [
     }, 
 ];
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+},{}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a

@@ -31,4 +31,5 @@ function displayRecipes() {
   });
 }
 
+displayRecipes();
 export default displayRecipes;
