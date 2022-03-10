@@ -10470,8 +10470,65 @@ nav {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  justify-content: space-between;
+  gap: 2rem;
 }
 .recipeCard {
+  border-radius: 5px;
+  box-shadow: 0px -1px 5px -2px #000000;
+  width: 380px;
+  height: 365px;
+}
+.card {
+  height: auto;
+}
+.image-placeholder {
+  background: #c7bebe;
+  height: 180px;
+  border-radius: 5px 5px 0 0;
+}
+.card-body {
+  background: #e7e7e7;
+  height: 185px;
+}
+.card-head {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.recipe-name {
   width: 50%;
+  font-size: 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.time svg {
+  width: 20px;
+  height: 20px;
+}
+.time {
+  font-size: 18px;
+}
+.preparation {
+  display: flex;
+  gap: 2rem;
+  height: 180px;
+  justify-content: space-between;
+}
+.description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  width: 170px;
+  height: 110px;
+}
+.ingredients-list {
+  font-size: 12px;
+  width: 170ox;
+  height: 105px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 /*# sourceMappingURL=index.8368275b.css.map */
