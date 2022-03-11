@@ -4,6 +4,6 @@ import { inSearch } from "./src/sort_2";
 
 displayRecipes();
 
-const searchBar = document.getElementById("searchbar"); // convert to uppercase
+const searchBar = document.getElementById("searchbar");
 searchBar.addEventListener("keyup", onSearch);
-searchBar.addEventListener("keyup", inSearch);
+//searchBar.addEventListener("keyup", inSearch);

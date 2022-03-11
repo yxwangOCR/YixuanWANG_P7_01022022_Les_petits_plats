@@ -525,11 +525,10 @@ var _recipesDefault = parcelHelpers.interopDefault(_recipes);
 var _sort1 = require("./src/sort_1");
 var _sort2 = require("./src/sort_2");
 _recipesDefault.default();
-const searchBar = document.getElementById("searchbar"); // convert to uppercase
-searchBar.addEventListener("keyup", _sort1.onSearch);
-searchBar.addEventListener("keyup", _sort2.inSearch);
+const searchBar = document.getElementById("searchbar");
+searchBar.addEventListener("keyup", _sort1.onSearch); //searchBar.addEventListener("keyup", inSearch);
 
-},{"./src/recipes":"isDyF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./src/sort_1":"1YQuk","./src/sort_2":"9rClw"}],"isDyF":[function(require,module,exports) {
+},{"./src/recipes":"isDyF","./src/sort_1":"1YQuk","./src/sort_2":"9rClw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"isDyF":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _data = require("./data");
@@ -2504,33 +2503,32 @@ exports.export = function(dest, destName, get) {
 
 },{}],"1YQuk":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-var _data = require("./data"); /*
-1. La recherche principale se lance à partir de 3 caractères entrés par l’utilisateur dans la
-barre de recherche;
-2. La recherche s’actualise pour chaque nouveau caractère entré;
-3. La recherche principale affiche les premiers résultats le plus rapidement possible;
-*/  /*
-export const onSearch = (event) => {
-  console.log(" ====== OnSearch ========");
-  console.log(event.target.value); // Valeur ecrite pas le user
-  const searchValue = event.target.value;
-  const storeValue = document.getElementById("cards");
-  const recipeCard = document.querySelectorAll(".recipeCard");
-  const recipeName = document.querySelectorAll(".recipe-name");
-  const recipeIngredient = document.querySelectorAll(".ingredients");
-  const recipeDescription = document.querySelectorAll(".description")
-
-  const recipesFiltered = recipes.filter((recipe) =>
-    recipe.name.includes(searchValue)
-  );
-
-  console.log(recipesFiltered);
-};
-*/  /* TODO En plus du filtre faut rajouter par ingredient et par description  */  // Exemple : coco ou Coco
- // Limonade de Coco
- //Poisson Cru à la tahitienne
- // Poulet coco réunionnais
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "onSearch", ()=>onSearch
+);
+var _data = require("./data");
 var _dataDefault = parcelHelpers.interopDefault(_data);
+const onSearch = (event)=>{
+    event.preventDefault();
+    let storedRecipes = [];
+    const searchValue = event.target.value.toLowerCase().trim(); // convert input value to lower case and trim
+    const recipesFiltered = _dataDefault.default.filter((recipe)=>{
+        const ingredients1 = recipe.ingredients.map((ingredients)=>ingredients.ingredient
+        );
+        if (recipe.name.includes(searchValue)) {
+            storedRecipes.push(recipe);
+            return storedRecipes;
+        } else if (ingredients1.includes(searchValue)) {
+            storedRecipes.push(recipe);
+            return storedRecipes;
+        } else if (recipe.description.includes(searchValue)) {
+            storedRecipes.push(recipe);
+            return storedRecipes;
+        }
+    });
+    console.log(recipesFiltered);
+    return recipesFiltered;
+};
 
 },{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9rClw":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -2540,7 +2538,7 @@ parcelHelpers.export(exports, "inSearch", ()=>inSearch
 var _data = require("./data");
 var _dataDefault = parcelHelpers.interopDefault(_data);
 const inSearch = ()=>{
-    const searchValue = document.getElementById("searchbar").value.toUpperCase();
+    const searchText = document.getElementById("searchbar").value.toUpperCase(); // convert to uppercase
     const storedValue = document.getElementById("cards");
     const recipeCard = document.querySelectorAll(".recipeCard");
     const name = storedValue.querySelectorAll(".recipe-name");
@@ -2551,7 +2549,7 @@ const inSearch = ()=>{
         let isName = recipeCard[i].querySelectorAll(".recipe-name")[0];
         if (isName) {
             let nameValue = isName.textContent || isName.innerHTML;
-            if (nameValue.toUpperCase().indexOf(searchValue) > -1) recipeCard[i].style.display = "";
+            if (nameValue.toUpperCase().indexOf(searchText) > 2) recipeCard[i].style.display = "";
             else recipeCard[i].style.display = "none";
         }
     }
@@ -2560,7 +2558,7 @@ const inSearch = ()=>{
         let isIngredient = recipeCard[j].querySelectorAll(".ingredients-quantity span")[0];
         if (isIngredient) {
             let ingredientValue = isIngredient.textContent || isIngredient.innerHTML;
-            if (ingredientValue.toUpperCase().indexOf(searchValue) > -1) recipeCard[j].style.display = "";
+            if (ingredientValue.toUpperCase().indexOf(searchText) > 2) recipeCard[j].style.display = "";
             else recipeCard[j].style.display = "none";
         }
     }
@@ -2569,7 +2567,7 @@ const inSearch = ()=>{
         let isDescription = recipeCard[y].querySelectorAll(".description")[0];
         if (isDescription) {
             let descriptionValue = isDescription.textContent || isDescription.innerHTML;
-            if (descriptionValue.toUpperCase().indexOf(searchValue) > -1) recipeCard[y].style.display = "";
+            if (descriptionValue.toUpperCase().indexOf(searchText) > 2) recipeCard[y].style.display = "";
             else recipeCard[y].style.display = "none";
         }
     }

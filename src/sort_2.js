@@ -1,7 +1,7 @@
 import recipes from "./data";
 
 export const inSearch = () => {
-  const searchValue = document.getElementById("searchbar").value.toUpperCase();
+  const searchText = document.getElementById("searchbar").value.toUpperCase(); // convert to uppercase
   const storedValue = document.getElementById("cards");
   const recipeCard = document.querySelectorAll(".recipeCard");
   const name = storedValue.querySelectorAll(".recipe-name");
@@ -15,7 +15,7 @@ export const inSearch = () => {
     let isName = recipeCard[i].querySelectorAll(".recipe-name")[0];
     if (isName) {
       let nameValue = isName.textContent || isName.innerHTML;
-      if (nameValue.toUpperCase().indexOf(searchValue) > -1) {
+      if (nameValue.toUpperCase().indexOf(searchText) > 2) {
         recipeCard[i].style.display = "";
       } else {
         recipeCard[i].style.display = "none";
@@ -30,7 +30,7 @@ export const inSearch = () => {
     )[0];
     if (isIngredient) {
       let ingredientValue = isIngredient.textContent || isIngredient.innerHTML;
-      if (ingredientValue.toUpperCase().indexOf(searchValue) > -1) {
+      if (ingredientValue.toUpperCase().indexOf(searchText) > 2) {
         recipeCard[j].style.display = "";
       } else {
         recipeCard[j].style.display = "none";
@@ -44,7 +44,7 @@ export const inSearch = () => {
     if (isDescription) {
       let descriptionValue =
         isDescription.textContent || isDescription.innerHTML;
-      if (descriptionValue.toUpperCase().indexOf(searchValue) > -1) {
+      if (descriptionValue.toUpperCase().indexOf(searchText) > 2) {
         recipeCard[y].style.display = "";
       } else {
         recipeCard[y].style.display = "none";
