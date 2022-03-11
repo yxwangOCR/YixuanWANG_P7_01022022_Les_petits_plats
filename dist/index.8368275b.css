@@ -10437,6 +10437,16 @@ nav {
 .fas {
   color: black;
 }
+.tags {
+  width: 4rem;
+  padding: 1rem;
+  background: red;
+}
+/*
+.hide {
+  display: none;
+}
+*/
 .dropdown-container {
   display: flex;
   gap: 1rem;

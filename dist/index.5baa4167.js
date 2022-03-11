@@ -526,10 +526,12 @@ var _sort1 = require("./src/sort_1");
 var _sort2 = require("./src/sort_2");
 _recipesDefault.default();
 const searchBar = document.getElementById("searchbar");
+//Sort_1:
 //searchBar.addEventListener("keyup", onSearch);
+//Sort_2:
 searchBar.addEventListener("keyup", _sort2.inSearch);
 
-},{"./src/recipes":"isDyF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./src/sort_1":"1YQuk","./src/sort_2":"9rClw"}],"isDyF":[function(require,module,exports) {
+},{"./src/recipes":"isDyF","./src/sort_1":"1YQuk","./src/sort_2":"9rClw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"isDyF":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _data = require("./data");
@@ -2528,6 +2530,10 @@ const onSearch = (event)=>{
         }
     });
     console.log(recipesFiltered);
+    // Show new table :
+    const cards = document.querySelector(".cards");
+    cards.innerHTML = "";
+    cards.appendChild(storedRecipes);
     return recipesFiltered;
 };
 

@@ -4,6 +4,7 @@ export const onSearch = (event) => {
   event.preventDefault();
   let storedRecipes = [];
   const searchValue = event.target.value.toLowerCase().trim(); // convert input value to lower case and trim
+
   const recipesFiltered = recipes.filter((recipe) => {
     const ingredients = recipe.ingredients.map(
       (ingredients) => ingredients.ingredient
@@ -20,6 +21,11 @@ export const onSearch = (event) => {
       return storedRecipes;
     }
   });
+
   console.log(recipesFiltered);
+  // Show new table :
+  const cards = document.querySelector(".cards");
+  cards.innerHTML = "";
+  cards.appendChild(storedRecipes);
   return recipesFiltered;
 };
