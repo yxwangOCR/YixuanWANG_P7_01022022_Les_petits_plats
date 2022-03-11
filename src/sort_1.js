@@ -8,6 +8,7 @@ export const onSearch = (event) => {
     const ingredients = recipe.ingredients.map(
       (ingredients) => ingredients.ingredient
     );
+
     if (recipe.name.includes(searchValue)) {
       storedRecipes.push(recipe);
       return storedRecipes;
