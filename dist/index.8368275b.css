@@ -10466,7 +10466,7 @@ nav {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  justify-content: space-between;
+  justify-content: center;
   gap: 2rem;
 }
 .recipeCard {
@@ -10512,7 +10512,6 @@ nav {
 }
 .description {
   overflow: hidden;
-  text-overflow: ellipsis;
   font-size: 12px;
   width: 170px;
   height: 110px;
@@ -10522,7 +10521,6 @@ nav {
   width: 170ox;
   height: 105px;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 * {
   box-sizing: border-box;
