@@ -2,30 +2,37 @@ import recipes from "./data";
 
 export const onSearch = (event) => {
   event.preventDefault();
-  let storedRecipes = [];
   const searchValue = event.target.value.toLowerCase().trim(); // convert input value to lower case and trim
+  const cards = document.getElementById("cards");
+  const recipeCard = document.querySelectorAll(".recipeCard");
+  let recipeWrapper = [];
 
-  const recipesFiltered = recipes.filter((recipe) => {
+  const filteredRecipes = recipes.filter((recipe) => {
+    const name = recipe.name;
     const ingredients = recipe.ingredients.map(
       (ingredients) => ingredients.ingredient
     );
+    const description = recipe.description;
 
-    if (recipe.name.includes(searchValue)) {
-      storedRecipes.push(recipe);
-      return storedRecipes;
-    } else if (ingredients.includes(searchValue)) {
-      storedRecipes.push(recipe);
-      return storedRecipes;
-    } else if (recipe.description.includes(searchValue)) {
-      storedRecipes.push(recipe);
-      return storedRecipes;
-    }
+    const filteded =
+      name.includes(searchValue) ||
+      ingredients.includes(searchValue) ||
+      description.includes(searchValue);
+
+    if (filteded) recipeWrapper.push(recipe);
+    //recipeCard.classList.toggle("hide", !filteded);
   });
 
-  console.log(recipesFiltered);
-  // Show new table :
-  const cards = document.querySelector(".cards");
-  cards.innerHTML = "";
-  cards.appendChild(storedRecipes);
-  return recipesFiltered;
+  recipeWrapper.forEach((recipeCard) => {
+    //console.log(recipeCard);
+    //cards.innerHTML = "";
+    cards.append(recipeCard);
+    //console.log(cards);
+  });
+
+  //console.log(recipeWrapper);
+  //console.log(typeof recipeWrapper);
+
+  //cards.innerHTML = `${recipeWrapper}`;
+  //cards.append(recipeWrapper);
 };

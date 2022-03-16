@@ -522,16 +522,23 @@ function hmrAcceptRun(bundle, id) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _recipes = require("./src/recipes");
 var _recipesDefault = parcelHelpers.interopDefault(_recipes);
+var _createTags = require("./src/createTags");
+var _createTagsDefault = parcelHelpers.interopDefault(_createTags);
+var _displayTags = require("./src/displayTags");
+var _displayTagsDefault = parcelHelpers.interopDefault(_displayTags);
 var _sort1 = require("./src/sort_1");
 var _sort2 = require("./src/sort_2");
 _recipesDefault.default();
-const searchBar = document.getElementById("searchbar");
-//Sort_1:
-//searchBar.addEventListener("keyup", onSearch);
-//Sort_2:
-searchBar.addEventListener("keyup", _sort2.inSearch);
+_createTagsDefault.default();
+_displayTagsDefault.default();
+const searchBar = document.getElementById("searchbar"); //Sort_1:
+ //searchBar.addEventListener("keyup", onSearch);
+ //Sort_2:
+ //searchBar.addEventListener("keyup", inSearch);
+ //Tags:
+ //searchInput.addEventListener("keyup", displayTags);
 
-},{"./src/recipes":"isDyF","./src/sort_1":"1YQuk","./src/sort_2":"9rClw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"isDyF":[function(require,module,exports) {
+},{"./src/recipes":"isDyF","./src/sort_1":"1YQuk","./src/sort_2":"9rClw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./src/createTags":"kV1Ls","./src/displayTags":"fP1Ry"}],"isDyF":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _data = require("./data");
@@ -2513,28 +2520,29 @@ var _data = require("./data");
 var _dataDefault = parcelHelpers.interopDefault(_data);
 const onSearch = (event)=>{
     event.preventDefault();
-    let storedRecipes = [];
     const searchValue = event.target.value.toLowerCase().trim(); // convert input value to lower case and trim
-    const recipesFiltered = _dataDefault.default.filter((recipe)=>{
+    const cards = document.getElementById("cards");
+    const recipeCard1 = document.querySelectorAll(".recipeCard");
+    let recipeWrapper = [];
+    const filteredRecipes = _dataDefault.default.filter((recipe)=>{
+        const name = recipe.name;
         const ingredients1 = recipe.ingredients.map((ingredients)=>ingredients.ingredient
         );
-        if (recipe.name.includes(searchValue)) {
-            storedRecipes.push(recipe);
-            return storedRecipes;
-        } else if (ingredients1.includes(searchValue)) {
-            storedRecipes.push(recipe);
-            return storedRecipes;
-        } else if (recipe.description.includes(searchValue)) {
-            storedRecipes.push(recipe);
-            return storedRecipes;
-        }
+        const description = recipe.description;
+        const filteded = name.includes(searchValue) || ingredients1.includes(searchValue) || description.includes(searchValue);
+        if (filteded) recipeWrapper.push(recipe);
+    //recipeCard.classList.toggle("hide", !filteded);
     });
-    console.log(recipesFiltered);
-    // Show new table :
-    const cards = document.querySelector(".cards");
-    cards.innerHTML = "";
-    cards.appendChild(storedRecipes);
-    return recipesFiltered;
+    recipeWrapper.forEach((recipeCard)=>{
+        //console.log(recipeCard);
+        //cards.innerHTML = "";
+        cards.append(recipeCard);
+    //console.log(cards);
+    });
+//console.log(recipeWrapper);
+//console.log(typeof recipeWrapper);
+//cards.innerHTML = `${recipeWrapper}`;
+//cards.append(recipeWrapper);
 };
 
 },{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9rClw":[function(require,module,exports) {
@@ -2580,6 +2588,41 @@ const inSearch = ()=>{
     }
 };
 
-},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["d5kvp","igcvL"], "igcvL", "parcelRequiredaa1")
+},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kV1Ls":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function createTags(label) {
+    const tagWrapper = document.createElement("div");
+    tagWrapper.setAttribute("class", "tag");
+    const inputText = document.createElement("span");
+    inputText.innerHTML = label;
+    const closeIcon = document.createElement("span");
+    closeIcon.setAttribute("class", "close-icon");
+    closeIcon.innerHTML = "&#215";
+    tagWrapper.appendChild(inputText);
+    tagWrapper.appendChild(closeIcon);
+    return tagWrapper;
+}
+exports.default = createTags;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fP1Ry":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/*Reference for Keys : 
+https://www.techiedelight.com/detect-enter-key-press-javascript/
+*/ const searchInput = document.getElementById("searchbar");
+const tags = document.querySelector(".tags");
+function displayTags(event) {
+    console.log("Display Tags");
+    if (event.key === "Enter") {
+        console.log("Key Input");
+        const tagValue = createTags(searchBar.value);
+        tags.appendChild(tagValue);
+    }
+}
+searchInput.addEventListener("keyup", displayTags);
+exports.default = displayTags;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["d5kvp","igcvL"], "igcvL", "parcelRequiredaa1")
 
 //# sourceMappingURL=index.5baa4167.js.map

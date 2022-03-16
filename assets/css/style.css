@@ -11165,17 +11165,36 @@ nav {
   color: black;
 }
 
-.tags {
-  width: 4rem;
-  padding: 1rem;
-  background: red;
+.tags-container {
+  width: 100%;
+  border: 2px solid blue;
+  margin: 1rem;
 }
 
-/*
-.hide {
-  display: none;
+.tags {
+  border: 2px solid green;
+  padding: 0.5rem;
+  display: flex;
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
 }
-*/
+
+.tag {
+  padding: 5px;
+  margin: 5px;
+  background: #3282f7;
+  color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.close-icon {
+  font-size: 1rem;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 .dropdown-container {
   display: flex;
   gap: 1rem;
@@ -11276,6 +11295,10 @@ nav {
   width: 170ox;
   height: 105px;
   overflow: hidden;
+}
+
+.hide {
+  display: none;
 }
 
 * {
