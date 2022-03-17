@@ -2,14 +2,8 @@ import recipes from "./data";
 
 export const inSearch = () => {
   const searchText = document.getElementById("searchbar").value.toUpperCase(); // convert to uppercase
-  const storedValue = document.getElementById("cards");
   const recipeCard = document.querySelectorAll(".recipeCard");
-  const name = storedValue.querySelectorAll(".recipe-name");
-  const ingredient = storedValue.getElementsByTagName(
-    ".ingredients-quantity span"
-  );
-  const description = storedValue.getElementsByTagName("p");
-
+ 
   for (let i = 0; i < recipeCard.length; i++) {
     let isName = recipeCard[i].querySelectorAll(".recipe-name")[0];
     let nameValue = isName.textContent || isName.innerHTML;

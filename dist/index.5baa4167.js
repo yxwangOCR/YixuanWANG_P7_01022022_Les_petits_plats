@@ -543,7 +543,7 @@ const searchBar = document.getElementById("searchbar"); //Sort_1:
  //Close Tags:
  //closeBtn.addEventListener("click", closeTags);
 
-},{"./src/recipes":"isDyF","./src/createTags":"kV1Ls","./src/displayTags":"fP1Ry","./src/sort_1":"1YQuk","./src/sort_2":"9rClw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./src/closeTag":"iKJ2Y"}],"isDyF":[function(require,module,exports) {
+},{"./src/recipes":"isDyF","./src/sort_1":"1YQuk","./src/sort_2":"9rClw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./src/createTags":"kV1Ls","./src/displayTags":"fP1Ry","./src/closeTag":"iKJ2Y"}],"isDyF":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _data = require("./data");
@@ -2516,46 +2516,7 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"kV1Ls":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function createTags(label) {
-    const tagWrapper = document.createElement("div");
-    tagWrapper.setAttribute("class", "tag");
-    const inputText = document.createElement("span");
-    inputText.setAttribute("class", "tag-value");
-    inputText.innerHTML = label;
-    const closeIcon = document.createElement("span");
-    closeIcon.setAttribute("class", "close-icon");
-    closeIcon.innerHTML = "&#215";
-    tagWrapper.appendChild(inputText);
-    tagWrapper.appendChild(closeIcon);
-    return tagWrapper;
-}
-exports.default = createTags;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fP1Ry":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-/*Reference for Keys : 
-https://www.techiedelight.com/detect-enter-key-press-javascript/
-*/ var _createTags = require("./createTags");
-var _createTagsDefault = parcelHelpers.interopDefault(_createTags);
-const searchInput = document.getElementById("searchbar");
-const tags = document.querySelector(".tags");
-function displayTags(event) {
-    console.log("Press Keys");
-    if (event.key === "Enter") {
-        console.log("Input Enter Key");
-        const tagValue = _createTagsDefault.default(searchInput.value);
-        tags.appendChild(tagValue);
-        searchInput.value = "";
-    }
-}
-searchInput.addEventListener("keyup", displayTags);
-exports.default = displayTags;
-
-},{"./createTags":"kV1Ls","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1YQuk":[function(require,module,exports) {
+},{}],"1YQuk":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "onSearch", ()=>onSearch
@@ -2603,11 +2564,7 @@ var _data = require("./data");
 var _dataDefault = parcelHelpers.interopDefault(_data);
 const inSearch = ()=>{
     const searchText = document.getElementById("searchbar").value.toUpperCase(); // convert to uppercase
-    const storedValue = document.getElementById("cards");
     const recipeCard = document.querySelectorAll(".recipeCard");
-    const name = storedValue.querySelectorAll(".recipe-name");
-    const ingredient = storedValue.getElementsByTagName(".ingredients-quantity span");
-    const description = storedValue.getElementsByTagName("p");
     for(let i = 0; i < recipeCard.length; i++){
         let isName = recipeCard[i].querySelectorAll(".recipe-name")[0];
         let nameValue = isName.textContent || isName.innerHTML;
@@ -2624,7 +2581,46 @@ const inSearch = ()=>{
     }
 };
 
-},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iKJ2Y":[function(require,module,exports) {
+},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kV1Ls":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function createTags(label) {
+    const tagWrapper = document.createElement("div");
+    tagWrapper.setAttribute("class", "tag");
+    const inputText = document.createElement("span");
+    inputText.setAttribute("class", "tag-value");
+    inputText.innerHTML = label;
+    const closeIcon = document.createElement("span");
+    closeIcon.setAttribute("class", "close-icon");
+    closeIcon.innerHTML = "&#215";
+    tagWrapper.appendChild(inputText);
+    tagWrapper.appendChild(closeIcon);
+    return tagWrapper;
+}
+exports.default = createTags;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fP1Ry":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/*Reference for Keys : 
+https://www.techiedelight.com/detect-enter-key-press-javascript/
+*/ var _createTags = require("./createTags");
+var _createTagsDefault = parcelHelpers.interopDefault(_createTags);
+const searchInput = document.getElementById("searchbar");
+const tags = document.querySelector(".tags");
+function displayTags(event) {
+    console.log("Press Keys");
+    if (event.key === "Enter") {
+        console.log("Input Enter Key");
+        const tagValue = _createTagsDefault.default(searchInput.value);
+        tags.appendChild(tagValue);
+        searchInput.value = "";
+    }
+}
+searchInput.addEventListener("keyup", displayTags);
+exports.default = displayTags;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./createTags":"kV1Ls"}],"iKJ2Y":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 const closeBtn = document.querySelector(".close-icon");
@@ -2632,7 +2628,7 @@ const tag = document.querySelector(".tag");
 function closeTags() {
     console.log("Close");
     tag.style.display = "none";
-} //closeBtn.addEventListener("click", closeTags);
+}
 exports.default = closeTags;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["d5kvp","igcvL"], "igcvL", "parcelRequiredaa1")
