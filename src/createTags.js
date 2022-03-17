@@ -1,3 +1,5 @@
+import closeTags from "./closeTag";
+
 function createTags(label) {
   const tagWrapper = document.createElement("div");
   tagWrapper.setAttribute("class", "tag");
@@ -12,6 +14,9 @@ function createTags(label) {
 
   tagWrapper.appendChild(inputText);
   tagWrapper.appendChild(closeIcon);
+
+  closeIcon.addEventListener('click', closeTags)
+
   return tagWrapper;
 }
 
