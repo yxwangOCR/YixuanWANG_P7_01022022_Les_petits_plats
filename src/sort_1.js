@@ -36,3 +36,10 @@ export const onSearch = (event) => {
   //cards.innerHTML = `${recipeWrapper}`;
   //cards.append(recipeWrapper);
 };
+
+/*
+const cards = document.getElementById("cards");
+function displayRecipes(recipes) {
+  cards.innerHTML = "";
+}
+*/

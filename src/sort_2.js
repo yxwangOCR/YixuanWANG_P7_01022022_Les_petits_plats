@@ -10,45 +10,31 @@ export const inSearch = () => {
   );
   const description = storedValue.getElementsByTagName("p");
 
-  // match to recipe name:
-  for (let i = 0; i < name.length; i++) {
+  for (let i = 0; i < recipeCard.length; i++) {
     let isName = recipeCard[i].querySelectorAll(".recipe-name")[0];
-    if (isName) {
-      let nameValue = isName.textContent || isName.innerHTML;
-      if (nameValue.toUpperCase().indexOf(searchText) > 2) {
-        recipeCard[i].style.display = "";
-      } else {
-        recipeCard[i].style.display = "none";
-      }
+    let nameValue = isName.textContent || isName.innerHTML;
+    if (nameValue.toUpperCase().indexOf(searchText) > -1) {
+      recipeCard[i].style.display = "";
+    } else {
+      recipeCard[i].style.display = "none";
     }
-  }
 
-  // match to ingredients:
-  for (let j = 0; j < ingredient.length; j++) {
+    let isDescription = recipeCard[i].querySelectorAll(".description")[0];
+    let descriptionValue = isDescription.textContent || isDescription.innerHTML;
+    if (descriptionValue.toUpperCase().indexOf(searchText) > -1) {
+      recipeCard[i].style.display = "";
+    } else {
+      recipeCard[i].style.display = "none";
+    }
+
     let isIngredient = recipeCard[j].querySelectorAll(
       ".ingredients-quantity span"
     )[0];
-    if (isIngredient) {
-      let ingredientValue = isIngredient.textContent || isIngredient.innerHTML;
-      if (ingredientValue.toUpperCase().indexOf(searchText) > 2) {
-        recipeCard[j].style.display = "";
-      } else {
-        recipeCard[j].style.display = "none";
-      }
-    }
-  }
-
-  // match to description:
-  for (let y = 0; y < description.length; y++) {
-    let isDescription = recipeCard[y].querySelectorAll(".description")[0];
-    if (isDescription) {
-      let descriptionValue =
-        isDescription.textContent || isDescription.innerHTML;
-      if (descriptionValue.toUpperCase().indexOf(searchText) > 2) {
-        recipeCard[y].style.display = "";
-      } else {
-        recipeCard[y].style.display = "none";
-      }
+    let ingredientValue = isIngredient.textContent || isIngredient.innerHTML;
+    if (ingredientValue.toUpperCase().indexOf(searchText) > -1) {
+      recipeCard[j].style.display = "";
+    } else {
+      recipeCard[j].style.display = "none";
     }
   }
 };

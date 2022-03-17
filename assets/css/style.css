@@ -11167,12 +11167,10 @@ nav {
 
 .tags-container {
   width: 100%;
-  border: 2px solid blue;
   margin: 1rem;
 }
 
 .tags {
-  border: 2px solid green;
   padding: 0.5rem;
   display: flex;
   display: flex;
@@ -11193,6 +11191,7 @@ nav {
   font-size: 1rem;
   margin-left: 5px;
   margin-right: 5px;
+  cursor: pointer;
 }
 
 .dropdown-container {

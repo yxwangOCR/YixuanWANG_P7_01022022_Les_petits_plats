@@ -526,19 +526,24 @@ var _createTags = require("./src/createTags");
 var _createTagsDefault = parcelHelpers.interopDefault(_createTags);
 var _displayTags = require("./src/displayTags");
 var _displayTagsDefault = parcelHelpers.interopDefault(_displayTags);
+var _closeTag = require("./src/closeTag");
+var _closeTagDefault = parcelHelpers.interopDefault(_closeTag);
 var _sort1 = require("./src/sort_1");
 var _sort2 = require("./src/sort_2");
 _recipesDefault.default();
 _createTagsDefault.default();
 _displayTagsDefault.default();
+_closeTagDefault.default();
 const searchBar = document.getElementById("searchbar"); //Sort_1:
  //searchBar.addEventListener("keyup", onSearch);
  //Sort_2:
  //searchBar.addEventListener("keyup", inSearch);
- //Tags:
+ //Display Tags:
  //searchInput.addEventListener("keyup", displayTags);
+ //Close Tags:
+ //closeBtn.addEventListener("click", closeTags);
 
-},{"./src/recipes":"isDyF","./src/sort_1":"1YQuk","./src/sort_2":"9rClw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./src/createTags":"kV1Ls","./src/displayTags":"fP1Ry"}],"isDyF":[function(require,module,exports) {
+},{"./src/recipes":"isDyF","./src/createTags":"kV1Ls","./src/displayTags":"fP1Ry","./src/sort_1":"1YQuk","./src/sort_2":"9rClw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./src/closeTag":"iKJ2Y"}],"isDyF":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _data = require("./data");
@@ -2511,7 +2516,46 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"1YQuk":[function(require,module,exports) {
+},{}],"kV1Ls":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function createTags(label) {
+    const tagWrapper = document.createElement("div");
+    tagWrapper.setAttribute("class", "tag");
+    const inputText = document.createElement("span");
+    inputText.setAttribute("class", "tag-value");
+    inputText.innerHTML = label;
+    const closeIcon = document.createElement("span");
+    closeIcon.setAttribute("class", "close-icon");
+    closeIcon.innerHTML = "&#215";
+    tagWrapper.appendChild(inputText);
+    tagWrapper.appendChild(closeIcon);
+    return tagWrapper;
+}
+exports.default = createTags;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fP1Ry":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/*Reference for Keys : 
+https://www.techiedelight.com/detect-enter-key-press-javascript/
+*/ var _createTags = require("./createTags");
+var _createTagsDefault = parcelHelpers.interopDefault(_createTags);
+const searchInput = document.getElementById("searchbar");
+const tags = document.querySelector(".tags");
+function displayTags(event) {
+    console.log("Press Keys");
+    if (event.key === "Enter") {
+        console.log("Input Enter Key");
+        const tagValue = _createTagsDefault.default(searchInput.value);
+        tags.appendChild(tagValue);
+        searchInput.value = "";
+    }
+}
+searchInput.addEventListener("keyup", displayTags);
+exports.default = displayTags;
+
+},{"./createTags":"kV1Ls","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1YQuk":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "onSearch", ()=>onSearch
@@ -2543,7 +2587,12 @@ const onSearch = (event)=>{
 //console.log(typeof recipeWrapper);
 //cards.innerHTML = `${recipeWrapper}`;
 //cards.append(recipeWrapper);
-};
+}; /*
+const cards = document.getElementById("cards");
+function displayRecipes(recipes) {
+  cards.innerHTML = "";
+}
+*/ 
 
 },{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9rClw":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -2559,69 +2608,32 @@ const inSearch = ()=>{
     const name = storedValue.querySelectorAll(".recipe-name");
     const ingredient = storedValue.getElementsByTagName(".ingredients-quantity span");
     const description = storedValue.getElementsByTagName("p");
-    // match to recipe name:
-    for(let i = 0; i < name.length; i++){
+    for(let i = 0; i < recipeCard.length; i++){
         let isName = recipeCard[i].querySelectorAll(".recipe-name")[0];
-        if (isName) {
-            let nameValue = isName.textContent || isName.innerHTML;
-            if (nameValue.toUpperCase().indexOf(searchText) > 2) recipeCard[i].style.display = "";
-            else recipeCard[i].style.display = "none";
-        }
-    }
-    // match to ingredients:
-    for(let j = 0; j < ingredient.length; j++){
+        let nameValue = isName.textContent || isName.innerHTML;
+        if (nameValue.toUpperCase().indexOf(searchText) > -1) recipeCard[i].style.display = "";
+        else recipeCard[i].style.display = "none";
+        let isDescription = recipeCard[i].querySelectorAll(".description")[0];
+        let descriptionValue = isDescription.textContent || isDescription.innerHTML;
+        if (descriptionValue.toUpperCase().indexOf(searchText) > -1) recipeCard[i].style.display = "";
+        else recipeCard[i].style.display = "none";
         let isIngredient = recipeCard[j].querySelectorAll(".ingredients-quantity span")[0];
-        if (isIngredient) {
-            let ingredientValue = isIngredient.textContent || isIngredient.innerHTML;
-            if (ingredientValue.toUpperCase().indexOf(searchText) > 2) recipeCard[j].style.display = "";
-            else recipeCard[j].style.display = "none";
-        }
-    }
-    // match to description:
-    for(let y = 0; y < description.length; y++){
-        let isDescription = recipeCard[y].querySelectorAll(".description")[0];
-        if (isDescription) {
-            let descriptionValue = isDescription.textContent || isDescription.innerHTML;
-            if (descriptionValue.toUpperCase().indexOf(searchText) > 2) recipeCard[y].style.display = "";
-            else recipeCard[y].style.display = "none";
-        }
+        let ingredientValue = isIngredient.textContent || isIngredient.innerHTML;
+        if (ingredientValue.toUpperCase().indexOf(searchText) > -1) recipeCard[j].style.display = "";
+        else recipeCard[j].style.display = "none";
     }
 };
 
-},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kV1Ls":[function(require,module,exports) {
+},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iKJ2Y":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-function createTags(label) {
-    const tagWrapper = document.createElement("div");
-    tagWrapper.setAttribute("class", "tag");
-    const inputText = document.createElement("span");
-    inputText.innerHTML = label;
-    const closeIcon = document.createElement("span");
-    closeIcon.setAttribute("class", "close-icon");
-    closeIcon.innerHTML = "&#215";
-    tagWrapper.appendChild(inputText);
-    tagWrapper.appendChild(closeIcon);
-    return tagWrapper;
-}
-exports.default = createTags;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fP1Ry":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-/*Reference for Keys : 
-https://www.techiedelight.com/detect-enter-key-press-javascript/
-*/ const searchInput = document.getElementById("searchbar");
-const tags = document.querySelector(".tags");
-function displayTags(event) {
-    console.log("Display Tags");
-    if (event.key === "Enter") {
-        console.log("Key Input");
-        const tagValue = createTags(searchBar.value);
-        tags.appendChild(tagValue);
-    }
-}
-searchInput.addEventListener("keyup", displayTags);
-exports.default = displayTags;
+const closeBtn = document.querySelector(".close-icon");
+const tag = document.querySelector(".tag");
+function closeTags() {
+    console.log("Close");
+    tag.style.display = "none";
+} //closeBtn.addEventListener("click", closeTags);
+exports.default = closeTags;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["d5kvp","igcvL"], "igcvL", "parcelRequiredaa1")
 

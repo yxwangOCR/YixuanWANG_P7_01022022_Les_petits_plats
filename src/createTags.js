@@ -3,6 +3,7 @@ function createTags(label) {
   tagWrapper.setAttribute("class", "tag");
 
   const inputText = document.createElement("span");
+  inputText.setAttribute("class", "tag-value");
   inputText.innerHTML = label;
 
   const closeIcon = document.createElement("span");
