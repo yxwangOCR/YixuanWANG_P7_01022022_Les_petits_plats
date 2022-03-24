@@ -7,7 +7,6 @@ import { inSearch } from "./src/sort_2";
 import showDropdown from "./src/subSearch";
 
 displayRecipes();
-displayTags();
 showDropdown();
 
 const searchBar = document.getElementById("searchbar");

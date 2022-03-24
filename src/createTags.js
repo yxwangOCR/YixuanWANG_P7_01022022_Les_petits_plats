@@ -1,6 +1,7 @@
 import closeTags from "./closeTag";
 
-function createTags(label) {
+function createTags(label, type) {
+  console.log(type)
   const tagWrapper = document.createElement("div");
   tagWrapper.setAttribute("class", "tag");
 

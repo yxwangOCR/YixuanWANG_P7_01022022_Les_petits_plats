@@ -6,20 +6,15 @@ import createTags from "./createTags";
 import filterTag from "./filterTag";
 
 
-const searchInput = document.getElementById("searchbar-tag");
 const tags = document.querySelector(".tags");
 
 function displayTags(event) {
-  if (event?.key && event.key === "Enter") {
-    console.log("Input Enter Key");
-    const tagValue = createTags(searchInput.value);
+    const type = event.target.dataType;
+    const value = event.target.innerHTML;
+    const tagValue = createTags(value, type);
     tags.appendChild(tagValue);
 
     filterTag();
-    
-    searchInput.value = "";
-  }
 }
-searchInput.addEventListener("keyup", displayTags);
 
 export default displayTags;
