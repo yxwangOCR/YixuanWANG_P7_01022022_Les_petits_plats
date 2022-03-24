@@ -2674,7 +2674,12 @@ function showDropdown() {
             return allIngredients.indexOf(ele) == pos;
         });
         function showIngredientList() {
-            ingredientsInput.innerHTML = filteredIngredients.join(", ");
+            const filteredIngredientsValues = filteredIngredients.values();
+            console.log(filteredIngredientsValues);
+            for (let value of filteredIngredientsValues){
+                ingredientsInput.innerHTML = `<span class="element">${value}</span>`;
+                console.log(value);
+            }
             appareilInput.innerHTML = "";
             ustensilsInput.innerHTML = "";
         }

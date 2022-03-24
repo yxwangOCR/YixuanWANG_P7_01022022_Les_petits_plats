@@ -20,8 +20,14 @@ function showDropdown() {
     const filteredIngredients = allIngredients.filter(function (ele, pos) {
       return allIngredients.indexOf(ele) == pos;
     });
-    function showIngredientList() {
-      ingredientsInput.innerHTML = filteredIngredients.join(", ");
+      function showIngredientList() {
+          const filteredIngredientsValues = filteredIngredients.values();
+          console.log(filteredIngredientsValues)
+          for (let value of filteredIngredientsValues) {
+              ingredientsInput.innerHTML = `<span class="element">${value}</span>`;
+              console.log(value)
+          }
+     
       appareilInput.innerHTML = "";
       ustensilsInput.innerHTML = "";
     }
