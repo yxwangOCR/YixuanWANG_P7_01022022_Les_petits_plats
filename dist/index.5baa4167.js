@@ -530,8 +530,11 @@ var _closeTag = require("./src/closeTag");
 var _closeTagDefault = parcelHelpers.interopDefault(_closeTag);
 var _sort1 = require("./src/sort_1");
 var _sort2 = require("./src/sort_2");
+var _subSearch = require("./src/subSearch");
+var _subSearchDefault = parcelHelpers.interopDefault(_subSearch);
 _recipesDefault.default();
 _displayTagsDefault.default();
+_subSearchDefault.default();
 const searchBar = document.getElementById("searchbar");
 //Sort_1:
 //searchBar.addEventListener("keyup", onSearch);
@@ -541,7 +544,7 @@ searchBar.addEventListener("keyup", _sort2.inSearch); //Display Tags:
  //Close Tags:
  //closeBtn.addEventListener("click", closeTags);
 
-},{"./src/recipes":"isDyF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./src/sort_1":"1YQuk","./src/sort_2":"9rClw","./src/createTags":"kV1Ls","./src/displayTags":"fP1Ry","./src/closeTag":"iKJ2Y"}],"isDyF":[function(require,module,exports) {
+},{"./src/recipes":"isDyF","./src/createTags":"kV1Ls","./src/displayTags":"fP1Ry","./src/closeTag":"iKJ2Y","./src/sort_1":"1YQuk","./src/sort_2":"9rClw","./src/subSearch":"d6JBR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"isDyF":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _data = require("./data");
@@ -580,37 +583,7 @@ function displayRecipes() {
 }
 exports.default = displayRecipes;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./data":"9kapS"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, '__esModule', {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"9kapS":[function(require,module,exports) {
+},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9kapS":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 const recipes = [
@@ -890,7 +863,7 @@ const recipes = [
         description: "Etaler la pate dans les moules à tartelette. Faire cuire la pate 30 minutes. Découper le chocolat en morceau et le faire chauffer, y ajouter la crême liquide, ajouter le beurre et remuer jusqu'à avoir une pâte homogène. Verser la pate sur les tartelettes. Couper les fraises en 2 et les positionner sur ",
         appliance: "Four",
         ustensils: [
-            "moule à tartelettes (6)",
+            "moule à tartelettes",
             "casserolle"
         ]
     },
@@ -2514,6 +2487,105 @@ const recipes = [
 ];
 exports.default = recipes;
 
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"kV1Ls":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _closeTag = require("./closeTag");
+var _closeTagDefault = parcelHelpers.interopDefault(_closeTag);
+function createTags(label) {
+    const tagWrapper = document.createElement("div");
+    tagWrapper.setAttribute("class", "tag");
+    const inputText = document.createElement("span");
+    inputText.setAttribute("class", "tag-value");
+    inputText.innerHTML = label;
+    const closeIcon = document.createElement("span");
+    closeIcon.setAttribute("class", "close-icon");
+    closeIcon.innerHTML = "&#215";
+    tagWrapper.appendChild(inputText);
+    tagWrapper.appendChild(closeIcon);
+    closeIcon.addEventListener('click', _closeTagDefault.default);
+    return tagWrapper;
+}
+exports.default = createTags;
+
+},{"./closeTag":"iKJ2Y","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iKJ2Y":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+const closeBtn = document.querySelector(".close-icon");
+const tag = document.querySelector(".tag");
+function closeTags(e) {
+    e.target.parentElement.style.display = "none";
+}
+exports.default = closeTags;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fP1Ry":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/*Reference for Keys : 
+https://www.techiedelight.com/detect-enter-key-press-javascript/
+*/ var _createTags = require("./createTags");
+var _createTagsDefault = parcelHelpers.interopDefault(_createTags);
+var _filterTag = require("./filterTag");
+var _filterTagDefault = parcelHelpers.interopDefault(_filterTag);
+const searchInput = document.getElementById("searchbar-tag");
+const tags = document.querySelector(".tags");
+function displayTags(event) {
+    if (event?.key && event.key === "Enter") {
+        console.log("Input Enter Key");
+        const tagValue = _createTagsDefault.default(searchInput.value);
+        tags.appendChild(tagValue);
+        _filterTagDefault.default();
+        searchInput.value = "";
+    }
+}
+searchInput.addEventListener("keyup", displayTags);
+exports.default = displayTags;
+
+},{"./createTags":"kV1Ls","./filterTag":"iFdaD","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iFdaD":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function filterTag() {
+    const recipeCard = document.querySelectorAll(".recipeCard");
+    const tags = document.querySelectorAll(".tag");
+    const displayedCard = Array.from(recipeCard).filter((card)=>card.style.display !== "none"
+    );
+    const tagsValue = Array.from(tags).map((tag)=>tag.querySelectorAll(".tag-value")[0].innerHTML
+    );
+    console.log(displayedCard);
+    console.log(tagsValue);
+}
+exports.default = filterTag;
+
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1YQuk":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -2577,75 +2649,153 @@ const inSearch = ()=>{
     }
 };
 
-},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kV1Ls":[function(require,module,exports) {
+},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"d6JBR":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _closeTag = require("./closeTag");
-var _closeTagDefault = parcelHelpers.interopDefault(_closeTag);
-function createTags(label) {
-    const tagWrapper = document.createElement("div");
-    tagWrapper.setAttribute("class", "tag");
-    const inputText = document.createElement("span");
-    inputText.setAttribute("class", "tag-value");
-    inputText.innerHTML = label;
-    const closeIcon = document.createElement("span");
-    closeIcon.setAttribute("class", "close-icon");
-    closeIcon.innerHTML = "&#215";
-    tagWrapper.appendChild(inputText);
-    tagWrapper.appendChild(closeIcon);
-    closeIcon.addEventListener('click', _closeTagDefault.default);
-    return tagWrapper;
+var _data = require("./data");
+var _dataDefault = parcelHelpers.interopDefault(_data);
+const ingredientDropdown = document.querySelector("#dropdown-1");
+const appareilDropdown = document.querySelector("#dropdown-2");
+const ustensilDropdown = document.querySelector("#dropdown-3");
+let allAppareil = [];
+let allIngredients = [];
+let allUstensils = [];
+function showDropdown() {
+    const allElements = _dataDefault.default.filter((recipe)=>{
+        const ingredientsInput = document.querySelector("#selected-ingredients");
+        const appareilInput = document.querySelector("#selected-appareils");
+        const ustensilsInput = document.querySelector("#selected-ustensils");
+        //<<<<< ==== All ingredients ==== >>>>> :
+        recipe.ingredients.map((ingredient)=>{
+            allIngredients.push(ingredient.ingredient.toLowerCase());
+        });
+        // Filtered Ingredients (no repeat ingredients)
+        const filteredIngredients = allIngredients.filter(function(ele, pos) {
+            return allIngredients.indexOf(ele) == pos;
+        });
+        function showIngredientList() {
+            ingredientsInput.innerHTML = filteredIngredients.join(", ");
+            appareilInput.innerHTML = "";
+            ustensilsInput.innerHTML = "";
+        }
+        ingredientDropdown.addEventListener("click", showIngredientList);
+        //<<<<<<<< ==== All Appliances ==== >>>>>>>> ：
+        allAppareil.push(recipe.appliance.toLowerCase());
+        // Filtered Appareils (no repeat item):
+        const filteredAppareil = allAppareil.filter(function(ele, pos) {
+            return allAppareil.indexOf(ele) == pos;
+        });
+        function showAppareilList() {
+            appareilInput.innerHTML = filteredAppareil.join(", ");
+            ingredientsInput.innerHTML = "";
+            ustensilsInput.innerHTML = "";
+        }
+        appareilDropdown.addEventListener("click", showAppareilList);
+        //<<<<< ===== All ustensils ===== >>>>> :
+        recipe.ustensils.map((item)=>{
+            allUstensils.push(item.toLowerCase());
+        });
+        // Filtered Ustensils (no repeat ustensils):
+        const filteredUstensils = allUstensils.filter(function(ele, pos) {
+            return allUstensils.indexOf(ele) === pos;
+        });
+        function showUstensilsList() {
+            ustensilsInput.innerHTML = filteredUstensils.join(", ");
+            ingredientsInput.innerHTML = "";
+            appareilInput.innerHTML = "";
+        }
+        ustensilDropdown.addEventListener("click", showUstensilsList);
+    });
 }
-exports.default = createTags;
+exports.default = showDropdown; /*
+Brouillon : 
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./closeTag":"iKJ2Y"}],"iKJ2Y":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-const closeBtn = document.querySelector(".close-icon");
-const tag = document.querySelector(".tag");
-function closeTags(e) {
-    e.target.parentElement.style.display = "none";
+`<li class ="element">${filteredAppareil}</li>`;
+
+function showIngredientList() {
+  ingredientsInput.innerHTML = filteredIngredients.join(" ");
 }
-exports.default = closeTags;
+ingredientDropdown.addEventListener("click", showIngredientList);
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fP1Ry":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-/*Reference for Keys : 
-https://www.techiedelight.com/detect-enter-key-press-javascript/
-*/ var _createTags = require("./createTags");
-var _createTagsDefault = parcelHelpers.interopDefault(_createTags);
-var _filterTag = require("./filterTag");
-var _filterTagDefault = parcelHelpers.interopDefault(_filterTag);
-const searchInput = document.getElementById("searchbar-tag");
-const tags = document.querySelector(".tags");
-function displayTags(event) {
-    if (event?.key && event.key === "Enter") {
-        console.log("Input Enter Key");
-        const tagValue = _createTagsDefault.default(searchInput.value);
-        tags.appendChild(tagValue);
-        _filterTagDefault.default();
-        searchInput.value = "";
+function showAppareilList() {
+  appareilInput.innerHTML = allAppareil.join(" ");
+}
+appareilDropdown.addEventListener("click", showAppareilList);
+
+function showUstensilsList() {
+  ustensilsInput.innerHTML = allUstensils.join(" ");
+}
+ustensilDropdown.addEventListener("click", showUstensilsList);
+
+
+*/  /*
+    const appliances = recipe.appliance;
+    const ingredients = recipe.ingredients.map(
+      (ingredients) => ingredients.ingredient
+    );
+    const ustensils = recipe.ustensils;
+
+*/  /*
+
+  let noRepeatAppareils = [];
+    recipes.map((recipe) => {
+      noRepeatAppareils.push(appliances);
+    });
+    console.log(noRepeatAppareils);
+
+
+let noRepeatAppareils = [];
+    noRepeatAppareils = recipes
+      .map(function (recipe, index) {
+        return appliances;
+      })
+      .join(", ");
+    console.log(noRepeatAppareils);
+
+ let noRepeatIngredients = [];
+
+  let noRepeatUstensils = [];
+ function filterByAppliances(recipes, recipeCard) {
+    
+    for (let i = 0; i < recipeCard.length; i++) {
+      noRepeatAppareils.push(
+        recipes.find((item) => (item.appliance = appliances[i]))
+      );
     }
-}
-searchInput.addEventListener("keyup", displayTags);
-exports.default = displayTags;
+    console.log(noRepeatAppareils);
+    return noRepeatAppareils;
+  }
 
-},{"./createTags":"kV1Ls","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./filterTag":"iFdaD"}],"iFdaD":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function filterTag() {
-    const recipeCard = document.querySelectorAll(".recipeCard");
-    const tags = document.querySelectorAll(".tag");
-    const displayedCard = Array.from(recipeCard).filter((card)=>card.style.display !== 'none'
-    );
-    const tagsValue = Array.from(tags).map((tag)=>tag.querySelectorAll(".tag-value")[0].innerHTML
-    );
-    console.log(displayedCard);
-    console.log(tagsValue);
-}
-exports.default = filterTag;
+const allNames = recipes.map((recipe) => recipe.name);
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["d5kvp","igcvL"], "igcvL", "parcelRequiredaa1")
+  const allIngredients = recipes.map((recipe) => {
+    const ingredients = recipe.ingredients.map(
+      (ingredients) => ingredients.ingredient
+    );
+   
+  });
+
+   ingredientsInput.innerHTML = allNames;
+
+const searchValue = document.getElementById("searchbar").value.toUpperCase();
+ const filteredIngredients = allIngredients.map(
+    (ingredient) => ingredient.value == searchValue
+  );
+
+ ingredientsInput.innerHTML = allName;
+  console.log(allName);
+  console.log(filteredIngredients);
+  console.log(ingredientsInput);
+
+  //console.log(appliances);
+    //console.log(ingredients);
+    //console.log(ustensils);
+
+    //console.log(typeof appliances);
+    //console.log(recipeCard);
+    //console.log(typeof recipeCard);
+*/ 
+
+},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["d5kvp","igcvL"], "igcvL", "parcelRequiredaa1")
 
 //# sourceMappingURL=index.5baa4167.js.map

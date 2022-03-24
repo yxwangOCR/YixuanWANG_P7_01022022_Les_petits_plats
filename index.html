@@ -29,8 +29,7 @@
         </div>
 
         <div class="search-bar">
-            <input class="form-control" type="text" id="searchbar-tag"
-                   placeholder="tag" aria-label="Search">
+            <input class="form-control" type="text" id="searchbar-tag" placeholder="tag" aria-label="Search">
             <button class="search-btn" type="submit"><i class="fas fa-search"></i></button>
         </div>
 
@@ -40,43 +39,23 @@
         </div>
 
         <!-- Dropdowns -->
-        <div class="dropdown-container">
-            <div class="dropdown">
-                <input class="form-control dropdown-toggle dropdown-1" list="datalistOptions" id="exampleDataList"
-                    placeholder="Ingredients">
-                <datalist id="datalistOptions">
-                    <option value="A">
-                    <option value="B">
-                    <option value="C">
-                    <option value="D">
-                    <option value="F">
-                </datalist>
+
+        <div id="dropdown-menu">
+            <div id="dropdown-1">
+                <input type="text" id="ingredients-input" placeholder="Ingredient">
+                <ul id="selected-ingredients"></ul>
             </div>
 
-            <div class="dropdown">
-                <input class="form-control dropdown-toggle dropdown-2" list="datalistOptions" id="exampleDataList"
-                    placeholder="Appareils">
-                <datalist id="datalistOptions">
-                    <option value="A">
-                    <option value="B">
-                    <option value="C">
-                    <option value="D">
-                    <option value="F">
-                </datalist>
+            <div id="dropdown-2">
+                <input type="text" id="appareils-input" placeholder="Appareils">
+                <ul id="selected-appareils"></ul>
             </div>
-
-            <div class="dropdown">
-                <input class="form-control dropdown-toggle dropdown-3" list="datalistOptions" id="exampleDataList"
-                    placeholder="Ustensiles">
-                <datalist id="datalistOptions">
-                    <option value="A">
-                    <option value="B">
-                    <option value="C">
-                    <option value="D">
-                    <option value="F">
-                </datalist>
+            <div id="dropdown-3">
+                <input type="text" id="ustensiles-input" placeholder="Ustensiles">
+                <ul id="selected-ustensils"></ul>
             </div>
         </div>
+
         <!-- Recipes -->
         <div class="cards" id="cards"></div>
     </main>
@@ -85,3 +64,44 @@
 </body>
 
 </html>
+
+
+<!--  
+            <div class="dropdown">
+                <input class="form-control dropdown-toggle dropdown-1" list="datalistOptions" id="exampleDataList"
+                    placeholder="Ingredients">
+                <datalist id="datalistOptions">
+                    <option class="selected-ingredients"></option>
+                </datalist>
+            </div>
+            <div class="dropdown">
+                <input class="form-control dropdown-toggle dropdown-2" list="datalistOptions" id="exampleDataList"
+                    placeholder="Appareils">
+                    <datalist id="datalistOptions">
+                        <option class="selected-appareils"></option>
+                    </datalist>
+            </div>
+
+            <div class="dropdown">
+                <input class="form-control dropdown-toggle dropdown-3" list="datalistOptions" id="exampleDataList"
+                    placeholder="Ustensiles">
+                <datalist id="datalistOptions">
+                    <option class="selected-ustensiles"></option>
+                </datalist>
+            </div>
+-->
+
+<!--
+     
+
+        <div class="dropdown-container">
+            <form class="form">
+                <div class="dropdown-1">
+                    <label for="ingredients">Ingredients</label>
+                    <select id="ingredients" name="ingredients" data-dropdown>
+                        <option value="ingredients">ingredients</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+-->

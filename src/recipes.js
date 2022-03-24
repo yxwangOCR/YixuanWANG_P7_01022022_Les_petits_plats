@@ -33,6 +33,8 @@ function displayRecipes() {
                         </div>
                     </div>`;
     cards.appendChild(cardWrapper);
+
+   
   });
 }
 

@@ -5,6 +5,7 @@ https://www.techiedelight.com/detect-enter-key-press-javascript/
 import createTags from "./createTags";
 import filterTag from "./filterTag";
 
+
 const searchInput = document.getElementById("searchbar-tag");
 const tags = document.querySelector(".tags");
 
@@ -14,8 +15,8 @@ function displayTags(event) {
     const tagValue = createTags(searchInput.value);
     tags.appendChild(tagValue);
 
-
     filterTag();
+    
     searchInput.value = "";
   }
 }
