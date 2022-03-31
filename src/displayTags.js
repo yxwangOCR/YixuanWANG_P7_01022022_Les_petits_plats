@@ -7,17 +7,6 @@ import filterTag from "./filterTag";
 
 const tags = document.querySelector(".tags");
 
-/*
-let ingredientTags = [];
-let appareilTags = [];
-let ustensilTags = [];
-tags.forEach(function (tag) {
-   
-tag[type].push(value);
-    
-})
-*/
-
 function displayTags(event) {
   const type = event.target.dataType;
   //console.log(type);
