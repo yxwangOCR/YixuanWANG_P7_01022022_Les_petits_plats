@@ -8,7 +8,9 @@
     <title>Les petits plats</title>
     <link rel="stylesheet" href="./scss/style.scss">
     <script src="https://kit.fontawesome.com/5c94a816e7.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 </head>
 
 
@@ -36,22 +38,34 @@
 
         <!-- Dropdowns -->
 
-        <div id="dropdown-menu">
+        <div id="dropdown-container">
+
+
+
             <div class="dropdown" id="dropdown-1">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="ingredients-input" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown Ingredient
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="ingredients-input"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Ingredient
                 </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="selected-ingredients">
-                    </ul>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="selected-ingredients">
+                </ul>
+            </div>
+            <div class="dropdown" id="dropdown-2">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="appareils-input"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Appareils
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2" id="selected-appareils">
+                </ul>
             </div>
 
-            <div id="dropdown-2">
-                <input type="text" id="appareils-input" placeholder="Appareils">
-                <ul id="selected-appareils"></ul>
-            </div>
-            <div id="dropdown-3">
-                <input type="text" id="ustensiles-input" placeholder="Ustensiles">
-                <ul id="selected-ustensils"></ul>
+            <div class="dropdown" id="dropdown-3">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="ustensiles-input"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Ustensiles
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3" id="selected-ustensils">
+                </ul>
             </div>
         </div>
 
@@ -63,44 +77,3 @@
 </body>
 
 </html>
-
-
-<!--  
-            <div class="dropdown">
-                <input class="form-control dropdown-toggle dropdown-1" list="datalistOptions" id="exampleDataList"
-                    placeholder="Ingredients">
-                <datalist id="datalistOptions">
-                    <option class="selected-ingredients"></option>
-                </datalist>
-            </div>
-            <div class="dropdown">
-                <input class="form-control dropdown-toggle dropdown-2" list="datalistOptions" id="exampleDataList"
-                    placeholder="Appareils">
-                    <datalist id="datalistOptions">
-                        <option class="selected-appareils"></option>
-                    </datalist>
-            </div>
-
-            <div class="dropdown">
-                <input class="form-control dropdown-toggle dropdown-3" list="datalistOptions" id="exampleDataList"
-                    placeholder="Ustensiles">
-                <datalist id="datalistOptions">
-                    <option class="selected-ustensiles"></option>
-                </datalist>
-            </div>
--->
-
-<!--
-     
-
-        <div class="dropdown-container">
-            <form class="form">
-                <div class="dropdown-1">
-                    <label for="ingredients">Ingredients</label>
-                    <select id="ingredients" name="ingredients" data-dropdown>
-                        <option value="ingredients">ingredients</option>
-                    </select>
-                </div>
-            </form>
-        </div>
--->

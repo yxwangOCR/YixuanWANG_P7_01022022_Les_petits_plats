@@ -520,14 +520,12 @@ function hmrAcceptRun(bundle, id) {
 
 },{}],"igcvL":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-var _recipes = require("./src/recipes");
+/*
+import createTags from "./src/createTags";
+import displayTags from "./src/displayTags";
+import closeTags from "./src/closeTag";
+*/ var _recipes = require("./src/recipes");
 var _recipesDefault = parcelHelpers.interopDefault(_recipes);
-var _createTags = require("./src/createTags");
-var _createTagsDefault = parcelHelpers.interopDefault(_createTags);
-var _displayTags = require("./src/displayTags");
-var _displayTagsDefault = parcelHelpers.interopDefault(_displayTags);
-var _closeTag = require("./src/closeTag");
-var _closeTagDefault = parcelHelpers.interopDefault(_closeTag);
 var _sort1 = require("./src/sort_1");
 var _sort2 = require("./src/sort_2");
 var _subSearch = require("./src/subSearch");
@@ -538,12 +536,9 @@ const searchBar = document.getElementById("searchbar");
 //Sort_1:
 //searchBar.addEventListener("keyup", onSearch);
 //Sort_2:
-searchBar.addEventListener("keyup", _sort2.inSearch); //Display Tags:
- //searchInput.addEventListener("keyup", displayTags);
- //Close Tags:
- //closeBtn.addEventListener("click", closeTags);
+searchBar.addEventListener("keyup", _sort2.inSearch);
 
-},{"./src/recipes":"isDyF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./src/sort_1":"1YQuk","./src/sort_2":"9rClw","./src/createTags":"kV1Ls","./src/displayTags":"fP1Ry","./src/closeTag":"iKJ2Y","./src/subSearch":"d6JBR"}],"isDyF":[function(require,module,exports) {
+},{"./src/recipes":"isDyF","./src/sort_1":"1YQuk","./src/sort_2":"9rClw","./src/subSearch":"d6JBR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"isDyF":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _data = require("./data");
@@ -582,37 +577,7 @@ function displayRecipes() {
 }
 exports.default = displayRecipes;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./data":"9kapS"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, '__esModule', {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"9kapS":[function(require,module,exports) {
+},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9kapS":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 const recipes = [
@@ -659,7 +624,7 @@ const recipes = [
         servings: 2,
         ingredients: [
             {
-                ingredient: "Thon Rouge (ou blanc)",
+                ingredient: "Thon Rouge",
                 quantity: 200,
                 unit: "grammes"
             },
@@ -793,7 +758,7 @@ const recipes = [
                 quantity: 2
             },
             {
-                ingredient: "Crème fraiche",
+                ingredient: "Crème fraîche",
                 quantity: 2,
                 unit: "cuillères à soupe"
             },
@@ -809,7 +774,7 @@ const recipes = [
             }, 
         ],
         time: 45,
-        description: "Etaler la pâte feuilleté aux dimensions du moule, étaler la moutarde sur la pâte feuilleté, ajouter le thon. Découper les tomates en rondelles et les poser sur le poisson, ajouter un peu de crème fraiche sur toute la tarte et recouvrez de gruyère râpé. Cuire au four 30 minutes",
+        description: "Etaler la pâte feuilleté aux dimensions du moule, étaler la moutarde sur la pâte feuilleté, ajouter le thon. Découper les tomates en rondelles et les poser sur le poisson, ajouter un peu de crème fraîche sur toute la tarte et recouvrez de gruyère râpé. Cuire au four 30 minutes",
         appliance: "Four",
         ustensils: [
             "moule à tarte",
@@ -835,7 +800,7 @@ const recipes = [
                 quantity: "2"
             },
             {
-                ingredient: "Crème fraiche",
+                ingredient: "Crème fraîche",
                 quantity: 25,
                 unit: "cl"
             },
@@ -851,7 +816,7 @@ const recipes = [
             }, 
         ],
         time: 50,
-        description: "Commencez par mélanger les oeufs le sucre et le sucre vanillé dans un saladier, découper les pommes en tranches, ajouter la crème fraiche aux oeufs. Une fois que tout est pret, étalez la tarte dans le moule. N'oubliez pas de piquer le fond avec une fourchette avant depositionner les pommes sur la tarte. Finallement verser la préparation à base d'oeufs et de crême fraiche. Laisser cuire au four pendant 30 minutes",
+        description: "Commencez par mélanger les oeufs le sucre et le sucre vanillé dans un saladier, découper les pommes en tranches, ajouter la crème fraîche aux oeufs. Une fois que tout est pret, étalez la tarte dans le moule. N'oubliez pas de piquer le fond avec une fourchette avant depositionner les pommes sur la tarte. Finallement verser la préparation à base d'oeufs et de crème fraîche. Laisser cuire au four pendant 30 minutes",
         appliance: "Four",
         ustensils: [
             "moule à tarte",
@@ -941,7 +906,7 @@ const recipes = [
     },
     {
         id: 9,
-        name: "Salade Méditerannéene fraiche au chèvre",
+        name: "Salade Méditerannéene fraîche au chèvre",
         servings: 4,
         ingredients: [
             {
@@ -1279,7 +1244,7 @@ const recipes = [
             }, 
         ],
         time: 15,
-        description: "Coupez les fraises en morceaux, découpez la chaire de la pastèque en retirant les pépins. Mettre le tout dans le blender. Ajouter un cuillière à soupe de juste de citron ainsi que les glaçons. Ajoutez quelques fueilles de menthe pour plus de fraicheur. Mixez le tout. Servir et déguster.",
+        description: "Coupez les fraises en morceaux, découpez la chaire de la pastèque en retirant les pépins. Mettre le tout dans le blender. Ajouter un cuillière à soupe de juste de citron ainsi que les glaçons. Ajoutez quelques fueilles de menthe pour plus de fraîcheur. Mixez le tout. Servir et déguster.",
         appliance: "Blender",
         ustensils: [
             "verres",
@@ -1368,7 +1333,7 @@ const recipes = [
                 unit: "grammes"
             },
             {
-                ingredient: "Crème fraiche",
+                ingredient: "Crème fraîche",
                 quantity: 200,
                 unit: "grammes"
             },
@@ -1384,7 +1349,7 @@ const recipes = [
             }, 
         ],
         time: 30,
-        description: "Faire cuire les pates comme indiqué sur le paquet. Dorer les lardons dans une sauteuse avec l'huile d'olive. Ajouter la crême fraiche et baisser le feu au minimum. Quand les Tagliatelles sont prêtes les mettre dans la sauteuse et bien mélanger le tout en ajoutant le jaune d'oeuf. Servir et ajouter le parmesan râpé.",
+        description: "Faire cuire les pates comme indiqué sur le paquet. Dorer les lardons dans une sauteuse avec l'huile d'olive. Ajouter la crème fraîche et baisser le feu au minimum. Quand les Tagliatelles sont prêtes les mettre dans la sauteuse et bien mélanger le tout en ajoutant le jaune d'oeuf. Servir et ajouter le parmesan râpé.",
         appliance: "Sauteuse",
         ustensils: [
             "râpe à fromage",
@@ -1411,7 +1376,7 @@ const recipes = [
                 unit: "grammes"
             },
             {
-                ingredient: "Viande hachée 1% de matière grasse",
+                ingredient: "Viande hachée",
                 quantity: 400,
                 unit: "grammes"
             },
@@ -1421,13 +1386,13 @@ const recipes = [
                 unit: "cl"
             },
             {
-                ingredient: "Crème Fraiche",
+                ingredient: "Crème fraîche",
                 quantity: 1,
                 unit: "cuillères à soupe"
             }, 
         ],
         time: 30,
-        description: "Cuisiner la viande hachée dans une poelle à frire. Dans une autre faire cuire les oignons découpés en fins dés avec un peu de beurre. Ajouter du vin rouge. Mélanger les oigons avec la viande hachée. Faire cuire les pates le temps indiqué sur le paquet. Ajouter le coulis de tomates à la viande hachée. Une fois que les pates sont cuites, ajouter la crème fraiche à la viande hachée. Serivir.",
+        description: "Cuisiner la viande hachée dans une poelle à frire. Dans une autre faire cuire les oignons découpés en fins dés avec un peu de beurre. Ajouter du vin rouge. Mélanger les oigons avec la viande hachée. Faire cuire les pates le temps indiqué sur le paquet. Ajouter le coulis de tomates à la viande hachée. Une fois que les pates sont cuites, ajouter la crème fraîche à la viande hachée. Serivir.",
         appliance: "Casserolle.",
         ustensils: [
             "Cuillère en bois",
@@ -1466,7 +1431,7 @@ const recipes = [
             }, 
         ],
         time: 30,
-        description: "Faire fondre le chocolat et le beurre au bain marie. Dans un saladier battre les oeufs avec le sucre jusqu'à obtenir une texture de type mousse. Ajouter la farine ainsi que le mélange de beurre et chocolat fondu. Beurrez le moule à gateaux. Mettre au four préchauffé à 200° puis faites chauffer pendant 15 minutes. C'est prêt. Servir avec une boule de glace ou une crême dessert.",
+        description: "Faire fondre le chocolat et le beurre au bain marie. Dans un saladier battre les oeufs avec le sucre jusqu'à obtenir une texture de type mousse. Ajouter la farine ainsi que le mélange de beurre et chocolat fondu. Beurrez le moule à gateaux. Mettre au four préchauffé à 200° puis faites chauffer pendant 15 minutes. C'est prêt. Servir avec une boule de glace ou une crème dessert.",
         appliance: "Four",
         ustensils: [
             "moule à gateaux",
@@ -1663,7 +1628,7 @@ const recipes = [
             }, 
         ],
         time: 15,
-        description: "Faire fondre l'oseille avec du beurre demi sel, ajouter un litre d'eau. Ajouter les vermicelles. Laisser cuire. une foit prêt, sortir du feu et après 5 minutes ajouter le jaune d'oeuf et la crême fraîche",
+        description: "Faire fondre l'oseille avec du beurre demi sel, ajouter un litre d'eau. Ajouter les vermicelles. Laisser cuire. une foit prêt, sortir du feu et après 5 minutes ajouter le jaune d'oeuf et la crème fraîche",
         appliance: "Casserolle",
         ustensils: [
             "couteau",
@@ -1695,7 +1660,7 @@ const recipes = [
                 unit: "grammes"
             },
             {
-                ingredient: "Crême fraîche",
+                ingredient: "Crème fraîche",
                 quantity: 10,
                 unit: "cl"
             }, 
@@ -2392,7 +2357,7 @@ const recipes = [
             }, 
         ],
         time: 5,
-        description: "Mélanger le jus de citron avec le sucre et la mascarpone. Ajouter la crème fraiche. Mélanger le tout et mettre au congélateur pendant 1 heure. Servir",
+        description: "Mélanger le jus de citron avec le sucre et la mascarpone. Ajouter la crème fraîche. Mélanger le tout et mettre au congélateur pendant 1 heure. Servir",
         appliance: "Saladier",
         ustensils: [
             "fouet",
@@ -2516,7 +2481,37 @@ const recipes = [
 ];
 exports.default = recipes;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1YQuk":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"1YQuk":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "onSearch", ()=>onSearch
@@ -2579,73 +2574,7 @@ const inSearch = ()=>{
     }
 };
 
-},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kV1Ls":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _closeTag = require("./closeTag");
-var _closeTagDefault = parcelHelpers.interopDefault(_closeTag);
-function createTags(label, type) {
-    console.log(type);
-    const tagWrapper = document.createElement("div");
-    tagWrapper.setAttribute("class", "tag");
-    const inputText = document.createElement("span");
-    inputText.setAttribute("class", "tag-value");
-    inputText.innerHTML = label;
-    const closeIcon = document.createElement("span");
-    closeIcon.setAttribute("class", "close-icon");
-    closeIcon.innerHTML = "&#215";
-    tagWrapper.appendChild(inputText);
-    tagWrapper.appendChild(closeIcon);
-    closeIcon.addEventListener('click', _closeTagDefault.default);
-    return tagWrapper;
-}
-exports.default = createTags;
-
-},{"./closeTag":"iKJ2Y","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iKJ2Y":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-const closeBtn = document.querySelector(".close-icon");
-const tag = document.querySelector(".tag");
-function closeTags(e) {
-    e.target.parentElement.style.display = "none";
-}
-exports.default = closeTags;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fP1Ry":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-/*Reference for Keys : 
-https://www.techiedelight.com/detect-enter-key-press-javascript/
-*/ var _createTags = require("./createTags");
-var _createTagsDefault = parcelHelpers.interopDefault(_createTags);
-var _filterTag = require("./filterTag");
-var _filterTagDefault = parcelHelpers.interopDefault(_filterTag);
-const tags = document.querySelector(".tags");
-function displayTags(event) {
-    const type = event.target.dataType;
-    const value = event.target.innerHTML;
-    const tagValue = _createTagsDefault.default(value, type);
-    tags.appendChild(tagValue);
-    _filterTagDefault.default();
-}
-exports.default = displayTags;
-
-},{"./createTags":"kV1Ls","./filterTag":"iFdaD","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iFdaD":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function filterTag() {
-    const recipeCard = document.querySelectorAll(".recipeCard");
-    const tags = document.querySelectorAll(".tag");
-    const displayedCard = Array.from(recipeCard).filter((card)=>card.style.display !== "none"
-    );
-    const tagsValue = Array.from(tags).map((tag)=>tag.querySelectorAll(".tag-value")[0].innerHTML
-    );
-    console.log(displayedCard);
-    console.log(tagsValue);
-}
-exports.default = filterTag;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"d6JBR":[function(require,module,exports) {
+},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"d6JBR":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _data = require("./data");
@@ -2662,14 +2591,11 @@ function showDropdown() {
     const ingredientsInput = document.querySelector("#selected-ingredients");
     const appareilInput = document.querySelector("#selected-appareils");
     const ustensilsInput = document.querySelector("#selected-ustensils");
-    const allElements = _dataDefault.default.filter((recipe)=>{
-        //<<<<< ==== All ingredients ==== >>>>> :
+    _dataDefault.default.filter((recipe)=>{
         recipe.ingredients.map((ingredient)=>{
             allIngredients.push(ingredient.ingredient.toLowerCase());
         });
-        //<<<<<<<< ==== All Appliances ==== >>>>>>>> ：
         allAppareil.push(recipe.appliance.toLowerCase());
-        //<<<<< ===== All ustensils ===== >>>>> :
         recipe.ustensils.map((item)=>{
             allUstensils.push(item.toLowerCase());
         });
@@ -2681,10 +2607,10 @@ function showDropdown() {
     function showIngredientList() {
         ingredientsInput.innerHTML = "";
         for (let value of filteredIngredients){
-            let li = document.createElement('li');
-            li.className = 'element dropdown-item';
+            let li = document.createElement("li");
+            li.className = "element dropdown-item";
             li.innerHTML = value;
-            li.dataType = 'ingredient';
+            li.dataType = "ingredient";
             ingredientsInput.appendChild(li);
             li.addEventListener("click", _displayTagsDefault.default);
         }
@@ -2697,7 +2623,15 @@ function showDropdown() {
         return allAppareil.indexOf(ele) == pos;
     });
     function showAppareilList() {
-        appareilInput.innerHTML = filteredAppareil.join(", ");
+        appareilInput.innerHTML = "";
+        for (let value of filteredAppareil){
+            let li = document.createElement("li");
+            li.className = "element dropdown-item";
+            li.innerHTML = value;
+            li.dataType = "appareils";
+            appareilInput.appendChild(li);
+            li.addEventListener("click", _displayTagsDefault.default);
+        }
         ingredientsInput.innerHTML = "";
         ustensilsInput.innerHTML = "";
     }
@@ -2707,101 +2641,100 @@ function showDropdown() {
         return allUstensils.indexOf(ele) === pos;
     });
     function showUstensilsList() {
-        ustensilsInput.innerHTML = filteredUstensils.join(", ");
+        ustensilsInput.innerHTML = "";
+        for (let value of filteredUstensils){
+            let li = document.createElement("li");
+            li.className = "element dropdown-item";
+            li.innerHTML = value;
+            li.dataType = "ustensils";
+            ustensilsInput.appendChild(li);
+            li.addEventListener("click", _displayTagsDefault.default);
+        }
         ingredientsInput.innerHTML = "";
         appareilInput.innerHTML = "";
     }
     ustensilDropdown.addEventListener("click", showUstensilsList);
 }
-exports.default = showDropdown; /*
-Brouillon : 
+exports.default = showDropdown;
 
-`<li class ="element">${filteredAppareil}</li>`;
-
-function showIngredientList() {
-  ingredientsInput.innerHTML = filteredIngredients.join(" ");
+},{"./data":"9kapS","./displayTags":"fP1Ry","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fP1Ry":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/*Reference for Keys : 
+https://www.techiedelight.com/detect-enter-key-press-javascript/
+*/ var _createTags = require("./createTags");
+var _createTagsDefault = parcelHelpers.interopDefault(_createTags);
+var _filterTag = require("./filterTag");
+var _filterTagDefault = parcelHelpers.interopDefault(_filterTag);
+const tags = document.querySelector(".tags");
+function displayTags(event) {
+    const type = event.target.dataType;
+    //console.log(type);
+    const value = event.target.innerHTML;
+    //console.log(value);
+    const tagValue = _createTagsDefault.default(value, type);
+    //console.log(tagValue);
+    tags.appendChild(tagValue);
+    //console.log(tags);
+    _filterTagDefault.default();
 }
-ingredientDropdown.addEventListener("click", showIngredientList);
+exports.default = displayTags;
 
-function showAppareilList() {
-  appareilInput.innerHTML = allAppareil.join(" ");
+},{"./createTags":"kV1Ls","./filterTag":"iFdaD","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kV1Ls":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _closeTag = require("./closeTag");
+var _closeTagDefault = parcelHelpers.interopDefault(_closeTag);
+function createTags(label, type) {
+    //console.log(type);
+    const tagWrapper = document.createElement("div");
+    tagWrapper.setAttribute("class", "tag");
+    tagWrapper.classList.add(`${type}`);
+    const inputText = document.createElement("span");
+    inputText.setAttribute("class", "tag-value");
+    inputText.innerHTML = label;
+    const closeIcon = document.createElement("span");
+    closeIcon.setAttribute("class", "close-icon");
+    closeIcon.innerHTML = "&#215";
+    tagWrapper.appendChild(inputText);
+    tagWrapper.appendChild(closeIcon);
+    closeIcon.addEventListener("click", _closeTagDefault.default);
+    return tagWrapper;
 }
-appareilDropdown.addEventListener("click", showAppareilList);
+exports.default = createTags;
 
-function showUstensilsList() {
-  ustensilsInput.innerHTML = allUstensils.join(" ");
+},{"./closeTag":"iKJ2Y","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iKJ2Y":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+const closeBtn = document.querySelector(".close-icon");
+const tag = document.querySelector(".tag");
+function closeTags(e) {
+    e.target.parentElement.style.display = "none";
 }
-ustensilDropdown.addEventListener("click", showUstensilsList);
+exports.default = closeTags;
 
-
-*/  /*
-    const appliances = recipe.appliance;
-    const ingredients = recipe.ingredients.map(
-      (ingredients) => ingredients.ingredient
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iFdaD":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _displayTags = require("./displayTags");
+var _displayTagsDefault = parcelHelpers.interopDefault(_displayTags);
+function filterTag() {
+    const recipeCard = document.querySelectorAll(".recipeCard");
+    const tags = document.querySelectorAll(".tag");
+    const displayedCard = Array.from(recipeCard).filter((card)=>card.style.display !== "none"
     );
-    const ustensils = recipe.ustensils;
-
-*/  /*
-
-  let noRepeatAppareils = [];
-    recipes.map((recipe) => {
-      noRepeatAppareils.push(appliances);
+    const tagsStringValue = Array.from(tags).map((tag)=>{
+        let tagString = tag.querySelectorAll(".tag-value")[0].innerHTML;
+        console.log(tagString);
     });
-    console.log(noRepeatAppareils);
-
-
-let noRepeatAppareils = [];
-    noRepeatAppareils = recipes
-      .map(function (recipe, index) {
-        return appliances;
-      })
-      .join(", ");
-    console.log(noRepeatAppareils);
-
- let noRepeatIngredients = [];
-
-  let noRepeatUstensils = [];
- function filterByAppliances(recipes, recipeCard) {
-    
-    for (let i = 0; i < recipeCard.length; i++) {
-      noRepeatAppareils.push(
-        recipes.find((item) => (item.appliance = appliances[i]))
-      );
-    }
-    console.log(noRepeatAppareils);
-    return noRepeatAppareils;
-  }
-
-const allNames = recipes.map((recipe) => recipe.name);
-
-  const allIngredients = recipes.map((recipe) => {
-    const ingredients = recipe.ingredients.map(
-      (ingredients) => ingredients.ingredient
+    console.log(tagsStringValue);
+    const tagsValue = Array.from(tags).map((tag)=>tag.querySelectorAll(".tag-value")[0].innerHTML
     );
-   
-  });
+    console.log(tagsValue);
+    console.log(displayedCard);
+}
+exports.default = filterTag;
 
-   ingredientsInput.innerHTML = allNames;
-
-const searchValue = document.getElementById("searchbar").value.toUpperCase();
- const filteredIngredients = allIngredients.map(
-    (ingredient) => ingredient.value == searchValue
-  );
-
- ingredientsInput.innerHTML = allName;
-  console.log(allName);
-  console.log(filteredIngredients);
-  console.log(ingredientsInput);
-
-  //console.log(appliances);
-    //console.log(ingredients);
-    //console.log(ustensils);
-
-    //console.log(typeof appliances);
-    //console.log(recipeCard);
-    //console.log(typeof recipeCard);
-*/ 
-
-},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./displayTags":"fP1Ry"}]},["d5kvp","igcvL"], "igcvL", "parcelRequiredaa1")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./displayTags":"fP1Ry"}]},["d5kvp","igcvL"], "igcvL", "parcelRequiredaa1")
 
 //# sourceMappingURL=index.5baa4167.js.map

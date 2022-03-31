@@ -11181,10 +11181,25 @@ nav {
 .tag {
   padding: 5px;
   margin: 5px;
-  background: #3282f7;
   color: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+.tag::first-letter {
+  text-transform: uppercase;
+}
+
+.tag-background-ingredients {
+  background: #3282f7;
+}
+
+.tag-background-appareils {
+  background-color: #68d9a4;
+}
+
+.tag-background-ustensils {
+  background-color: #ed6454;
 }
 
 .close-icon {
@@ -11194,64 +11209,32 @@ nav {
   cursor: pointer;
 }
 
-/*
-.dropdown-container {
-  display: flex;
-  gap: 1rem;
-  margin: 1rem;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-}
-.dropdown-toggle {
-  width: 10rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  border-radius: 5px;
-}
-
-.dropdown-toggle::placeholder {
+.dropdown-item {
   color: #fff;
+  width: auto;
 }
 
-.dropdown-1 {
-  background-color: #3282f7;
+.dropdown-item::first-letter {
+  text-transform: uppercase;
 }
 
-.dropdown-2 {
-  background-color: #68d9a4;
-}
-
-.dropdown-3 {
-  background-color: #ed6454;
-}
-*/
-#dropdown-menu {
+#dropdown-container {
   display: flex;
-  gap: 1rem;
-  margin: 1rem 1rem 3rem 1rem;
+  gap: 2rem;
+  margin: 1rem 1rem 2rem 1rem;
   justify-content: flex-start;
 }
 
-#dropdown-menu > div {
-  height: 2rem;
-  position: relative;
-  z-index: 2;
-}
-
-#dropdown-menu > div > input {
-  height: 100%;
-  border: none;
-}
-
-#dropdown-menu > div > input::placeholder {
-  color: white;
+.dropdown-menu.show {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 /*Ingredients*/
 #selected-ingredients {
   background-color: #3282f7;
   color: white;
-  padding: 15px;
+  padding: 10px;
 }
 
 #ingredients-input {
@@ -11263,7 +11246,7 @@ nav {
 #selected-appareils {
   background-color: #68d9a4;
   color: white;
-  padding: 15px;
+  padding: 10px;
 }
 
 #appareils-input {
@@ -11275,12 +11258,24 @@ nav {
 #selected-ustensils {
   background-color: #ed6454;
   color: white;
-  padding: 15px;
+  padding: 10px;
 }
 
 #ustensiles-input {
   background-color: #ed6454;
   color: white;
+}
+
+.ingredient {
+  background-color: #3282f7;
+}
+
+.appareils {
+  background-color: #68d9a4;
+}
+
+.ustensils {
+  background-color: #ed6454;
 }
 
 .cards {
@@ -11375,27 +11370,17 @@ nav {
     width: 100%;
   }
 }
-@media (max-width: 765px) {
-  .dropdown-container {
+@media (max-width: 465px) {
+  #dropdown-container {
     flex-direction: column;
-    justify-content: center;
     align-items: center;
   }
 
-  .dropdown-toggle {
-    width: 20rem;
-  }
-}
-@media (max-width: 375px) {
   .dropdown-toggle {
     width: 15rem;
   }
 }
 @media (max-width: 295px) {
-  .dropdown-toggle {
-    width: 10rem;
-  }
-
   .logo {
     width: 200px;
   }
@@ -11405,6 +11390,10 @@ nav {
   }
 }
 @media (max-width: 270px) {
+  .dropdown-toggle {
+    width: 10rem;
+  }
+
   .recipe-name {
     font-size: 13px;
   }
@@ -11420,6 +11409,11 @@ nav {
 
   .preparation {
     height: 80px;
+  }
+}
+@media (max-width: 215px) {
+  .logo {
+    width: 150px;
   }
 }
 

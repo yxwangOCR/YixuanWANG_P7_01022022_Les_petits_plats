@@ -1,9 +1,10 @@
 import closeTags from "./closeTag";
 
 function createTags(label, type) {
-  console.log(type)
+  //console.log(type);
   const tagWrapper = document.createElement("div");
   tagWrapper.setAttribute("class", "tag");
+  tagWrapper.classList.add(`${type}`);
 
   const inputText = document.createElement("span");
   inputText.setAttribute("class", "tag-value");
@@ -16,7 +17,7 @@ function createTags(label, type) {
   tagWrapper.appendChild(inputText);
   tagWrapper.appendChild(closeIcon);
 
-  closeIcon.addEventListener('click', closeTags)
+  closeIcon.addEventListener("click", closeTags);
 
   return tagWrapper;
 }

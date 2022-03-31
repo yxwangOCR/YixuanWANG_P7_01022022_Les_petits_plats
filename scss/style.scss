@@ -23,27 +23,17 @@
   }
 }
 
-@media (max-width: 765px) {
-  .dropdown-container {
+@media (max-width: 465px) {
+  #dropdown-container {
     flex-direction: column;
-    justify-content: center;
     align-items: center;
   }
-  .dropdown-toggle {
-    width: 20rem;
-  }
-}
-
-@media (max-width: 375px) {
   .dropdown-toggle {
     width: 15rem;
   }
 }
 
 @media (max-width: 295px) {
-  .dropdown-toggle {
-    width: 10rem;
-  }
   .logo {
     width: 200px;
   }
@@ -53,6 +43,9 @@
 }
 
 @media (max-width: 270px) {
+  .dropdown-toggle {
+    width: 10rem;
+  }
   .recipe-name {
     font-size: 13px;
   }
@@ -65,5 +58,11 @@
   }
   .preparation {
     height: 80px;
+  }
+}
+
+@media (max-width: 215px) {
+  .logo {
+    width: 150px;
   }
 }
