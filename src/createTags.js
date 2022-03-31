@@ -5,6 +5,7 @@ function createTags(label, type) {
   const tagWrapper = document.createElement("div");
   tagWrapper.setAttribute("class", "tag");
   tagWrapper.classList.add(`${type}`);
+  tagWrapper.setAttribute('data-type', type);
 
   const inputText = document.createElement("span");
   inputText.setAttribute("class", "tag-value");

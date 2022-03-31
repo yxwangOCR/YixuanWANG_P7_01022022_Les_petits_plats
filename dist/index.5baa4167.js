@@ -538,7 +538,7 @@ const searchBar = document.getElementById("searchbar");
 //Sort_2:
 searchBar.addEventListener("keyup", _sort2.inSearch);
 
-},{"./src/recipes":"isDyF","./src/sort_1":"1YQuk","./src/sort_2":"9rClw","./src/subSearch":"d6JBR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"isDyF":[function(require,module,exports) {
+},{"./src/recipes":"isDyF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./src/sort_1":"1YQuk","./src/sort_2":"9rClw","./src/subSearch":"d6JBR"}],"isDyF":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _data = require("./data");
@@ -547,6 +547,7 @@ const cards = document.getElementById("cards");
 function displayRecipes() {
     _dataDefault.default.forEach((recipe)=>{
         const cardWrapper = document.createElement("div");
+        cardWrapper.id = recipe.id;
         const ingredientsWrapper = document.createElement("div");
         const ingredients = recipe.ingredients;
         ingredients.forEach((ingredient)=>{
@@ -577,7 +578,37 @@ function displayRecipes() {
 }
 exports.default = displayRecipes;
 
-},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9kapS":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./data":"9kapS"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"9kapS":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 const recipes = [
@@ -2481,37 +2512,7 @@ const recipes = [
 ];
 exports.default = recipes;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, '__esModule', {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"1YQuk":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1YQuk":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "onSearch", ()=>onSearch
@@ -2690,6 +2691,7 @@ function createTags(label, type) {
     const tagWrapper = document.createElement("div");
     tagWrapper.setAttribute("class", "tag");
     tagWrapper.classList.add(`${type}`);
+    tagWrapper.setAttribute('data-type', type);
     const inputText = document.createElement("span");
     inputText.setAttribute("class", "tag-value");
     inputText.innerHTML = label;
@@ -2716,53 +2718,40 @@ exports.default = closeTags;
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iFdaD":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _displayTags = require("./displayTags");
-let ingredientTags = [];
-let appareilTags = [];
-let ustensilTags = [];
+var _data = require("./data");
+var _dataDefault = parcelHelpers.interopDefault(_data);
 function filterTag(value, type) {
     const recipeCard = document.querySelectorAll(".recipeCard");
     const tags = document.querySelectorAll(".tag");
-    const recipeNames = document.querySelectorAll(".recipe-name");
-    //console.log(recipeNames);
-    const ingredients = document.querySelectorAll(".ingredients-list");
-    //console.log(ingredients);
-    const descriptions = document.querySelectorAll(".description");
-    //console.log(descriptions);
-    const tagsStringValue = Array.from(tags).map((tag)=>{
-        console.log(tag);
-        let tagString = tag.querySelectorAll(".tag-value")[0].innerHTML;
-        console.log(tagString);
-        return tagString;
-    });
-    console.log(tagsStringValue);
-    const tagsValue = Array.from(tags).map((tag)=>tag.querySelectorAll(".tag-value")[0].innerHTML
-    );
+    const tagsValue = {
+        ingredient: [],
+        appareils: [],
+        ustensils: []
+    };
+    const displayedRecipe = Array.from(recipeCard).reduce((acc, card)=>{
+        if (card.style.display !== "none") acc.push(_dataDefault.default.find((recipe)=>recipe.id == card.id
+        ));
+        return acc;
+    }, []);
+    for (const tag1 of Array.from(tags)){
+        let tagString = tag1.querySelectorAll(".tag-value")[0].innerHTML;
+        let tagType = tag1.dataset.type;
+        tagsValue[tagType].push(tagString);
+    }
     console.log(tagsValue);
-    /** ========== Filter by type ========== */ tags.forEach((tag)=>{
-        if (type === "ingredient") {
-            console.log("This ingredient type");
-            ingredientTags.push(tags);
-        } else if (type === "appareils") appareilTags.push(tags);
-        else if (type === "ustensils") ustensilTags.push(tags);
-        else console.log("TEST ForEach 1");
+    /** ==========Filter by value ========= */ const filteredRecipes = displayedRecipe.filter((recipe)=>{
+        const ingredients1 = recipe.ingredients.map((ingredients)=>ingredients.ingredient.toLowerCase()
+        );
+        return tagsValue.ingredient.some((tag)=>ingredients1.includes(tag)
+        );
     });
-    /** ==========Filter by value ========= */ tags.forEach((tag)=>{
-        if (recipeNames.includes(tagString)) console.log("== coco ==");
-        else if (ingredients.includes(tagString)) console.log("== lait ==");
-        else if (descriptions.includes(tagString)) console.log("== eau ==");
-        else console.log("TEST ForEach 2");
-    });
-    /** ========== Display results ========= */ const displayedCard = Array.from(recipeCard).filter((card)=>{
-        console.log(card);
-        card.style.display;
-    });
-    const displayedCardArray = Array.from(recipeCard).filter((card)=>card.style.display !== "none"
-    );
-    console.log(displayedCardArray);
-}
+    console.log(filteredRecipes);
+/** ========== Display results ========= */ /* const displayedCard = Array.from(recipeCard).filter((card) => {
+    console.log(card);
+    card.style.display !== "none";
+  }); */ }
 exports.default = filterTag;
 
-},{"./displayTags":"fP1Ry","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["d5kvp","igcvL"], "igcvL", "parcelRequiredaa1")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./data":"9kapS"}]},["d5kvp","igcvL"], "igcvL", "parcelRequiredaa1")
 
 //# sourceMappingURL=index.5baa4167.js.map

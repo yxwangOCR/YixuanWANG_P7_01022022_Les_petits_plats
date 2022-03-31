@@ -4,6 +4,7 @@ const cards = document.getElementById("cards");
 function displayRecipes() {
   recipes.forEach((recipe) => {
     const cardWrapper = document.createElement("div");
+    cardWrapper.id = recipe.id
     const ingredientsWrapper = document.createElement("div");
     const ingredients = recipe.ingredients;
     ingredients.forEach((ingredient) => {
