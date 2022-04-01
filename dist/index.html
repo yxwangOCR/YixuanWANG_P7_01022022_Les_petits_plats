@@ -11,63 +11,30 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </head>
 
-
 <body>
-
     <nav>
         <a href="/index.html" class="logo">
             <img class="logo" src="/logo.d4f8fe33.png" alt="homepage logo">
         </a>
     </nav>
-
-
     <main class="container">
         <!-- Search bar -->
         <div class="search-bar">
             <input class="form-control" type="text" id="searchbar" placeholder="Rechercher un ingrédient, appareil, ustensile ou une recette" aria-label="Search">
             <button class="search-btn" type="submit"><i class="fas fa-search"></i></button>
         </div>
-
         <!-- Tags -->
         <div class="tags-container">
             <div class="tags"></div>
         </div>
 
         <!-- Dropdowns -->
-
-        <div id="dropdown-container">
-
-
-
-            <div class="dropdown" id="dropdown-1">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="ingredients-input" data-bs-toggle="dropdown" aria-expanded="false">
-                    Ingredient
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="selected-ingredients">
-                </ul>
-            </div>
-            <div class="dropdown" id="dropdown-2">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="appareils-input" data-bs-toggle="dropdown" aria-expanded="false">
-                    Appareils
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2" id="selected-appareils">
-                </ul>
-            </div>
-
-            <div class="dropdown" id="dropdown-3">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="ustensiles-input" data-bs-toggle="dropdown" aria-expanded="false">
-                    Ustensiles
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3" id="selected-ustensils">
-                </ul>
-            </div>
-        </div>
+        <div id="dropdown-container"></div>
 
         <!-- Recipes -->
         <div class="cards" id="cards"></div>
     </main>
     <script src="/index.5baa4167.js" defer=""></script>
-
 </body>
 
 </html>

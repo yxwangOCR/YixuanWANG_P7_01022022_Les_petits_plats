@@ -49,7 +49,7 @@
   padding: 5px;
   margin: 5px;
   color: #fff;
-  border: 1px solid#ccc;
+  border: 1px solid #ccc;
   border-radius: 5px;
 }
 
@@ -57,21 +57,22 @@
   text-transform: uppercase;
 }
 
-.tag-background-ingredients {
-  background: #3282f7;
-}
-
-.tag-background-appareils {
-  background-color: #68d9a4;
-}
-
-.tag-background-ustensils {
-  background-color: #ed6454;
-}
-
 .close-icon {
   font-size: 1rem;
   margin-left: 5px;
   margin-right: 5px;
   cursor: pointer;
+}
+
+/*Tags background color: */
+.ingredient {
+  background-color: #3282f7;
+}
+
+.appareils {
+  background-color: #68d9a4;
+}
+
+.ustensils {
+  background-color: #ed6454;
 }

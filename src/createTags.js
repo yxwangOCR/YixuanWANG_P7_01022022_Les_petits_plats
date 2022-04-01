@@ -1,11 +1,12 @@
-import closeTags from "./closeTag";
+const closeBtn = document.querySelector(".close-icon");
+const tag = document.querySelector(".tag");
 
 function createTags(label, type) {
   //console.log(type);
   const tagWrapper = document.createElement("div");
   tagWrapper.setAttribute("class", "tag");
   tagWrapper.classList.add(`${type}`);
-  tagWrapper.setAttribute('data-type', type);
+  tagWrapper.setAttribute("data-type", type);
 
   const inputText = document.createElement("span");
   inputText.setAttribute("class", "tag-value");
@@ -21,6 +22,11 @@ function createTags(label, type) {
   closeIcon.addEventListener("click", closeTags);
 
   return tagWrapper;
+}
+
+// Close Tags:
+function closeTags(event) {
+  event.target.parentElement.style.display = "none";
 }
 
 export default createTags;

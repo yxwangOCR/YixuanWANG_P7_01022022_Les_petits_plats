@@ -520,31 +520,30 @@ function hmrAcceptRun(bundle, id) {
 
 },{}],"igcvL":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-/*
-import createTags from "./src/createTags";
-import displayTags from "./src/displayTags";
-import closeTags from "./src/closeTag";
-*/ var _recipes = require("./src/recipes");
-var _recipesDefault = parcelHelpers.interopDefault(_recipes);
-var _sort1 = require("./src/sort_1");
-var _sort2 = require("./src/sort_2");
-var _subSearch = require("./src/subSearch");
-var _subSearchDefault = parcelHelpers.interopDefault(_subSearch);
-_recipesDefault.default();
-_subSearchDefault.default();
+var _createRecipes = require("./src/createRecipes");
+var _createRecipesDefault = parcelHelpers.interopDefault(_createRecipes);
+var _createDropdowns = require("./src/createDropdowns");
+var _createDropdownsDefault = parcelHelpers.interopDefault(_createDropdowns);
+var _displayDropdown = require("./src/displayDropdown");
+var _displayDropdownDefault = parcelHelpers.interopDefault(_displayDropdown);
+var _algo1 = require("./src/algo_1");
+var _algo2 = require("./src/algo_2");
+_createRecipesDefault.default();
+_createDropdownsDefault.default();
+_displayDropdownDefault.default();
 const searchBar = document.getElementById("searchbar");
-//Sort_1:
+//Algo_1:
 //searchBar.addEventListener("keyup", onSearch);
-//Sort_2:
-searchBar.addEventListener("keyup", _sort2.inSearch);
+//Algo_2:
+searchBar.addEventListener("keyup", _algo2.inSearch);
 
-},{"./src/recipes":"isDyF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./src/sort_1":"1YQuk","./src/sort_2":"9rClw","./src/subSearch":"d6JBR"}],"isDyF":[function(require,module,exports) {
+},{"./src/createRecipes":"hMoWw","./src/createDropdowns":"3yOtV","./src/displayDropdown":"kC2l1","./src/algo_1":"jxcd3","./src/algo_2":"kJ5JD","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hMoWw":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _data = require("./data");
 var _dataDefault = parcelHelpers.interopDefault(_data);
 const cards = document.getElementById("cards");
-function displayRecipes() {
+function createRecipes() {
     _dataDefault.default.forEach((recipe)=>{
         const cardWrapper = document.createElement("div");
         cardWrapper.id = recipe.id;
@@ -576,39 +575,9 @@ function displayRecipes() {
         cards.appendChild(cardWrapper);
     });
 }
-exports.default = displayRecipes;
+exports.default = createRecipes;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./data":"9kapS"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, '__esModule', {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"9kapS":[function(require,module,exports) {
+},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9kapS":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 const recipes = [
@@ -645,7 +614,7 @@ const recipes = [
         appliance: "Blender",
         ustensils: [
             "cuillère à Soupe",
-            "verres",
+            "verre",
             "presse citron"
         ]
     },
@@ -723,7 +692,7 @@ const recipes = [
         ],
         time: 80,
         description: "Découper le poulet en morceaux, les faire dorer dans une cocotte avec de l'huile d'olive. Salez et poivrez. Une fois doré, laisser cuire en ajoutant de l'eau. Au bout de 30 minutes, ajouter le coulis de tomate, le lait de coco ainsi que le poivron et l'oignon découpés en morceaux. Laisser cuisiner 30 minutes de plus. Servir avec du riz",
-        appliance: "Cocotte",
+        appliance: "Cocotte-minute",
         ustensils: [
             "couteau"
         ]
@@ -888,8 +857,8 @@ const recipes = [
         description: "Etaler la pate dans les moules à tartelette. Faire cuire la pate 30 minutes. Découper le chocolat en morceau et le faire chauffer, y ajouter la crême liquide, ajouter le beurre et remuer jusqu'à avoir une pâte homogène. Verser la pate sur les tartelettes. Couper les fraises en 2 et les positionner sur ",
         appliance: "Four",
         ustensils: [
-            "moule à tartelettes",
-            "casserolle"
+            "moule à tartelette",
+            "casserole"
         ]
     },
     {
@@ -932,7 +901,7 @@ const recipes = [
         appliance: "Four",
         ustensils: [
             "moule à gateaux",
-            "casserolle"
+            "casserole"
         ]
     },
     {
@@ -1006,7 +975,7 @@ const recipes = [
         ustensils: [
             "plat à gratin",
             "couteau",
-            "Économe"
+            "econome"
         ]
     },
     {
@@ -1030,7 +999,7 @@ const recipes = [
                 unit: "tranches"
             },
             {
-                ingredient: "Pommes",
+                ingredient: "Pomme",
                 quantity: 1
             },
             {
@@ -1062,7 +1031,7 @@ const recipes = [
                 unit: "grammes"
             },
             {
-                ingredient: "Pommes",
+                ingredient: "Pomme",
                 quantity: 8
             },
             {
@@ -1077,11 +1046,12 @@ const recipes = [
             }, 
         ],
         time: 40,
-        description: "Éplucher les fruits et les couper en morceaux, les mettre dans une casserolle en ajoutant l'eau et le sucre vanillé. Laisser cuire 15 minutes en remuant régulièrement.",
-        appliance: "Casserole",
+        description: "Éplucher les fruits et les couper en morceaux, les mettre dans une casserole en ajoutant l'eau et le sucre vanillé. Laisser cuire 15 minutes en remuant régulièrement.",
+        appliance: "Multicuiseur",
         ustensils: [
             "couteau",
-            "économe"
+            "econome",
+            "casserole"
         ]
     },
     {
@@ -1100,7 +1070,7 @@ const recipes = [
                 unit: "grammes"
             },
             {
-                ingredient: "Échalote",
+                ingredient: "Echalote",
                 quantity: 2
             },
             {
@@ -1116,7 +1086,7 @@ const recipes = [
         ],
         time: 40,
         description: "Cuire les pommes de terre environ 30 minutes. Découper les échalottes finement. Durant la cuisson des pommes de terre. Préparez la vinaigrette avec l'huile d'olive et le vinaigre de cidre. Salez poivrez à discrétion. Dans un saladier, mettre le mâche. Ajouter",
-        appliance: "Casserole",
+        appliance: "Robot pâtissier",
         ustensils: [
             "couteau",
             "saladier",
@@ -1160,7 +1130,7 @@ const recipes = [
         description: "Mélanger la farine et les oeufs, faire fondre 25 grammes de beurre et ajouter à la pâte. Ajouter du sel. Laisser reposer 1 heure. Faire les galettes et laisser refroidire. Faire chauffer les saucisses avec du beurre et l'oignon. Enrouler les saucisses dans les crêpes avec une partie du fromage. Mettre le reste du fromage à raclette par dessus les crêpes. Passer four pendant 20 minutes",
         appliance: "Four",
         ustensils: [
-            "poelle à frire",
+            "poêle à frire",
             "couteau"
         ]
     },
@@ -1200,7 +1170,7 @@ const recipes = [
         ],
         time: 60,
         description: "Mélangez dans un saladier, la farine, les oeufs, et le lait. Battez jusqu'à avoir une masse homogène. Pendant ce temps faites fondre le beurre et ajoutez en une partie à la pâte à crêpes. Faire fondre le chocolat ( avec le reste du beurre salé ). Lorsque vous chauffez les crêpes. Ajouter le chocolat fondu et les bananes coupées en rondelles. Ajoutez une touche de chantilly pour les gourmands",
-        appliance: "Poële à crêpe",
+        appliance: "Poêle à crêpe",
         ustensils: [
             "saladier",
             "louche",
@@ -1233,7 +1203,7 @@ const recipes = [
                 unit: "tiges"
             },
             {
-                ingredient: "huile d'olives",
+                ingredient: "huile d'olive",
                 quantity: 2,
                 unit: "cuillère à soupe"
             }, 
@@ -1278,7 +1248,7 @@ const recipes = [
         description: "Coupez les fraises en morceaux, découpez la chaire de la pastèque en retirant les pépins. Mettre le tout dans le blender. Ajouter un cuillière à soupe de juste de citron ainsi que les glaçons. Ajoutez quelques fueilles de menthe pour plus de fraîcheur. Mixez le tout. Servir et déguster.",
         appliance: "Blender",
         ustensils: [
-            "verres",
+            "verre",
             "couteau",
             "presse citron"
         ]
@@ -1307,7 +1277,7 @@ const recipes = [
         description: "Séparez 1/5ème d'Ananas ( une belle tranche qui servira pour la décoration des verres ), mettre le reste coupé en cubes au blender, ajouter la glace à la vanille et le lait. Mixez. Servir et décorer avec l'ananas restant. C'est prêt",
         appliance: "Blender",
         ustensils: [
-            "verres",
+            "verre",
             "couteau"
         ]
     },
@@ -1344,7 +1314,7 @@ const recipes = [
         appliance: "Blender",
         ustensils: [
             "couteau",
-            "verres",
+            "verre",
             "presse citron"
         ]
     },
@@ -1423,8 +1393,8 @@ const recipes = [
             }, 
         ],
         time: 30,
-        description: "Cuisiner la viande hachée dans une poelle à frire. Dans une autre faire cuire les oignons découpés en fins dés avec un peu de beurre. Ajouter du vin rouge. Mélanger les oigons avec la viande hachée. Faire cuire les pates le temps indiqué sur le paquet. Ajouter le coulis de tomates à la viande hachée. Une fois que les pates sont cuites, ajouter la crème fraîche à la viande hachée. Serivir.",
-        appliance: "Casserolle.",
+        description: "Cuisiner la viande hachée dans une poêle à frire. Dans une autre faire cuire les oignons découpés en fins dés avec un peu de beurre. Ajouter du vin rouge. Mélanger les oigons avec la viande hachée. Faire cuire les pates le temps indiqué sur le paquet. Ajouter le coulis de tomate à la viande hachée. Une fois que les pates sont cuites, ajouter la crème fraîche à la viande hachée. Serivir.",
+        appliance: "Poêle électrique",
         ustensils: [
             "Cuillère en bois",
             "louche",
@@ -1467,7 +1437,7 @@ const recipes = [
         ustensils: [
             "moule à gateaux",
             "fouet",
-            "casserolle"
+            "casserole"
         ]
     },
     {
@@ -1511,7 +1481,8 @@ const recipes = [
         ustensils: [
             "moule à gateaux",
             "rouleau à patisserie",
-            "fouet"
+            "fouet",
+            "poêle"
         ]
     },
     {
@@ -1609,7 +1580,7 @@ const recipes = [
                 quantity: 1
             },
             {
-                ingredient: "Huile d'olives"
+                ingredient: "Huile d'olive"
             },
             {
                 ingredient: "Oignon",
@@ -1625,7 +1596,7 @@ const recipes = [
         description: "Verser de l'huile dans une cocotte minute couper les légumes et les verser dans l'huile chaude. Laisser cuire et remuer pendant 10 minutes. Passer aux mixer. Servir.",
         appliance: "Mixer",
         ustensils: [
-            "cocotte minute",
+            "cocotte",
             "couteau"
         ]
     },
@@ -1650,7 +1621,7 @@ const recipes = [
             {
                 ingredient: "Vermicelles",
                 quantity: 1,
-                unit: "verres"
+                unit: "verre"
             },
             {
                 ingredient: "Beurre salé",
@@ -1660,7 +1631,7 @@ const recipes = [
         ],
         time: 15,
         description: "Faire fondre l'oseille avec du beurre demi sel, ajouter un litre d'eau. Ajouter les vermicelles. Laisser cuire. une foit prêt, sortir du feu et après 5 minutes ajouter le jaune d'oeuf et la crème fraîche",
-        appliance: "Casserolle",
+        appliance: "Machine à pain",
         ustensils: [
             "couteau",
             "cuillère en bois"
@@ -1700,7 +1671,7 @@ const recipes = [
         description: "Emincer les blanc de poireaux et les faire chauffer dans 25 grammes de beurre. AJouter les pommes de terres coupées en morceaux. Ajouter l'eau et laisser mijoter pour 45 minutes. Chauffer l'oseille avec le beurre restant puis incorporer le tout. Mixez. Ajoutez la crème. Bon appetit.",
         appliance: "Mixer",
         ustensils: [
-            "casserolle",
+            "casserole",
             "couteau"
         ]
     },
@@ -1762,7 +1733,7 @@ const recipes = [
         description: "Mettre tous les ingrédients dans une cocotte. ajouter de l'eau pour recouvrir l'ensemble et laisser cuirre à petit feur pour 1 heure. Passer au mixer. Salez, poivrez. C'est prêt",
         appliance: "Mixer",
         ustensils: [
-            "casserolle",
+            "casserole",
             "cuillère en bois"
         ]
     },
@@ -1797,10 +1768,10 @@ const recipes = [
         ],
         time: 60,
         description: "Découper en cubes les carottes et pommes de terre. Faire revenir dans du beurre. Ajouter les lardons, une fois les lardons dorés, ajouter un grand verre d'eau. Ajouter les petit poids et les haricots verts ( tous deux pré cuits ). Ajouter Sel, poivre, thyms et laurier",
-        appliance: "Poële",
+        appliance: "Poêle électrique",
         ustensils: [
             "Couteau",
-            "économe"
+            "econome"
         ]
     },
     {
@@ -1910,11 +1881,11 @@ const recipes = [
             }, 
         ],
         time: 25,
-        description: "Eplucher les patates douces et coupez les en morceaux. Les faire cuire durant 20 minute dans une casserolle d'eau bouillante. Passer au mixer en ajoutant la crème et l'huile d'olive à son gout. Salez, poivrez. Pressez l'orange et ajouter le jus à l'ensemble. Servir.",
+        description: "Eplucher les patates douces et coupez les en morceaux. Les faire cuire durant 20 minute dans une casserole d'eau bouillante. Passer au mixer en ajoutant la crème et l'huile d'olive à son gout. Salez, poivrez. Pressez l'orange et ajouter le jus à l'ensemble. Servir.",
         appliance: "Mixer",
         ustensils: [
             "couteau",
-            "économe",
+            "econome",
             "cuillère en bois"
         ]
     },
@@ -1956,7 +1927,7 @@ const recipes = [
         description: "Éplucher les légumes, les couper en morceaux et les mettre à cuire dans une cocotte minute environ 15 minutes. Mixer en ajoutant le beurre, la crème. Ajouter le cumun et la noix de muscade.",
         appliance: "Mixer",
         ustensils: [
-            "cocotte minute",
+            "cocotte",
             "couteau",
             "cuillère en bois"
         ]
@@ -2019,7 +1990,7 @@ const recipes = [
                 unit: "grammes"
             },
             {
-                ingredient: "Huile d'olives",
+                ingredient: "Huile d'olive",
                 quantity: 25,
                 unit: "cl"
             },
@@ -2028,7 +1999,7 @@ const recipes = [
                 quantity: 1
             },
             {
-                ingredient: "Coulis de tomates",
+                ingredient: "Coulis de tomate",
                 quantity: 20,
                 unit: "cl"
             },
@@ -2039,12 +2010,12 @@ const recipes = [
             }, 
         ],
         time: 60,
-        description: "Couper les courgettes dans le sens de la longueur. Vider les courgette dans un saladier. Réserver.Faire revenir la chair des courgettes dans 25cl d'huile d'olive. Ajouter l'oignon puis la viande hachée. Mettre la farce dans les courgettes. Ajouter le coulis de tomates. Mettre au four pendant 30 minutes. Avant la fin de la cuisson ajouter le fromage rapé",
+        description: "Couper les courgettes dans le sens de la longueur. Vider les courgette dans un saladier. Réserver.Faire revenir la chair des courgettes dans 25cl d'huile d'olive. Ajouter l'oignon puis la viande hachée. Mettre la farce dans les courgettes. Ajouter le coulis de tomate. Mettre au four pendant 30 minutes. Avant la fin de la cuisson ajouter le fromage rapé",
         appliance: "Four",
         ustensils: [
             "couteau",
             "cuillère en bois",
-            "Poelle à frire"
+            "Poêle à frire"
         ]
     },
     {
@@ -2169,11 +2140,11 @@ const recipes = [
         ],
         time: 20,
         description: "Séparer les blancs d'oeufs. Faire fondre le chocolat au bain marie. Ajouter les jaunes et le sucre au chocolat hors du feu. Battre les blancs en neige. Ajouter les blancs au mélange de chocolat. Mélangez délicatement avec une spatule. Servir dans un plat ou dans des verres. Mettre au frais",
-        appliance: "Casserolle",
+        appliance: "Micro-ondes",
         ustensils: [
             "fouet",
             "spatule",
-            "verres"
+            "verre"
         ]
     },
     {
@@ -2202,11 +2173,12 @@ const recipes = [
         ],
         time: 60,
         description: "Commencez par préparer la mousse au chocolat au moins 2 heures avant. Quand la mousse est prête et a reposée. Alors mouiller les boudoirs dans le jus des poires. Disposer. Alterner : mousse au chocolat, boudoirs et poires. Mettre au frais.",
-        appliance: "Moule à charlotte",
+        appliance: "Gaufrier",
         ustensils: [
             "saladier",
             "couteau",
-            "fouet"
+            "fouet",
+            "moule à charlotte"
         ]
     },
     {
@@ -2239,7 +2211,7 @@ const recipes = [
         ],
         time: 50,
         description: "Préchauffez le fours à 200°. Etaler la pate. La mettre dans un moule. Battre les oeufs avec le sucre. Ajouter le jus de citron et le beurre. Verser le tout sur la pate. Au four 30 minutes. Bon appetit ",
-        appliance: "Four",
+        appliance: "Grille-pain",
         ustensils: [
             "rouleau à patisserie",
             "moule à tarte",
@@ -2279,9 +2251,10 @@ const recipes = [
         ],
         time: 15,
         description: "Mélanger la farine et le beurre fondu en ajoutant le lait peu à peu. Ajouter du sucre après la cuisson. Bien mélanger. Ajouter le chocolat en morceaux et laisser chauffer 8 minutes en mélangeant avec une cuillère en bois. Mettre dans des verres",
-        appliance: "Casserolle",
+        appliance: "Machine à pâtes",
         ustensils: [
-            "cuillère en bois"
+            "cuillère en bois",
+            "Casserole"
         ]
     },
     {
@@ -2311,7 +2284,7 @@ const recipes = [
         ],
         time: 30,
         description: "Faire bouillir le lait ( on peut y ajouter de l'essence de vanille. Battre les oeufs et le sucre, ajouter la farine puis finalement ajouter le lait chaud. Remettre à feu doux pour faire épaissir en remuant pendant 5 à 10 minutes.",
-        appliance: "Casserolle",
+        appliance: "Crepiere",
         ustensils: [
             "fouet",
             "saladier"
@@ -2354,11 +2327,11 @@ const recipes = [
         ],
         time: 60,
         description: "Mélanger la farine avec le sucre et les oeufs en ajoutant du sucre vanillé. Ajouter le lait petit à petit. Ajouter un petit vers de rhum. Verser la masse dans un plat beurré y placer les pruneaux et faire cuire à 200° pendant 45 minutes",
-        appliance: "Four",
+        appliance: "Friteuse",
         ustensils: [
             "fouet",
             "moule",
-            "verres"
+            "verre"
         ]
     },
     {
@@ -2392,7 +2365,7 @@ const recipes = [
         appliance: "Saladier",
         ustensils: [
             "fouet",
-            "verres",
+            "verre",
             "cuillère en bois"
         ]
     },
@@ -2441,11 +2414,11 @@ const recipes = [
         servings: 4,
         ingredients: [
             {
-                ingredient: "Bananes",
+                ingredient: "Banane",
                 quantity: 2
             },
             {
-                ingredient: "Kiwis",
+                ingredient: "Kiwi",
                 quantity: 3
             },
             {
@@ -2468,7 +2441,7 @@ const recipes = [
         appliance: "Blender",
         ustensils: [
             "couteau",
-            "verres"
+            "verre"
         ]
     },
     {
@@ -2502,8 +2475,8 @@ const recipes = [
             }, 
         ],
         time: 60,
-        description: "Préparer la frangipane : Mélanger le sucre la poudre d'amander, le beurre et les oeufs. Etaler la moitier de la pate feuilleté et mettre dans un moule à tarte. Garnir de frangipane et recouvrir du reste de pate feuilletée. Mettre au four 30 minutes",
-        appliance: "Four",
+        description: "Préparer la frangipane : Mélanger le sucre la poudre d'amande, le beurre et les oeufs. Etaler la moitie de la pate feuilleté et mettre dans un moule à tarte. Garnir de frangipane et recouvrir du reste de pate feuilletée. Mettre au four 30 minutes",
+        appliance: "Plaque chauffante",
         ustensils: [
             "rouleau à patisserie",
             "fouet"
@@ -2512,7 +2485,349 @@ const recipes = [
 ];
 exports.default = recipes;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1YQuk":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"3yOtV":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+const dropdownContainer = document.getElementById("dropdown-container");
+function createDropdowns() {
+    const dropdowns = document.createElement("div");
+    dropdowns.classList.add("dropdown-input");
+    dropdowns.innerHTML = `<div id="dropdown-1">
+        <button type="button" class="drop-btn-1" >
+        <label for ="input-1" class="input-label-1">
+        <input placeholder="Ingredients" class="search-input-1" id="ingredients-input">
+        <span>&#10095;</span>
+        <ul class="dropdown-menu" id="selected-ingredients"></ul>
+        </button> </div>
+        
+        <div id="dropdown-2">
+        <button type="button" class="drop-btn-2" >
+        <label for ="input-2" class="input-label-2">
+        <input placeholder="Appareils" class="search-input-2" id="appareils-input">   
+        <span>&#10095;</span>
+        <ul class="dropdown-menu" id="selected-appareils"></ul>
+        </button> </div>
+
+        <div id="dropdown-3">
+        <button type="button" class="drop-btn-3" >
+        <label for ="input-3" class="input-label-3">
+        <input placeholder="Ustensiles" class="search-input-3" id="ustensiles-input">   
+        <span>&#10095;</span>
+         <ul class="dropdown-menu" id="selected-ustensiles"></ul>
+        </button> </div>
+        `;
+    dropdownContainer.appendChild(dropdowns);
+}
+exports.default = createDropdowns;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kC2l1":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _data = require("./data");
+var _dataDefault = parcelHelpers.interopDefault(_data);
+var _displayTags = require("./displayTags");
+var _displayTagsDefault = parcelHelpers.interopDefault(_displayTags);
+var _autocompleteSearch = require("./autocompleteSearch");
+var _autocompleteSearchDefault = parcelHelpers.interopDefault(_autocompleteSearch);
+let allAppareil = [];
+let allIngredients = [];
+let allUstensils = [];
+function displayDropdown() {
+    const ingredientDropdown = document.getElementById("dropdown-1");
+    const appareilDropdown = document.getElementById("dropdown-2");
+    const ustensilDropdown = document.getElementById("dropdown-3");
+    const ingredientsInput = document.querySelector("#selected-ingredients");
+    const appareilInput = document.querySelector("#selected-appareils");
+    const ustensilesInput = document.querySelector("#selected-ustensiles");
+    _dataDefault.default.filter((recipe)=>{
+        recipe.ingredients.map((ingredient)=>{
+            allIngredients.push(ingredient.ingredient.toLowerCase());
+        });
+        allAppareil.push(recipe.appliance.toLowerCase());
+        recipe.ustensils.map((item)=>{
+            allUstensils.push(item.toLowerCase());
+        });
+    });
+    // Filtered Ingredients (no repeat ingredients)
+    const filteredIngredients = allIngredients.filter(function(ele, pos) {
+        return allIngredients.indexOf(ele) == pos;
+    });
+    function showIngredientList() {
+        ingredientsInput.innerHTML = "";
+        for (let value of filteredIngredients.sort()){
+            let li = document.createElement("li");
+            li.className = "element dropdown-item";
+            li.innerHTML = value;
+            li.dataType = "ingredient";
+            ingredientsInput.appendChild(li);
+            li.addEventListener("click", _displayTagsDefault.default);
+        }
+        ingredientsInput.classList.toggle("show");
+        appareilInput.classList.remove("show");
+        ustensilesInput.classList.remove("show");
+    }
+    ingredientDropdown.addEventListener("click", showIngredientList);
+    // Filtered Appareils (no repeat item):
+    const filteredAppareil = allAppareil.filter(function(ele, pos) {
+        return allAppareil.indexOf(ele) == pos;
+    });
+    function showAppareilList() {
+        appareilInput.innerHTML = "";
+        for (let value of filteredAppareil.sort()){
+            let li = document.createElement("li");
+            li.className = "element dropdown-item";
+            li.innerHTML = value;
+            li.dataType = "appareils";
+            appareilInput.appendChild(li);
+            li.addEventListener("click", _displayTagsDefault.default);
+        }
+        appareilInput.classList.toggle("show");
+        ingredientsInput.classList.remove("show");
+        ustensilesInput.classList.remove("show");
+    }
+    appareilDropdown.addEventListener("click", showAppareilList);
+    // Filtered Ustensils (no repeat ustensils):
+    const filteredUstensils = allUstensils.filter(function(ele, pos) {
+        return allUstensils.indexOf(ele) === pos;
+    });
+    function showUstensilsList() {
+        ustensilesInput.innerHTML = "";
+        for (let value of filteredUstensils.sort()){
+            let li = document.createElement("li");
+            li.className = "element dropdown-item";
+            li.innerHTML = value;
+            li.dataType = "ustensils";
+            ustensilesInput.appendChild(li);
+            li.addEventListener("click", _displayTagsDefault.default);
+        }
+        ustensilesInput.classList.toggle("show");
+        ingredientsInput.classList.remove("show");
+        appareilInput.classList.remove("show");
+    }
+    ustensilDropdown.addEventListener("click", showUstensilsList);
+    _autocompleteSearchDefault.default();
+}
+// Close the dropdown if the user clicks outside of it:
+document.addEventListener("click", function(e) {
+    if (!e.target.matches("#ingredients-input, #appareils-input, #ustensiles-input")) {
+        let dropdowns = document.querySelectorAll(".dropdown-menu");
+        for (let dropdown of dropdowns)if (dropdown.classList.contains("show")) dropdown.classList.remove("show");
+    } else if (e.target.matches("#ingredients-input")) document.getElementById("ingredients-input").classList.toggle("show");
+    else if (e.target.matches("#appareils-input")) document.getElementById("appareils-input").classList.toggle("show");
+    else if (e.target.matches("#ustensiles-input")) document.getElementById("ustensiles-input").classList.toggle("show");
+    else console.log("click other place");
+});
+exports.default = displayDropdown;
+
+},{"./data":"9kapS","./displayTags":"fP1Ry","./autocompleteSearch":"k26Jh","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fP1Ry":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/*Reference for Keys : 
+https://www.techiedelight.com/detect-enter-key-press-javascript/
+*/ var _createTags = require("./createTags");
+var _createTagsDefault = parcelHelpers.interopDefault(_createTags);
+var _filterTag = require("./filterTag");
+var _filterTagDefault = parcelHelpers.interopDefault(_filterTag);
+const tags = document.querySelector(".tags");
+function displayTags(e) {
+    const type = e.target.dataType;
+    //console.log(type);
+    const value = e.target.innerHTML;
+    //console.log(value);
+    const tagValue = _createTagsDefault.default(value, type);
+    //console.log(tagValue);
+    tags.appendChild(tagValue);
+    //console.log(tags);
+    _filterTagDefault.default();
+}
+exports.default = displayTags;
+
+},{"./createTags":"kV1Ls","./filterTag":"iFdaD","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kV1Ls":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+const closeBtn = document.querySelector(".close-icon");
+const tag = document.querySelector(".tag");
+function createTags(label, type) {
+    //console.log(type);
+    const tagWrapper = document.createElement("div");
+    tagWrapper.setAttribute("class", "tag");
+    tagWrapper.classList.add(`${type}`);
+    tagWrapper.setAttribute("data-type", type);
+    const inputText = document.createElement("span");
+    inputText.setAttribute("class", "tag-value");
+    inputText.innerHTML = label;
+    const closeIcon = document.createElement("span");
+    closeIcon.setAttribute("class", "close-icon");
+    closeIcon.innerHTML = "&#215";
+    tagWrapper.appendChild(inputText);
+    tagWrapper.appendChild(closeIcon);
+    closeIcon.addEventListener("click", closeTags);
+    return tagWrapper;
+}
+// Close Tags:
+function closeTags(event) {
+    event.target.parentElement.style.display = "none";
+}
+exports.default = createTags;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iFdaD":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _data = require("./data");
+var _dataDefault = parcelHelpers.interopDefault(_data);
+function filterTag(value, type) {
+    const recipeCard = document.querySelectorAll(".recipeCard");
+    const tags = document.querySelectorAll(".tag");
+    const tagsValue = {
+        ingredient: [],
+        appareils: [],
+        ustensils: []
+    };
+    const displayedRecipe = Array.from(recipeCard).reduce((acc, card)=>{
+        if (card.style.display !== "none") acc.push(_dataDefault.default.find((recipe)=>recipe.id == card.id
+        ));
+        return acc;
+    }, []);
+    for (const tag1 of Array.from(tags)){
+        let tagString = tag1.querySelectorAll(".tag-value")[0].innerHTML;
+        let tagType = tag1.dataset.type;
+    //tagsValue[tagType].push(tagString)
+    }
+    //console.log(tagsValue)
+    /** ==========Filter by value ========= */ const filteredRecipes = displayedRecipe.filter((recipe)=>{
+        const ingredients1 = recipe.ingredients.map((ingredients)=>ingredients.ingredient.toLowerCase()
+        );
+        return tagsValue.ingredient.some((tag)=>ingredients1.includes(tag)
+        );
+    });
+//console.log(filteredRecipes)
+/** ========== Display results ========= */ /* const displayedCard = Array.from(recipeCard).filter((card) => {
+    console.log(card);
+    card.style.display !== "none";
+  }); */ }
+exports.default = filterTag;
+
+},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"k26Jh":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _data = require("./data");
+var _dataDefault = parcelHelpers.interopDefault(_data);
+var _displayTags = require("./displayTags");
+var _displayTagsDefault = parcelHelpers.interopDefault(_displayTags);
+var _displayDropdown = require("./displayDropdown");
+var _displayDropdownDefault = parcelHelpers.interopDefault(_displayDropdown);
+let allAppareil = [];
+let allIngredients = [];
+let allUstensils = [];
+function autocomplete() {
+    const ingredientInput = document.getElementById("ingredients-input");
+    const appareilsInput = document.getElementById("appareils-input");
+    const ustensilesInput = document.getElementById("ustensiles-input");
+    const IngredientsList = document.querySelector("#selected-ingredients");
+    const AppareilsList = document.querySelector("#selected-appareils");
+    const UstensilesList = document.querySelector("#selected-ustensiles");
+    _dataDefault.default.filter((recipe)=>{
+        recipe.ingredients.map((ingredient)=>{
+            allIngredients.push(ingredient.ingredient.toLowerCase());
+        });
+        allAppareil.push(recipe.appliance.toLowerCase());
+        recipe.ustensils.map((item)=>{
+            allUstensils.push(item.toLowerCase());
+        });
+    });
+    // Enter key words in ingredients input:
+    const filteredIngredients = allIngredients.filter(function(ele, pos) {
+        return allIngredients.indexOf(ele) == pos;
+    });
+    ingredientInput.addEventListener("keyup", function(e) {
+        IngredientsList.innerHTML = "";
+        let ingredientArray = [];
+        if (e.target.value) {
+            ingredientArray = filteredIngredients.filter((ingredient)=>ingredient.toLowerCase().includes(e.target.value)
+            );
+            ingredientArray = ingredientArray.map((ingredient)=>`<li>${ingredient}</li>`
+            );
+            autocompleteIngredientArray(ingredientArray);
+            console.log(ingredientArray);
+            showIngredientList();
+        }
+        if (e.key === "Enter") _displayTagsDefault.default(e);
+    });
+    function autocompleteIngredientArray(ingredientArray) {
+        IngredientsList.innerHTML = !ingredientArray.length ? "" : ingredientArray.join("");
+    }
+    // Enter key words in appareils input:
+    const filteredAppareil = allAppareil.filter(function(ele, pos) {
+        return allAppareil.indexOf(ele) == pos;
+    });
+    appareilsInput.addEventListener("keyup", function(e) {
+        let appareilArray = [];
+        if (e.target.value) {
+            appareilArray = filteredAppareil.filter((appareil)=>appareil.toLowerCase().includes(e.target.value)
+            );
+            appareilArray = appareilArray.map((appareil)=>`<li>${appareil}</li>`
+            );
+            autocompleteAppareilArray(appareilArray);
+            console.log(appareilArray);
+        }
+        if (e.key === "Enter") _displayTagsDefault.default(e);
+    });
+    function autocompleteAppareilArray(appareilArray) {
+        AppareilsList.innerHTML = !appareilArray.length ? "" : appareilArray.join("");
+    }
+    // Enter key words in ustensils input:
+    const filteredUstensils = allUstensils.filter(function(ele, pos) {
+        return allUstensils.indexOf(ele) === pos;
+    });
+    ustensilesInput.addEventListener("keyup", function(e) {
+        let ustensileArray = [];
+        if (e.target.value) {
+            ustensileArray = filteredUstensils.filter((ustensile)=>ustensile.toLowerCase().includes(e.target.value)
+            );
+            ustensileArray = ustensileArray.map((ustensile)=>`<li>${ustensile}</li>`
+            );
+            autocompleteUstensileArray(ustensileArray);
+            console.log(ustensileArray);
+        }
+        if (e.key === "Enter") _displayTagsDefault.default(e);
+    });
+    function autocompleteUstensileArray(ustensileArray) {
+        UstensilesList.innerHTML = !ustensileArray.length ? "" : ustensileArray.join("");
+    }
+}
+exports.default = autocomplete;
+
+},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./displayTags":"fP1Ry","./displayDropdown":"kC2l1"}],"jxcd3":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "onSearch", ()=>onSearch
@@ -2551,7 +2866,7 @@ function displayRecipes(recipes) {
 }
 */ 
 
-},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9rClw":[function(require,module,exports) {
+},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kJ5JD":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "inSearch", ()=>inSearch
@@ -2575,183 +2890,6 @@ const inSearch = ()=>{
     }
 };
 
-},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"d6JBR":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _data = require("./data");
-var _dataDefault = parcelHelpers.interopDefault(_data);
-var _displayTags = require("./displayTags");
-var _displayTagsDefault = parcelHelpers.interopDefault(_displayTags);
-const ingredientDropdown = document.querySelector("#dropdown-1");
-const appareilDropdown = document.querySelector("#dropdown-2");
-const ustensilDropdown = document.querySelector("#dropdown-3");
-let allAppareil = [];
-let allIngredients = [];
-let allUstensils = [];
-function showDropdown() {
-    const ingredientsInput = document.querySelector("#selected-ingredients");
-    const appareilInput = document.querySelector("#selected-appareils");
-    const ustensilsInput = document.querySelector("#selected-ustensils");
-    _dataDefault.default.filter((recipe)=>{
-        recipe.ingredients.map((ingredient)=>{
-            allIngredients.push(ingredient.ingredient.toLowerCase());
-        });
-        allAppareil.push(recipe.appliance.toLowerCase());
-        recipe.ustensils.map((item)=>{
-            allUstensils.push(item.toLowerCase());
-        });
-    });
-    // Filtered Ingredients (no repeat ingredients)
-    const filteredIngredients = allIngredients.filter(function(ele, pos) {
-        return allIngredients.indexOf(ele) == pos;
-    });
-    function showIngredientList() {
-        ingredientsInput.innerHTML = "";
-        for (let value of filteredIngredients){
-            let li = document.createElement("li");
-            li.className = "element dropdown-item";
-            li.innerHTML = value;
-            li.dataType = "ingredient";
-            ingredientsInput.appendChild(li);
-            li.addEventListener("click", _displayTagsDefault.default);
-        }
-        appareilInput.innerHTML = "";
-        ustensilsInput.innerHTML = "";
-    }
-    ingredientDropdown.addEventListener("click", showIngredientList);
-    // Filtered Appareils (no repeat item):
-    const filteredAppareil = allAppareil.filter(function(ele, pos) {
-        return allAppareil.indexOf(ele) == pos;
-    });
-    function showAppareilList() {
-        appareilInput.innerHTML = "";
-        for (let value of filteredAppareil){
-            let li = document.createElement("li");
-            li.className = "element dropdown-item";
-            li.innerHTML = value;
-            li.dataType = "appareils";
-            appareilInput.appendChild(li);
-            li.addEventListener("click", _displayTagsDefault.default);
-        }
-        ingredientsInput.innerHTML = "";
-        ustensilsInput.innerHTML = "";
-    }
-    appareilDropdown.addEventListener("click", showAppareilList);
-    // Filtered Ustensils (no repeat ustensils):
-    const filteredUstensils = allUstensils.filter(function(ele, pos) {
-        return allUstensils.indexOf(ele) === pos;
-    });
-    function showUstensilsList() {
-        ustensilsInput.innerHTML = "";
-        for (let value of filteredUstensils){
-            let li = document.createElement("li");
-            li.className = "element dropdown-item";
-            li.innerHTML = value;
-            li.dataType = "ustensils";
-            ustensilsInput.appendChild(li);
-            li.addEventListener("click", _displayTagsDefault.default);
-        }
-        ingredientsInput.innerHTML = "";
-        appareilInput.innerHTML = "";
-    }
-    ustensilDropdown.addEventListener("click", showUstensilsList);
-}
-exports.default = showDropdown;
-
-},{"./data":"9kapS","./displayTags":"fP1Ry","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fP1Ry":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-/*Reference for Keys : 
-https://www.techiedelight.com/detect-enter-key-press-javascript/
-*/ var _createTags = require("./createTags");
-var _createTagsDefault = parcelHelpers.interopDefault(_createTags);
-var _filterTag = require("./filterTag");
-var _filterTagDefault = parcelHelpers.interopDefault(_filterTag);
-const tags = document.querySelector(".tags");
-function displayTags(event) {
-    const type = event.target.dataType;
-    //console.log(type);
-    const value = event.target.innerHTML;
-    //console.log(value);
-    const tagValue = _createTagsDefault.default(value, type);
-    //console.log(tagValue);
-    tags.appendChild(tagValue);
-    //console.log(tags);
-    _filterTagDefault.default();
-}
-exports.default = displayTags;
-
-},{"./createTags":"kV1Ls","./filterTag":"iFdaD","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kV1Ls":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _closeTag = require("./closeTag");
-var _closeTagDefault = parcelHelpers.interopDefault(_closeTag);
-function createTags(label, type) {
-    //console.log(type);
-    const tagWrapper = document.createElement("div");
-    tagWrapper.setAttribute("class", "tag");
-    tagWrapper.classList.add(`${type}`);
-    tagWrapper.setAttribute('data-type', type);
-    const inputText = document.createElement("span");
-    inputText.setAttribute("class", "tag-value");
-    inputText.innerHTML = label;
-    const closeIcon = document.createElement("span");
-    closeIcon.setAttribute("class", "close-icon");
-    closeIcon.innerHTML = "&#215";
-    tagWrapper.appendChild(inputText);
-    tagWrapper.appendChild(closeIcon);
-    closeIcon.addEventListener("click", _closeTagDefault.default);
-    return tagWrapper;
-}
-exports.default = createTags;
-
-},{"./closeTag":"iKJ2Y","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iKJ2Y":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-const closeBtn = document.querySelector(".close-icon");
-const tag = document.querySelector(".tag");
-function closeTags(e) {
-    e.target.parentElement.style.display = "none";
-}
-exports.default = closeTags;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iFdaD":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _data = require("./data");
-var _dataDefault = parcelHelpers.interopDefault(_data);
-function filterTag(value, type) {
-    const recipeCard = document.querySelectorAll(".recipeCard");
-    const tags = document.querySelectorAll(".tag");
-    const tagsValue = {
-        ingredient: [],
-        appareils: [],
-        ustensils: []
-    };
-    const displayedRecipe = Array.from(recipeCard).reduce((acc, card)=>{
-        if (card.style.display !== "none") acc.push(_dataDefault.default.find((recipe)=>recipe.id == card.id
-        ));
-        return acc;
-    }, []);
-    for (const tag1 of Array.from(tags)){
-        let tagString = tag1.querySelectorAll(".tag-value")[0].innerHTML;
-        let tagType = tag1.dataset.type;
-        tagsValue[tagType].push(tagString);
-    }
-    console.log(tagsValue);
-    /** ==========Filter by value ========= */ const filteredRecipes = displayedRecipe.filter((recipe)=>{
-        const ingredients1 = recipe.ingredients.map((ingredients)=>ingredients.ingredient.toLowerCase()
-        );
-        return tagsValue.ingredient.some((tag)=>ingredients1.includes(tag)
-        );
-    });
-    console.log(filteredRecipes);
-/** ========== Display results ========= */ /* const displayedCard = Array.from(recipeCard).filter((card) => {
-    console.log(card);
-    card.style.display !== "none";
-  }); */ }
-exports.default = filterTag;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./data":"9kapS"}]},["d5kvp","igcvL"], "igcvL", "parcelRequiredaa1")
+},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["d5kvp","igcvL"], "igcvL", "parcelRequiredaa1")
 
 //# sourceMappingURL=index.5baa4167.js.map

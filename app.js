@@ -1,20 +1,16 @@
-/*
-import createTags from "./src/createTags";
-import displayTags from "./src/displayTags";
-import closeTags from "./src/closeTag";
-*/
+import createRecipes from "./src/createRecipes";
+import createDropdowns from "./src/createDropdowns";
+import displayDropdown from "./src/displayDropdown";
+import { onSearch } from "./src/algo_1";
+import { inSearch } from "./src/algo_2";
 
-import displayRecipes from "./src/recipes";
-import { onSearch } from "./src/sort_1";
-import { inSearch } from "./src/sort_2";
-import showDropdown from "./src/subSearch";
-
-displayRecipes();
-showDropdown();
+createRecipes();
+createDropdowns();
+displayDropdown();
 
 const searchBar = document.getElementById("searchbar");
-//Sort_1:
+//Algo_1:
 //searchBar.addEventListener("keyup", onSearch);
 
-//Sort_2:
+//Algo_2:
 searchBar.addEventListener("keyup", inSearch);

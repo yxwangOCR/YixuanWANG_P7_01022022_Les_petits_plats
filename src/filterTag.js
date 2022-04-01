@@ -24,10 +24,10 @@ function filterTag(value, type) {
     let tagString = tag.querySelectorAll(".tag-value")[0].innerHTML;
     let tagType = tag.dataset.type;
 
-    tagsValue[tagType].push(tagString)
+    //tagsValue[tagType].push(tagString)
   }
 
-  console.log(tagsValue)
+  //console.log(tagsValue)
 
 
 
@@ -43,7 +43,7 @@ function filterTag(value, type) {
     return tagsValue.ingredient.some(tag => ingredients.includes(tag))
   } )
 
-  console.log(filteredRecipes)
+  //console.log(filteredRecipes)
 
 
 

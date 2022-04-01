@@ -10458,20 +10458,24 @@ nav {
 .tag::first-letter {
   text-transform: uppercase;
 }
-.tag-background-ingredients {
-  background: #3282f7;
-}
-.tag-background-appareils {
-  background-color: #68d9a4;
-}
-.tag-background-ustensils {
-  background-color: #ed6454;
-}
 .close-icon {
   font-size: 1rem;
   margin-left: 5px;
   margin-right: 5px;
   cursor: pointer;
+}
+/*Tags background color: */
+.ingredient {
+  background-color: #3282f7;
+}
+.appareils {
+  background-color: #68d9a4;
+}
+.ustensils {
+  background-color: #ed6454;
+}
+*:focus {
+  outline: none;
 }
 .dropdown-item {
   color: #fff;
@@ -10483,8 +10487,12 @@ nav {
 #dropdown-container {
   display: flex;
   gap: 2rem;
-  margin: 1rem 1rem 2rem 1rem;
-  justify-content: flex-start;
+  margin: 1rem;
+  justify-content: center;
+}
+.dropdown-input {
+  display: flex;
+  gap: 2rem;
 }
 .dropdown-menu.show {
   display: grid !important;
@@ -10495,46 +10503,58 @@ nav {
   background-color: #3282f7;
   color: white;
   padding: 10px;
+  margin: 5px -5px;
 }
-#ingredients-input {
+#ingredients-input,
+.drop-btn-1 {
   background-color: #3282f7;
   color: white;
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
 }
 /*Appareils*/
 #selected-appareils {
   background-color: #68d9a4;
   color: white;
   padding: 10px;
+  margin: 5px -5px;
 }
-#appareils-input {
+#appareils-input,
+.drop-btn-2 {
   background-color: #68d9a4;
   color: white;
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
 }
-/*Ustensils*/
-#selected-ustensils {
+/*Ustensiles*/
+#selected-ustensiles {
   background-color: #ed6454;
   color: white;
   padding: 10px;
+  margin: 5px -5px;
 }
-#ustensiles-input {
+#ustensiles-input,
+.drop-btn-3 {
   background-color: #ed6454;
   color: white;
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
 }
-.ingredient {
-  background-color: #3282f7;
-}
-.appareils {
-  background-color: #68d9a4;
-}
-.ustensils {
-  background-color: #ed6454;
+/*PlaceHolder: */
+#ingredients-input::placeholder,
+#appareils-input::placeholder,
+#ustensiles-input::placeholder {
+  color: white;
 }
 .cards {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
   justify-content: center;
-  gap: 2rem;
+  gap: 2.5rem;
 }
 .recipeCard {
   border-radius: 5px;
@@ -10608,14 +10628,9 @@ nav {
     width: 100%;
   }
 }
-@media (max-width: 465px) {
-  #dropdown-container {
+@media (max-width: 768px) {
+  .dropdown-input {
     flex-direction: column;
-    align-items: center;
-  }
-
-  .dropdown-toggle {
-    width: 15rem;
   }
 }
 @media (max-width: 295px) {
@@ -10628,10 +10643,6 @@ nav {
   }
 }
 @media (max-width: 270px) {
-  .dropdown-toggle {
-    width: 10rem;
-  }
-
   .recipe-name {
     font-size: 13px;
   }

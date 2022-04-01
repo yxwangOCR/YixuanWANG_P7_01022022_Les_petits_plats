@@ -23,13 +23,9 @@
   }
 }
 
-@media (max-width: 465px) {
-  #dropdown-container {
+@media (max-width: 768px) {
+  .dropdown-input {
     flex-direction: column;
-    align-items: center;
-  }
-  .dropdown-toggle {
-    width: 15rem;
   }
 }
 
@@ -43,9 +39,6 @@
 }
 
 @media (max-width: 270px) {
-  .dropdown-toggle {
-    width: 10rem;
-  }
   .recipe-name {
     font-size: 13px;
   }

@@ -1,7 +1,7 @@
 import recipes from "./data";
 const cards = document.getElementById("cards");
 
-function displayRecipes() {
+function createRecipes() {
   recipes.forEach((recipe) => {
     const cardWrapper = document.createElement("div");
     cardWrapper.id = recipe.id
@@ -34,9 +34,7 @@ function displayRecipes() {
                         </div>
                     </div>`;
     cards.appendChild(cardWrapper);
-
-   
   });
 }
 
-export default displayRecipes;
+export default createRecipes;

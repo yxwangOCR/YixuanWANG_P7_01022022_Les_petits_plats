@@ -7,11 +7,11 @@ import filterTag from "./filterTag";
 
 const tags = document.querySelector(".tags");
 
-function displayTags(event) {
-  const type = event.target.dataType;
+function displayTags(e) {
+  const type = e.target.dataType;
   //console.log(type);
 
-  const value = event.target.innerHTML;
+  const value = e.target.innerHTML;
   //console.log(value);
 
   const tagValue = createTags(value, type);
