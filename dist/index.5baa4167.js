@@ -2730,8 +2730,8 @@ function filterTag() {
             const ustensils1 = recipe.ustensils.map((ustensils)=>ustensils.toLowerCase()
             );
             return tagsValue.ingredient.some((tag)=>ingredients1.includes(tag)
-            ) && tagsValue.appareils.some((tag)=>appareils.includes(tag)
-            ) && tagsValue.ustensils.some((tag)=>ustensils1.includes(tag)
+            ) || tagsValue.appareils.some((tag)=>appareils.includes(tag)
+            ) || tagsValue.ustensils.some((tag)=>ustensils1.includes(tag)
             );
         });
         console.log(filteredRecipes); // filtered recipes object
@@ -2866,7 +2866,7 @@ function autocomplete() {
 }
 exports.default = autocomplete;
 
-},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./createTags":"kV1Ls"}],"jxcd3":[function(require,module,exports) {
+},{"./data":"9kapS","./createTags":"kV1Ls","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jxcd3":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "onSearch", ()=>onSearch

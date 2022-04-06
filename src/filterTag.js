@@ -32,8 +32,8 @@ function filterTag() {
         ustensils.toLowerCase()
       );
       return (
-        tagsValue.ingredient.some((tag) => ingredients.includes(tag)) &&
-        tagsValue.appareils.some((tag) => appareils.includes(tag)) &&
+        tagsValue.ingredient.some((tag) => ingredients.includes(tag)) ||
+        tagsValue.appareils.some((tag) => appareils.includes(tag)) ||
         tagsValue.ustensils.some((tag) => ustensils.includes(tag))
       );
     });
