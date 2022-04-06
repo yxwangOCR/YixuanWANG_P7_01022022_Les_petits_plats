@@ -1,7 +1,5 @@
 import recipes from "./data";
-import displayTags from "./displayTags";
-import displayDropdown from "./displayDropdown";
-
+import createTag from "./createTags";
 let allAppareil = [];
 let allIngredients = [];
 let allUstensils = [];
@@ -23,7 +21,7 @@ function autocomplete() {
     });
   });
 
-  // Enter key words in ingredients input:
+  // Enter key words in ingredients input and get tags:
   const filteredIngredients = allIngredients.filter(function (ele, pos) {
     return allIngredients.indexOf(ele) == pos;
   });
@@ -37,16 +35,20 @@ function autocomplete() {
       ingredientArray = ingredientArray.map(
         (ingredient) => `<li>${ingredient}</li>`
       );
-
       autocompleteIngredientArray(ingredientArray);
-      console.log(ingredientArray);
-      showIngredientList();
     }
     if (e.key === "Enter") {
-     
-
-      displayTags(e);
-   
+      const tagContainer = document.querySelector(".tags");
+      const ingredientInputValue = document.getElementById("ingredients-input");
+      let InputTag = document.createElement("div");
+      InputTag.className = "tag-input";
+      InputTag.innerHTML = `<span>${ingredientInputValue.value}</span><span class="close-tag">&#215</span>`;
+      InputTag.dataType = "ingredient";
+      InputTag.classList.add("ingredient");
+      tagContainer.appendChild(InputTag);
+      document.querySelector(".close-tag").addEventListener("click", (e) => {
+        InputTag.style.display = "none";
+      });
     }
   });
 
@@ -56,12 +58,14 @@ function autocomplete() {
       : ingredientArray.join("");
   }
 
-  // Enter key words in appareils input:
+  // Enter key words in appareils input and get tags:
   const filteredAppareil = allAppareil.filter(function (ele, pos) {
     return allAppareil.indexOf(ele) == pos;
   });
   appareilsInput.addEventListener("keyup", function (e) {
+    AppareilsList.innderHTML = "";
     let appareilArray = [];
+
     if (e.target.value) {
       appareilArray = filteredAppareil.filter((appareil) =>
         appareil.toLowerCase().includes(e.target.value)
@@ -72,7 +76,17 @@ function autocomplete() {
       console.log(appareilArray);
     }
     if (e.key === "Enter") {
-      displayTags(e);
+      const tagContainer = document.querySelector(".tags");
+      const appareilInputValue = document.getElementById("appareils-input");
+      let InputTag = document.createElement("div");
+      InputTag.className = "tag-input";
+      InputTag.innerHTML = `<span>${appareilInputValue.value}</span><span class="close-tag">&#215</span>`;
+      InputTag.dataType = "appareils";
+      InputTag.classList.add("appareils");
+      tagContainer.appendChild(InputTag);
+      document.querySelector(".close-tag").addEventListener("click", (e) => {
+        InputTag.style.display = "none";
+      });
     }
   });
 
@@ -100,7 +114,17 @@ function autocomplete() {
       console.log(ustensileArray);
     }
     if (e.key === "Enter") {
-      displayTags(e);
+      const tagContainer = document.querySelector(".tags");
+      const ustensilInputValue = document.getElementById("ustensiles-input");
+      let InputTag = document.createElement("div");
+      InputTag.className = "tag-input";
+      InputTag.innerHTML = `<span>${ustensilInputValue.value}</span><span class="close-tag">&#215</span>`;
+      InputTag.dataType = "appareils";
+      InputTag.classList.add("ustensils");
+      tagContainer.appendChild(InputTag);
+      document.querySelector(".close-tag").addEventListener("click", (e) => {
+        InputTag.style.display = "none";
+      });
     }
   });
 

@@ -30,3 +30,5 @@ function closeTags(event) {
 }
 
 export default createTags;
+
+

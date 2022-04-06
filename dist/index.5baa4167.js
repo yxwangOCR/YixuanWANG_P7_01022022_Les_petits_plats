@@ -2705,7 +2705,7 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _data = require("./data");
 var _dataDefault = parcelHelpers.interopDefault(_data);
-function filterTag(value, type) {
+function filterTag() {
     const recipeCard = document.querySelectorAll(".recipeCard");
     const tags = document.querySelectorAll(".tag");
     const tagsValue = {
@@ -2719,22 +2719,28 @@ function filterTag(value, type) {
         return acc;
     }, []);
     for (const tag1 of Array.from(tags)){
-        let tagString = tag1.querySelectorAll(".tag-value")[0].innerHTML;
+        let tagValueString = tag1.querySelectorAll(".tag-value")[0].innerHTML;
         let tagType = tag1.dataset.type;
-    //tagsValue[tagType].push(tagString)
+        tagsValue[tagType].push(tagValueString);
+        console.log(tagsValue);
+        /** ==========Filter by value ========= */ const filteredRecipes = displayedRecipe.filter((recipe)=>{
+            const ingredients1 = recipe.ingredients.map((ingredients)=>ingredients.ingredient.toLowerCase()
+            );
+            const appareils = recipe.appliance.toLowerCase();
+            const ustensils1 = recipe.ustensils.map((ustensils)=>ustensils.toLowerCase()
+            );
+            return tagsValue.ingredient.some((tag)=>ingredients1.includes(tag)
+            ) && tagsValue.appareils.some((tag)=>appareils.includes(tag)
+            ) && tagsValue.ustensils.some((tag)=>ustensils1.includes(tag)
+            );
+        });
+        console.log(filteredRecipes); // filtered recipes object
     }
-    //console.log(tagsValue)
-    /** ==========Filter by value ========= */ const filteredRecipes = displayedRecipe.filter((recipe)=>{
-        const ingredients1 = recipe.ingredients.map((ingredients)=>ingredients.ingredient.toLowerCase()
-        );
-        return tagsValue.ingredient.some((tag)=>ingredients1.includes(tag)
-        );
+    /** ========== Display results ========= */ const displayedCard = Array.from(recipeCard).filter((card)=>{
+        //console.log(card);
+        card.style.display; // show 50 recipes cards
     });
-//console.log(filteredRecipes)
-/** ========== Display results ========= */ /* const displayedCard = Array.from(recipeCard).filter((card) => {
-    console.log(card);
-    card.style.display !== "none";
-  }); */ }
+}
 exports.default = filterTag;
 
 },{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"k26Jh":[function(require,module,exports) {
@@ -2742,10 +2748,8 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _data = require("./data");
 var _dataDefault = parcelHelpers.interopDefault(_data);
-var _displayTags = require("./displayTags");
-var _displayTagsDefault = parcelHelpers.interopDefault(_displayTags);
-var _displayDropdown = require("./displayDropdown");
-var _displayDropdownDefault = parcelHelpers.interopDefault(_displayDropdown);
+var _createTags = require("./createTags");
+var _createTagsDefault = parcelHelpers.interopDefault(_createTags);
 let allAppareil = [];
 let allIngredients = [];
 let allUstensils = [];
@@ -2765,7 +2769,7 @@ function autocomplete() {
             allUstensils.push(item.toLowerCase());
         });
     });
-    // Enter key words in ingredients input:
+    // Enter key words in ingredients input and get tags:
     const filteredIngredients = allIngredients.filter(function(ele, pos) {
         return allIngredients.indexOf(ele) == pos;
     });
@@ -2778,19 +2782,30 @@ function autocomplete() {
             ingredientArray = ingredientArray.map((ingredient)=>`<li>${ingredient}</li>`
             );
             autocompleteIngredientArray(ingredientArray);
-            console.log(ingredientArray);
-            showIngredientList();
         }
-        if (e.key === "Enter") _displayTagsDefault.default(e);
+        if (e.key === "Enter") {
+            const tagContainer = document.querySelector(".tags");
+            const ingredientInputValue = document.getElementById("ingredients-input");
+            let InputTag = document.createElement("div");
+            InputTag.className = "tag-input";
+            InputTag.innerHTML = `<span>${ingredientInputValue.value}</span><span class="close-tag">&#215</span>`;
+            InputTag.dataType = "ingredient";
+            InputTag.classList.add("ingredient");
+            tagContainer.appendChild(InputTag);
+            document.querySelector(".close-tag").addEventListener("click", (e)=>{
+                InputTag.style.display = "none";
+            });
+        }
     });
     function autocompleteIngredientArray(ingredientArray) {
         IngredientsList.innerHTML = !ingredientArray.length ? "" : ingredientArray.join("");
     }
-    // Enter key words in appareils input:
+    // Enter key words in appareils input and get tags:
     const filteredAppareil = allAppareil.filter(function(ele, pos) {
         return allAppareil.indexOf(ele) == pos;
     });
     appareilsInput.addEventListener("keyup", function(e) {
+        AppareilsList.innderHTML = "";
         let appareilArray = [];
         if (e.target.value) {
             appareilArray = filteredAppareil.filter((appareil)=>appareil.toLowerCase().includes(e.target.value)
@@ -2800,7 +2815,19 @@ function autocomplete() {
             autocompleteAppareilArray(appareilArray);
             console.log(appareilArray);
         }
-        if (e.key === "Enter") _displayTagsDefault.default(e);
+        if (e.key === "Enter") {
+            const tagContainer = document.querySelector(".tags");
+            const appareilInputValue = document.getElementById("appareils-input");
+            let InputTag = document.createElement("div");
+            InputTag.className = "tag-input";
+            InputTag.innerHTML = `<span>${appareilInputValue.value}</span><span class="close-tag">&#215</span>`;
+            InputTag.dataType = "appareils";
+            InputTag.classList.add("appareils");
+            tagContainer.appendChild(InputTag);
+            document.querySelector(".close-tag").addEventListener("click", (e)=>{
+                InputTag.style.display = "none";
+            });
+        }
     });
     function autocompleteAppareilArray(appareilArray) {
         AppareilsList.innerHTML = !appareilArray.length ? "" : appareilArray.join("");
@@ -2819,7 +2846,19 @@ function autocomplete() {
             autocompleteUstensileArray(ustensileArray);
             console.log(ustensileArray);
         }
-        if (e.key === "Enter") _displayTagsDefault.default(e);
+        if (e.key === "Enter") {
+            const tagContainer = document.querySelector(".tags");
+            const ustensilInputValue = document.getElementById("ustensiles-input");
+            let InputTag = document.createElement("div");
+            InputTag.className = "tag-input";
+            InputTag.innerHTML = `<span>${ustensilInputValue.value}</span><span class="close-tag">&#215</span>`;
+            InputTag.dataType = "appareils";
+            InputTag.classList.add("ustensils");
+            tagContainer.appendChild(InputTag);
+            document.querySelector(".close-tag").addEventListener("click", (e)=>{
+                InputTag.style.display = "none";
+            });
+        }
     });
     function autocompleteUstensileArray(ustensileArray) {
         UstensilesList.innerHTML = !ustensileArray.length ? "" : ustensileArray.join("");
@@ -2827,7 +2866,7 @@ function autocomplete() {
 }
 exports.default = autocomplete;
 
-},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./displayTags":"fP1Ry","./displayDropdown":"kC2l1"}],"jxcd3":[function(require,module,exports) {
+},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./createTags":"kV1Ls"}],"jxcd3":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "onSearch", ()=>onSearch
