@@ -2802,10 +2802,13 @@ function autocomplete() {
             tags.appendChild(tagValue);
             _filterTagDefault.default();
         }
-        const clickValue = document.querySelector(".dropdown-item");
-        clickValue.dataType = "ingredient";
-        clickValue.addEventListener("click", _displayTagsDefault.default, false);
-        clickValue.addEventListener("click", _filterTagDefault.default, false);
+        // click input value to diplay & filter tag:
+        const clickValue = document.querySelectorAll(".dropdown-item");
+        for(let i = 0; i < clickValue.length; i++){
+            clickValue[i].dataType = "ingredient";
+            clickValue[i].addEventListener("click", _displayTagsDefault.default, false);
+            clickValue[i].addEventListener("click", _filterTagDefault.default, false);
+        }
     });
     function autocompleteIngredientArray(ingredientArray) {
         IngredientsList.innerHTML = !ingredientArray.length ? "" : ingredientArray.join("");
@@ -2832,10 +2835,13 @@ function autocomplete() {
             tags.appendChild(tagValue);
             _filterTagDefault.default();
         }
-        const clickValue = document.querySelector(".dropdown-item");
-        clickValue.dataType = "appareils";
-        clickValue.addEventListener("click", _displayTagsDefault.default, false);
-        clickValue.addEventListener("click", _filterTagDefault.default, false);
+        // click input value to diplay & filter tag:
+        const clickValue = document.querySelectorAll(".dropdown-item");
+        for(let i = 0; i < clickValue.length; i++){
+            clickValue[i].dataType = "appareils";
+            clickValue[i].addEventListener("click", _displayTagsDefault.default, false);
+            clickValue[i].addEventListener("click", _filterTagDefault.default, false);
+        }
     });
     function autocompleteAppareilArray(appareilArray) {
         AppareilsList.innerHTML = !appareilArray.length ? "" : appareilArray.join("");
@@ -2861,10 +2867,13 @@ function autocomplete() {
             tags.appendChild(tagValue);
             _filterTagDefault.default();
         }
-        const clickValue = document.querySelector(".dropdown-item");
-        clickValue.dataType = "ustensils";
-        clickValue.addEventListener("click", _displayTagsDefault.default, false);
-        clickValue.addEventListener("click", _filterTagDefault.default, false);
+        // click input value to diplay & filter tag:
+        const clickValue = document.querySelectorAll(".dropdown-item");
+        for(let i = 0; i < clickValue.length; i++){
+            clickValue[i].dataType = "ustensils";
+            clickValue[i].addEventListener("click", _displayTagsDefault.default, false);
+            clickValue[i].addEventListener("click", _filterTagDefault.default, false);
+        }
     });
     function autocompleteUstensileArray(ustensileArray) {
         UstensilesList.innerHTML = !ustensileArray.length ? "" : ustensileArray.join("");

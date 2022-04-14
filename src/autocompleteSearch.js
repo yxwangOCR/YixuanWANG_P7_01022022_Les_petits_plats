@@ -51,10 +51,13 @@ function autocomplete() {
       tags.appendChild(tagValue);
       filterTag();
     }
-    const clickValue = document.querySelector(".dropdown-item");
-    clickValue.dataType = "ingredient";
-    clickValue.addEventListener("click", displayTags, false);
-    clickValue.addEventListener("click", filterTag, false);
+    // click input value to diplay & filter tag:
+    const clickValue = document.querySelectorAll(".dropdown-item");
+    for (let i = 0; i < clickValue.length; i++) {
+      clickValue[i].dataType = "ingredient";
+      clickValue[i].addEventListener("click", displayTags, false);
+      clickValue[i].addEventListener("click", filterTag, false);
+    }
   });
 
   function autocompleteIngredientArray(ingredientArray) {
@@ -89,10 +92,13 @@ function autocomplete() {
       tags.appendChild(tagValue);
       filterTag();
     }
-    const clickValue = document.querySelector(".dropdown-item");
-    clickValue.dataType = "appareils";
-    clickValue.addEventListener("click", displayTags, false);
-    clickValue.addEventListener("click", filterTag, false);
+    // click input value to diplay & filter tag:
+    const clickValue = document.querySelectorAll(".dropdown-item");
+    for (let i = 0; i < clickValue.length; i++) {
+      clickValue[i].dataType = "appareils";
+      clickValue[i].addEventListener("click", displayTags, false);
+      clickValue[i].addEventListener("click", filterTag, false);
+    }
   });
 
   function autocompleteAppareilArray(appareilArray) {
@@ -115,7 +121,6 @@ function autocomplete() {
         (ustensile) =>
           `<li class = "element dropdown-item ustensils>${ustensile}</li>`
       );
-
       autocompleteUstensileArray(ustensileArray);
     }
     if (e.key === "Enter") {
@@ -126,10 +131,13 @@ function autocomplete() {
       tags.appendChild(tagValue);
       filterTag();
     }
-    const clickValue = document.querySelector(".dropdown-item");
-    clickValue.dataType = "ustensils";
-    clickValue.addEventListener("click", displayTags, false);
-    clickValue.addEventListener("click", filterTag, false);
+    // click input value to diplay & filter tag:
+    const clickValue = document.querySelectorAll(".dropdown-item");
+    for (let i = 0; i < clickValue.length; i++) {
+      clickValue[i].dataType = "ustensils";
+      clickValue[i].addEventListener("click", displayTags, false);
+      clickValue[i].addEventListener("click", filterTag, false);
+    }
   });
 
   function autocompleteUstensileArray(ustensileArray) {
