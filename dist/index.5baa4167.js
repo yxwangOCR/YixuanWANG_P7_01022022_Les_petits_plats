@@ -2566,9 +2566,9 @@ function displayDropdown() {
     const ingredientDropdown = document.getElementById("dropdown-1");
     const appareilDropdown = document.getElementById("dropdown-2");
     const ustensilDropdown = document.getElementById("dropdown-3");
-    const ingredientsInput = document.querySelector("#selected-ingredients");
-    const appareilInput = document.querySelector("#selected-appareils");
-    const ustensilesInput = document.querySelector("#selected-ustensiles");
+    const IngredientsList = document.querySelector("#selected-ingredients");
+    const AppareilsList = document.querySelector("#selected-appareils");
+    const UstensilesList = document.querySelector("#selected-ustensiles");
     _dataDefault.default.filter((recipe)=>{
         recipe.ingredients.map((ingredient)=>{
             allIngredients.push(ingredient.ingredient.toLowerCase());
@@ -2583,18 +2583,18 @@ function displayDropdown() {
         return allIngredients.indexOf(ele) == pos;
     });
     function showIngredientList() {
-        ingredientsInput.innerHTML = "";
+        IngredientsList.innerHTML = "";
         for (let value of filteredIngredients.sort()){
             let li = document.createElement("li");
             li.className = "element dropdown-item";
             li.innerHTML = value;
             li.dataType = "ingredient";
-            ingredientsInput.appendChild(li);
+            IngredientsList.appendChild(li);
             li.addEventListener("click", _displayTagsDefault.default);
         }
-        ingredientsInput.classList.toggle("show");
-        appareilInput.classList.remove("show");
-        ustensilesInput.classList.remove("show");
+        IngredientsList.classList.toggle("show");
+        AppareilsList.classList.remove("show");
+        UstensilesList.classList.remove("show");
     }
     ingredientDropdown.addEventListener("click", showIngredientList);
     // Filtered Appareils (no repeat item):
@@ -2602,18 +2602,18 @@ function displayDropdown() {
         return allAppareil.indexOf(ele) == pos;
     });
     function showAppareilList() {
-        appareilInput.innerHTML = "";
+        AppareilsList.innerHTML = "";
         for (let value of filteredAppareil.sort()){
             let li = document.createElement("li");
             li.className = "element dropdown-item";
             li.innerHTML = value;
             li.dataType = "appareils";
-            appareilInput.appendChild(li);
+            AppareilsList.appendChild(li);
             li.addEventListener("click", _displayTagsDefault.default);
         }
-        appareilInput.classList.toggle("show");
-        ingredientsInput.classList.remove("show");
-        ustensilesInput.classList.remove("show");
+        AppareilsList.classList.toggle("show");
+        IngredientsList.classList.remove("show");
+        UstensilesList.classList.remove("show");
     }
     appareilDropdown.addEventListener("click", showAppareilList);
     // Filtered Ustensils (no repeat ustensils):
@@ -2621,18 +2621,18 @@ function displayDropdown() {
         return allUstensils.indexOf(ele) === pos;
     });
     function showUstensilsList() {
-        ustensilesInput.innerHTML = "";
+        UstensilesList.innerHTML = "";
         for (let value of filteredUstensils.sort()){
             let li = document.createElement("li");
             li.className = "element dropdown-item";
             li.innerHTML = value;
             li.dataType = "ustensils";
-            ustensilesInput.appendChild(li);
+            UstensilesList.appendChild(li);
             li.addEventListener("click", _displayTagsDefault.default);
         }
-        ustensilesInput.classList.toggle("show");
-        ingredientsInput.classList.remove("show");
-        appareilInput.classList.remove("show");
+        UstensilesList.classList.toggle("show");
+        IngredientsList.classList.remove("show");
+        AppareilsList.classList.remove("show");
     }
     ustensilDropdown.addEventListener("click", showUstensilsList);
     _autocompleteSearchDefault.default();
@@ -2675,10 +2675,13 @@ exports.default = displayTags;
 },{"./createTags":"kV1Ls","./filterTag":"iFdaD","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kV1Ls":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+var _filterTag = require("./filterTag");
+var _filterTagDefault = parcelHelpers.interopDefault(_filterTag);
 const closeBtn = document.querySelector(".close-icon");
 const tag = document.querySelector(".tag");
 function createTags(label, type) {
-    //console.log(type);
+    console.log(type);
+    console.log(label);
     const tagWrapper = document.createElement("div");
     tagWrapper.setAttribute("class", "tag");
     tagWrapper.classList.add(`${type}`);
@@ -2700,7 +2703,7 @@ function closeTags(event) {
 }
 exports.default = createTags;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iFdaD":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./filterTag":"iFdaD"}],"iFdaD":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _data = require("./data");
@@ -2729,10 +2732,12 @@ function filterTag() {
             const appareils = recipe.appliance.toLowerCase();
             const ustensils1 = recipe.ustensils.map((ustensils)=>ustensils.toLowerCase()
             );
-            return tagsValue.ingredient.some((tag)=>ingredients1.includes(tag)
-            ) || tagsValue.appareils.some((tag)=>appareils.includes(tag)
-            ) || tagsValue.ustensils.some((tag)=>ustensils1.includes(tag)
-            );
+            return(// verifier si tag du type proposé inclue dans la recette:
+            //annuler les autres recettes et afficher uniquement les recettes qui repondent aux toutes les conditions avec ces tags:
+            (tagsValue.ingredient.length > 0 ? tagsValue.ingredient.some((tag)=>ingredients1.includes(tag)
+            ) : true) && (tagsValue.appareils.length > 0 ? tagsValue.appareils.some((tag)=>appareils.includes(tag)
+            ) : true) && (tagsValue.ustensils.length > 0 ? tagsValue.ustensils.some((tag)=>ustensils1.includes(tag)
+            ) : true));
         });
         console.log(filteredRecipes); // filtered recipes object
     }
@@ -2750,6 +2755,12 @@ var _data = require("./data");
 var _dataDefault = parcelHelpers.interopDefault(_data);
 var _createTags = require("./createTags");
 var _createTagsDefault = parcelHelpers.interopDefault(_createTags);
+var _displayTags = require("./displayTags");
+var _displayTagsDefault = parcelHelpers.interopDefault(_displayTags);
+var _filterTag = require("./filterTag");
+var _filterTagDefault = parcelHelpers.interopDefault(_filterTag);
+var _displayDropdown = require("./displayDropdown");
+var _displayDropdownDefault = parcelHelpers.interopDefault(_displayDropdown);
 let allAppareil = [];
 let allIngredients = [];
 let allUstensils = [];
@@ -2779,23 +2790,22 @@ function autocomplete() {
         if (e.target.value) {
             ingredientArray = filteredIngredients.filter((ingredient)=>ingredient.toLowerCase().includes(e.target.value)
             );
-            ingredientArray = ingredientArray.map((ingredient)=>`<li>${ingredient}</li>`
+            ingredientArray = ingredientArray.map((ingredient)=>`<li class = "element dropdown-item ingredient>${ingredient}</li>`
             );
             autocompleteIngredientArray(ingredientArray);
         }
         if (e.key === "Enter") {
-            const tagContainer = document.querySelector(".tags");
+            const tags = document.querySelector(".tags");
             const ingredientInputValue = document.getElementById("ingredients-input");
-            let InputTag = document.createElement("div");
-            InputTag.className = "tag-input";
-            InputTag.innerHTML = `<span>${ingredientInputValue.value}</span><span class="close-tag">&#215</span>`;
-            InputTag.dataType = "ingredient";
-            InputTag.classList.add("ingredient");
-            tagContainer.appendChild(InputTag);
-            document.querySelector(".close-tag").addEventListener("click", (e)=>{
-                InputTag.style.display = "none";
-            });
+            const value = ingredientInputValue.value;
+            const tagValue = _createTagsDefault.default(value, "ingredient");
+            tags.appendChild(tagValue);
+            _filterTagDefault.default();
         }
+        const clickValue = document.querySelector(".dropdown-item");
+        clickValue.dataType = "ingredient";
+        clickValue.addEventListener("click", _displayTagsDefault.default, false);
+        clickValue.addEventListener("click", _filterTagDefault.default, false);
     });
     function autocompleteIngredientArray(ingredientArray) {
         IngredientsList.innerHTML = !ingredientArray.length ? "" : ingredientArray.join("");
@@ -2810,24 +2820,22 @@ function autocomplete() {
         if (e.target.value) {
             appareilArray = filteredAppareil.filter((appareil)=>appareil.toLowerCase().includes(e.target.value)
             );
-            appareilArray = appareilArray.map((appareil)=>`<li>${appareil}</li>`
+            appareilArray = appareilArray.map((appareil)=>`<li class = "element dropdown-item appareils>${appareil}</li>`
             );
             autocompleteAppareilArray(appareilArray);
-            console.log(appareilArray);
         }
         if (e.key === "Enter") {
-            const tagContainer = document.querySelector(".tags");
+            const tags = document.querySelector(".tags");
             const appareilInputValue = document.getElementById("appareils-input");
-            let InputTag = document.createElement("div");
-            InputTag.className = "tag-input";
-            InputTag.innerHTML = `<span>${appareilInputValue.value}</span><span class="close-tag">&#215</span>`;
-            InputTag.dataType = "appareils";
-            InputTag.classList.add("appareils");
-            tagContainer.appendChild(InputTag);
-            document.querySelector(".close-tag").addEventListener("click", (e)=>{
-                InputTag.style.display = "none";
-            });
+            const value = appareilInputValue.value;
+            const tagValue = _createTagsDefault.default(value, "appareils");
+            tags.appendChild(tagValue);
+            _filterTagDefault.default();
         }
+        const clickValue = document.querySelector(".dropdown-item");
+        clickValue.dataType = "appareils";
+        clickValue.addEventListener("click", _displayTagsDefault.default, false);
+        clickValue.addEventListener("click", _filterTagDefault.default, false);
     });
     function autocompleteAppareilArray(appareilArray) {
         AppareilsList.innerHTML = !appareilArray.length ? "" : appareilArray.join("");
@@ -2841,24 +2849,22 @@ function autocomplete() {
         if (e.target.value) {
             ustensileArray = filteredUstensils.filter((ustensile)=>ustensile.toLowerCase().includes(e.target.value)
             );
-            ustensileArray = ustensileArray.map((ustensile)=>`<li>${ustensile}</li>`
+            ustensileArray = ustensileArray.map((ustensile)=>`<li class = "element dropdown-item ustensils>${ustensile}</li>`
             );
             autocompleteUstensileArray(ustensileArray);
-            console.log(ustensileArray);
         }
         if (e.key === "Enter") {
-            const tagContainer = document.querySelector(".tags");
+            const tags = document.querySelector(".tags");
             const ustensilInputValue = document.getElementById("ustensiles-input");
-            let InputTag = document.createElement("div");
-            InputTag.className = "tag-input";
-            InputTag.innerHTML = `<span>${ustensilInputValue.value}</span><span class="close-tag">&#215</span>`;
-            InputTag.dataType = "appareils";
-            InputTag.classList.add("ustensils");
-            tagContainer.appendChild(InputTag);
-            document.querySelector(".close-tag").addEventListener("click", (e)=>{
-                InputTag.style.display = "none";
-            });
+            const value = ustensilInputValue.value;
+            const tagValue = _createTagsDefault.default(value, "ustensils");
+            tags.appendChild(tagValue);
+            _filterTagDefault.default();
         }
+        const clickValue = document.querySelector(".dropdown-item");
+        clickValue.dataType = "ustensils";
+        clickValue.addEventListener("click", _displayTagsDefault.default, false);
+        clickValue.addEventListener("click", _filterTagDefault.default, false);
     });
     function autocompleteUstensileArray(ustensileArray) {
         UstensilesList.innerHTML = !ustensileArray.length ? "" : ustensileArray.join("");
@@ -2866,7 +2872,7 @@ function autocomplete() {
 }
 exports.default = autocomplete;
 
-},{"./data":"9kapS","./createTags":"kV1Ls","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jxcd3":[function(require,module,exports) {
+},{"./data":"9kapS","./createTags":"kV1Ls","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./filterTag":"iFdaD","./displayTags":"fP1Ry","./displayDropdown":"kC2l1"}],"jxcd3":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "onSearch", ()=>onSearch

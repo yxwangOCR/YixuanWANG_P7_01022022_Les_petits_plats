@@ -1,5 +1,9 @@
 import recipes from "./data";
-import createTag from "./createTags";
+import createTags from "./createTags";
+import displayTags from "./displayTags";
+import filterTag from "./filterTag";
+import displayDropdown from "./displayDropdown";
+
 let allAppareil = [];
 let allIngredients = [];
 let allUstensils = [];
@@ -33,23 +37,24 @@ function autocomplete() {
         ingredient.toLowerCase().includes(e.target.value)
       );
       ingredientArray = ingredientArray.map(
-        (ingredient) => `<li>${ingredient}</li>`
+        (ingredient) =>
+          `<li class = "element dropdown-item ingredient>${ingredient}</li>`
       );
       autocompleteIngredientArray(ingredientArray);
     }
+
     if (e.key === "Enter") {
-      const tagContainer = document.querySelector(".tags");
+      const tags = document.querySelector(".tags");
       const ingredientInputValue = document.getElementById("ingredients-input");
-      let InputTag = document.createElement("div");
-      InputTag.className = "tag-input";
-      InputTag.innerHTML = `<span>${ingredientInputValue.value}</span><span class="close-tag">&#215</span>`;
-      InputTag.dataType = "ingredient";
-      InputTag.classList.add("ingredient");
-      tagContainer.appendChild(InputTag);
-      document.querySelector(".close-tag").addEventListener("click", (e) => {
-        InputTag.style.display = "none";
-      });
+      const value = ingredientInputValue.value;
+      const tagValue = createTags(value, "ingredient");
+      tags.appendChild(tagValue);
+      filterTag();
     }
+    const clickValue = document.querySelector(".dropdown-item");
+    clickValue.dataType = "ingredient";
+    clickValue.addEventListener("click", displayTags, false);
+    clickValue.addEventListener("click", filterTag, false);
   });
 
   function autocompleteIngredientArray(ingredientArray) {
@@ -70,24 +75,24 @@ function autocomplete() {
       appareilArray = filteredAppareil.filter((appareil) =>
         appareil.toLowerCase().includes(e.target.value)
       );
-      appareilArray = appareilArray.map((appareil) => `<li>${appareil}</li>`);
-
+      appareilArray = appareilArray.map(
+        (appareil) =>
+          `<li class = "element dropdown-item appareils>${appareil}</li>`
+      );
       autocompleteAppareilArray(appareilArray);
-      console.log(appareilArray);
     }
     if (e.key === "Enter") {
-      const tagContainer = document.querySelector(".tags");
+      const tags = document.querySelector(".tags");
       const appareilInputValue = document.getElementById("appareils-input");
-      let InputTag = document.createElement("div");
-      InputTag.className = "tag-input";
-      InputTag.innerHTML = `<span>${appareilInputValue.value}</span><span class="close-tag">&#215</span>`;
-      InputTag.dataType = "appareils";
-      InputTag.classList.add("appareils");
-      tagContainer.appendChild(InputTag);
-      document.querySelector(".close-tag").addEventListener("click", (e) => {
-        InputTag.style.display = "none";
-      });
+      const value = appareilInputValue.value;
+      const tagValue = createTags(value, "appareils");
+      tags.appendChild(tagValue);
+      filterTag();
     }
+    const clickValue = document.querySelector(".dropdown-item");
+    clickValue.dataType = "appareils";
+    clickValue.addEventListener("click", displayTags, false);
+    clickValue.addEventListener("click", filterTag, false);
   });
 
   function autocompleteAppareilArray(appareilArray) {
@@ -107,25 +112,24 @@ function autocomplete() {
         ustensile.toLowerCase().includes(e.target.value)
       );
       ustensileArray = ustensileArray.map(
-        (ustensile) => `<li>${ustensile}</li>`
+        (ustensile) =>
+          `<li class = "element dropdown-item ustensils>${ustensile}</li>`
       );
 
       autocompleteUstensileArray(ustensileArray);
-      console.log(ustensileArray);
     }
     if (e.key === "Enter") {
-      const tagContainer = document.querySelector(".tags");
+      const tags = document.querySelector(".tags");
       const ustensilInputValue = document.getElementById("ustensiles-input");
-      let InputTag = document.createElement("div");
-      InputTag.className = "tag-input";
-      InputTag.innerHTML = `<span>${ustensilInputValue.value}</span><span class="close-tag">&#215</span>`;
-      InputTag.dataType = "appareils";
-      InputTag.classList.add("ustensils");
-      tagContainer.appendChild(InputTag);
-      document.querySelector(".close-tag").addEventListener("click", (e) => {
-        InputTag.style.display = "none";
-      });
+      const value = ustensilInputValue.value;
+      const tagValue = createTags(value, "ustensils");
+      tags.appendChild(tagValue);
+      filterTag();
     }
+    const clickValue = document.querySelector(".dropdown-item");
+    clickValue.dataType = "ustensils";
+    clickValue.addEventListener("click", displayTags, false);
+    clickValue.addEventListener("click", filterTag, false);
   });
 
   function autocompleteUstensileArray(ustensileArray) {

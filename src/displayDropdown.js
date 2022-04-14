@@ -10,9 +10,9 @@ function displayDropdown() {
   const ingredientDropdown = document.getElementById("dropdown-1");
   const appareilDropdown = document.getElementById("dropdown-2");
   const ustensilDropdown = document.getElementById("dropdown-3");
-  const ingredientsInput = document.querySelector("#selected-ingredients");
-  const appareilInput = document.querySelector("#selected-appareils");
-  const ustensilesInput = document.querySelector("#selected-ustensiles");
+  const IngredientsList = document.querySelector("#selected-ingredients");
+  const AppareilsList = document.querySelector("#selected-appareils");
+  const UstensilesList = document.querySelector("#selected-ustensiles");
 
   recipes.filter((recipe) => {
     recipe.ingredients.map((ingredient) => {
@@ -29,18 +29,18 @@ function displayDropdown() {
     return allIngredients.indexOf(ele) == pos;
   });
   function showIngredientList() {
-    ingredientsInput.innerHTML = "";
+    IngredientsList.innerHTML = "";
     for (let value of filteredIngredients.sort()) {
       let li = document.createElement("li");
       li.className = "element dropdown-item";
       li.innerHTML = value;
       li.dataType = "ingredient";
-      ingredientsInput.appendChild(li);
+      IngredientsList.appendChild(li);
       li.addEventListener("click", displayTags);
     }
-    ingredientsInput.classList.toggle("show");
-    appareilInput.classList.remove("show");
-    ustensilesInput.classList.remove("show");
+    IngredientsList.classList.toggle("show");
+    AppareilsList.classList.remove("show");
+    UstensilesList.classList.remove("show");
   }
   ingredientDropdown.addEventListener("click", showIngredientList);
 
@@ -49,18 +49,18 @@ function displayDropdown() {
     return allAppareil.indexOf(ele) == pos;
   });
   function showAppareilList() {
-    appareilInput.innerHTML = "";
+    AppareilsList.innerHTML = "";
     for (let value of filteredAppareil.sort()) {
       let li = document.createElement("li");
       li.className = "element dropdown-item";
       li.innerHTML = value;
       li.dataType = "appareils";
-      appareilInput.appendChild(li);
+      AppareilsList.appendChild(li);
       li.addEventListener("click", displayTags);
     }
-    appareilInput.classList.toggle("show");
-    ingredientsInput.classList.remove("show");
-    ustensilesInput.classList.remove("show");
+    AppareilsList.classList.toggle("show");
+    IngredientsList.classList.remove("show");
+    UstensilesList.classList.remove("show");
   }
   appareilDropdown.addEventListener("click", showAppareilList);
 
@@ -69,18 +69,18 @@ function displayDropdown() {
     return allUstensils.indexOf(ele) === pos;
   });
   function showUstensilsList() {
-    ustensilesInput.innerHTML = "";
+    UstensilesList.innerHTML = "";
     for (let value of filteredUstensils.sort()) {
       let li = document.createElement("li");
       li.className = "element dropdown-item";
       li.innerHTML = value;
       li.dataType = "ustensils";
-      ustensilesInput.appendChild(li);
+      UstensilesList.appendChild(li);
       li.addEventListener("click", displayTags);
     }
-    ustensilesInput.classList.toggle("show");
-    ingredientsInput.classList.remove("show");
-    appareilInput.classList.remove("show");
+    UstensilesList.classList.toggle("show");
+    IngredientsList.classList.remove("show");
+    AppareilsList.classList.remove("show");
   }
   ustensilDropdown.addEventListener("click", showUstensilsList);
 

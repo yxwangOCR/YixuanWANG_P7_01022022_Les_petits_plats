@@ -32,9 +32,17 @@ function filterTag() {
         ustensils.toLowerCase()
       );
       return (
-        tagsValue.ingredient.some((tag) => ingredients.includes(tag)) ||
-        tagsValue.appareils.some((tag) => appareils.includes(tag)) ||
-        tagsValue.ustensils.some((tag) => ustensils.includes(tag))
+        // verifier si tag du type proposé inclue dans la recette:
+        //annuler les autres recettes et afficher uniquement les recettes qui repondent aux toutes les conditions avec ces tags:
+        (tagsValue.ingredient.length > 0
+          ? tagsValue.ingredient.some((tag) => ingredients.includes(tag))
+          : true) &&
+        (tagsValue.appareils.length > 0
+          ? tagsValue.appareils.some((tag) => appareils.includes(tag))
+          : true) &&
+        (tagsValue.ustensils.length > 0
+          ? tagsValue.ustensils.some((tag) => ustensils.includes(tag))
+          : true)
       );
     });
 

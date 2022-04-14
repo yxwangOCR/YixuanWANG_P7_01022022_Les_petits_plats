@@ -1,8 +1,12 @@
+import filterTag from "./filterTag"
+
 const closeBtn = document.querySelector(".close-icon");
 const tag = document.querySelector(".tag");
 
 function createTags(label, type) {
-  //console.log(type);
+  console.log(type);
+  console.log(label);
+
   const tagWrapper = document.createElement("div");
   tagWrapper.setAttribute("class", "tag");
   tagWrapper.classList.add(`${type}`);
@@ -30,5 +34,3 @@ function closeTags(event) {
 }
 
 export default createTags;
-
-
