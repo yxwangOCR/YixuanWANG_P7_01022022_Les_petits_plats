@@ -3,27 +3,65 @@ import recipes from "./data";
 export const onSearch = (event) => {
   event.preventDefault();
   const searchValue = event.target.value.toLowerCase().trim(); // convert input value to lower case and trim
-  const cards = document.getElementById("cards");
-  const recipeCard = document.querySelectorAll(".recipeCard");
   let recipeWrapper = [];
 
-  const filteredRecipes = recipes.filter((recipe) => {
-    const name = recipe.name;
-    const ingredients = recipe.ingredients.map(
-      (ingredients) => ingredients.ingredient
-    );
-    const description = recipe.description;
+  const name = (recipes, searchValue) =>
+    recipes.filter((recipe) => recipe.name.includes(searchValue));
 
-    const filteded =
+  const ingredients = (recipes, searchValue) =>
+    recipes.filter((recipe) =>
+      recipe.ingredients
+        .map((ingredients) => ingredients.ingredient)
+        .includes(searchValue)
+    );
+
+  const description = (recipes, searchValue) =>
+    recipes.filter((recipe) => recipe.description.includes(searchValue));
+
+  console.log(searchValue);
+  //console.log(name);
+  //console.log(ingredients);
+  //console.log(description);
+
+  console.log(name(recipes, searchValue));
+  console.log(ingredients(recipes, searchValue));
+  console.log(description(recipes, searchValue));
+  recipeWrapper.push(searchValue);
+  console.log(recipeWrapper);
+};
+
+/*
+
+ recipes.filter((recipe) => {
+    const name = (recipe, searchValue) => recipe.name.includes(searchValue);
+    const ingredients = (recipe, searchValue) =>
+      recipe.ingredients
+        .map((ingredients) => ingredients.ingredient)
+        .includes(searchValue);
+    const description = (recipe, searchValue) =>
+      recipe.description.includes(searchValue);
+
+    console.log(searchValue);
+    console.log(name);
+    console.log(ingredients);
+    console.log(description);
+
+    recipeWrapper.push(recipe);
+    console.log(recipeWrapper);
+  });
+
+
+ const filteded =
       name.includes(searchValue) ||
       ingredients.includes(searchValue) ||
       description.includes(searchValue);
 
-    if (filteded) recipeWrapper.push(recipe);
-    //recipeCard.classList.toggle("hide", !filteded);
-  });
+const cards = document.getElementById("cards");
+function displayRecipes(recipes) {
+  cards.innerHTML = "";
+}
 
-  recipeWrapper.forEach((recipeCard) => {
+ recipeWrapper.forEach((recipeCard) => {
     //console.log(recipeCard);
     //cards.innerHTML = "";
     cards.append(recipeCard);
@@ -35,11 +73,4 @@ export const onSearch = (event) => {
 
   //cards.innerHTML = `${recipeWrapper}`;
   //cards.append(recipeWrapper);
-};
-
-/*
-const cards = document.getElementById("cards");
-function displayRecipes(recipes) {
-  cards.innerHTML = "";
-}
 */

@@ -1,4 +1,5 @@
 import initialRecipe from "./data";
+import closeTags from "./createTags";
 
 function filterTag() {
   const recipeCard = document.querySelectorAll(".recipeCard");
@@ -16,6 +17,8 @@ function filterTag() {
     return acc;
   }, []);
   //console.log(displayedRecipe);
+
+  
 
   let filteredRecipes = [];
   for (const tag of Array.from(tags)) {
@@ -61,7 +64,7 @@ function filterTag() {
     console.log(filteredRecipesId);
     console.log(recipe.id);
     console.log(filteredRecipesId.includes(recipe.id));
-    
+
     if (!filteredRecipesId.includes(recipe.id)) {
       // si id n'est pas dans les recettes filtered
       card.classList.add("tag-hidden");

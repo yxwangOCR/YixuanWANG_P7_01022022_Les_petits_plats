@@ -535,9 +535,8 @@ _createDropdownsDefault.default();
 _displayDropdownDefault.default();
 const searchBar = document.getElementById("searchbar");
 //Algo_1:
-//searchBar.addEventListener("keyup", onSearch);
-//Algo_2:
-searchBar.addEventListener("keyup", _algo2.inSearch);
+searchBar.addEventListener("keyup", _algo1.onSearch); //Algo_2:
+ //searchBar.addEventListener("keyup", inSearch);
 
 },{"./src/createRecipes":"hMoWw","./src/createDropdowns":"3yOtV","./src/displayDropdown":"kC2l1","./src/algo_1":"jxcd3","./src/algo_2":"kJ5JD","./src/data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hMoWw":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -2673,19 +2672,31 @@ function displayTags(e) {
     tags.appendChild(tagValue);
     //console.log(tags);
     _filterTagDefault.default();
+//reset();
 }
 exports.default = displayTags;
 
 },{"./createTags":"kV1Ls","./filterTag":"iFdaD","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kV1Ls":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+// Close Tags:
+parcelHelpers.export(exports, "closeTags", ()=>closeTags
+) /*
+export function reset() {
+  tag.forEach(function (tag) {
+    tag.parentElement.removeChild(tag);
+    console.log(tag.parentElement);
+    console.log(tag);
+  });
+}
+*/ ;
 var _filterTag = require("./filterTag");
 var _filterTagDefault = parcelHelpers.interopDefault(_filterTag);
+var _autocompleteSearch = require("./autocompleteSearch");
+var _autocompleteSearchDefault = parcelHelpers.interopDefault(_autocompleteSearch);
 const closeBtn = document.querySelector(".close-icon");
 const tag = document.querySelector(".tag");
 function createTags(label, type) {
-    console.log(type);
-    console.log(label);
     const tagWrapper = document.createElement("div");
     tagWrapper.setAttribute("class", "tag");
     tagWrapper.classList.add(`${type}`);
@@ -2701,17 +2712,25 @@ function createTags(label, type) {
     closeIcon.addEventListener("click", closeTags);
     return tagWrapper;
 }
-// Close Tags:
+exports.default = createTags;
 function closeTags(event) {
     event.target.parentElement.style.display = "none";
+    const value = event.target.value;
+    const index = tag.indexOf(value);
+    ingredient = [
+        ...tag.slice(0, index),
+        ...tag.slice(index + 1)
+    ];
+    console.log(tag);
 }
-exports.default = createTags;
 
-},{"./filterTag":"iFdaD","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iFdaD":[function(require,module,exports) {
+},{"./filterTag":"iFdaD","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./autocompleteSearch":"k26Jh"}],"iFdaD":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _data = require("./data");
 var _dataDefault = parcelHelpers.interopDefault(_data);
+var _createTags = require("./createTags");
+var _createTagsDefault = parcelHelpers.interopDefault(_createTags);
 function filterTag() {
     const recipeCard = document.querySelectorAll(".recipeCard");
     const tags = document.querySelectorAll(".tag");
@@ -2762,7 +2781,7 @@ function filterTag() {
 }
 exports.default = filterTag;
 
-},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"k26Jh":[function(require,module,exports) {
+},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./createTags":"kV1Ls"}],"k26Jh":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _data = require("./data");
@@ -2902,34 +2921,70 @@ var _data = require("./data");
 var _dataDefault = parcelHelpers.interopDefault(_data);
 const onSearch = (event)=>{
     event.preventDefault();
-    const searchValue = event.target.value.toLowerCase().trim(); // convert input value to lower case and trim
-    const cards = document.getElementById("cards");
-    const recipeCard1 = document.querySelectorAll(".recipeCard");
+    const searchValue1 = event.target.value.toLowerCase().trim(); // convert input value to lower case and trim
     let recipeWrapper = [];
-    const filteredRecipes = _dataDefault.default.filter((recipe)=>{
-        const name = recipe.name;
-        const ingredients1 = recipe.ingredients.map((ingredients)=>ingredients.ingredient
-        );
-        const description = recipe.description;
-        const filteded = name.includes(searchValue) || ingredients1.includes(searchValue) || description.includes(searchValue);
-        if (filteded) recipeWrapper.push(recipe);
-    //recipeCard.classList.toggle("hide", !filteded);
-    });
-    recipeWrapper.forEach((recipeCard)=>{
-        //console.log(recipeCard);
-        //cards.innerHTML = "";
-        cards.append(recipeCard);
-    //console.log(cards);
-    });
-//console.log(recipeWrapper);
-//console.log(typeof recipeWrapper);
-//cards.innerHTML = `${recipeWrapper}`;
-//cards.append(recipeWrapper);
+    const name = (recipes, searchValue)=>recipes.filter((recipe)=>recipe.name.includes(searchValue)
+        )
+    ;
+    const ingredients1 = (recipes, searchValue)=>recipes.filter((recipe)=>recipe.ingredients.map((ingredients)=>ingredients.ingredient
+            ).includes(searchValue)
+        )
+    ;
+    const description = (recipes, searchValue)=>recipes.filter((recipe)=>recipe.description.includes(searchValue)
+        )
+    ;
+    console.log(searchValue1);
+    //console.log(name);
+    //console.log(ingredients);
+    //console.log(description);
+    console.log(name(_dataDefault.default, searchValue1));
+    console.log(ingredients1(_dataDefault.default, searchValue1));
+    console.log(description(_dataDefault.default, searchValue1));
+    recipeWrapper.push(searchValue1);
+    console.log(recipeWrapper);
 }; /*
+
+ recipes.filter((recipe) => {
+    const name = (recipe, searchValue) => recipe.name.includes(searchValue);
+    const ingredients = (recipe, searchValue) =>
+      recipe.ingredients
+        .map((ingredients) => ingredients.ingredient)
+        .includes(searchValue);
+    const description = (recipe, searchValue) =>
+      recipe.description.includes(searchValue);
+
+    console.log(searchValue);
+    console.log(name);
+    console.log(ingredients);
+    console.log(description);
+
+    recipeWrapper.push(recipe);
+    console.log(recipeWrapper);
+  });
+
+
+ const filteded =
+      name.includes(searchValue) ||
+      ingredients.includes(searchValue) ||
+      description.includes(searchValue);
+
 const cards = document.getElementById("cards");
 function displayRecipes(recipes) {
   cards.innerHTML = "";
 }
+
+ recipeWrapper.forEach((recipeCard) => {
+    //console.log(recipeCard);
+    //cards.innerHTML = "";
+    cards.append(recipeCard);
+    //console.log(cards);
+  });
+
+  //console.log(recipeWrapper);
+  //console.log(typeof recipeWrapper);
+
+  //cards.innerHTML = `${recipeWrapper}`;
+  //cards.append(recipeWrapper);
 */ 
 
 },{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kJ5JD":[function(require,module,exports) {

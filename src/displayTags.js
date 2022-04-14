@@ -4,6 +4,7 @@ https://www.techiedelight.com/detect-enter-key-press-javascript/
 
 import createTags from "./createTags";
 import filterTag from "./filterTag";
+import reset from "./createTags";
 
 const tags = document.querySelector(".tags");
 
@@ -21,6 +22,7 @@ function displayTags(e) {
   //console.log(tags);
 
   filterTag();
+  //reset();
 }
 
 export default displayTags;

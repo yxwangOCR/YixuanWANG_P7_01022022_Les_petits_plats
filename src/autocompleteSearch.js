@@ -2,7 +2,7 @@ import recipes from "./data";
 import createTags from "./createTags";
 import displayTags from "./displayTags";
 import filterTag from "./filterTag";
-
+import closeTags from "./createTags";
 
 let allAppareil = [];
 let allIngredients = [];
@@ -51,6 +51,7 @@ function autocomplete() {
       tags.appendChild(tagValue);
       filterTag();
     }
+
     // click input value to diplay & filter tag:
     const clickValue = document.querySelectorAll(".dropdown-item");
     for (let i = 0; i < clickValue.length; i++) {
