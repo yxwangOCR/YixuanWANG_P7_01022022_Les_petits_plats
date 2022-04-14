@@ -528,7 +528,9 @@ var _displayDropdown = require("./src/displayDropdown");
 var _displayDropdownDefault = parcelHelpers.interopDefault(_displayDropdown);
 var _algo1 = require("./src/algo_1");
 var _algo2 = require("./src/algo_2");
-_createRecipesDefault.default();
+var _data = require("./src/data");
+var _dataDefault = parcelHelpers.interopDefault(_data);
+_createRecipesDefault.default(_dataDefault.default);
 _createDropdownsDefault.default();
 _displayDropdownDefault.default();
 const searchBar = document.getElementById("searchbar");
@@ -537,14 +539,16 @@ const searchBar = document.getElementById("searchbar");
 //Algo_2:
 searchBar.addEventListener("keyup", _algo2.inSearch);
 
-},{"./src/createRecipes":"hMoWw","./src/createDropdowns":"3yOtV","./src/displayDropdown":"kC2l1","./src/algo_1":"jxcd3","./src/algo_2":"kJ5JD","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hMoWw":[function(require,module,exports) {
+},{"./src/createRecipes":"hMoWw","./src/createDropdowns":"3yOtV","./src/displayDropdown":"kC2l1","./src/algo_1":"jxcd3","./src/algo_2":"kJ5JD","./src/data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hMoWw":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _data = require("./data");
-var _dataDefault = parcelHelpers.interopDefault(_data);
+//import recipes from "./data";
 const cards = document.getElementById("cards");
-function createRecipes() {
-    _dataDefault.default.forEach((recipe)=>{
+function createRecipes(recipes) {
+    // recipes: au lieu de l'importer, le mettre comme parametre de fonction
+    //Cela impacte sur comment structuer la page.
+    //Baser sur table de recipes (vs. element HTML), lire dans tableau, chaque fois recree tableau de recette filtee, createRecipes() mettra a jour.
+    recipes.forEach((recipe)=>{
         const cardWrapper = document.createElement("div");
         cardWrapper.id = recipe.id;
         const ingredientsWrapper = document.createElement("div");
@@ -577,7 +581,171 @@ function createRecipes() {
 }
 exports.default = createRecipes;
 
-},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9kapS":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"3yOtV":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+const dropdownContainer = document.getElementById("dropdown-container");
+function createDropdowns() {
+    const dropdowns = document.createElement("div");
+    dropdowns.classList.add("dropdown-input");
+    dropdowns.innerHTML = `<div id="dropdown-1">
+        <button type="button" class="drop-btn-1" >
+        <label for ="input-1" class="input-label-1">
+        <input placeholder="Ingredients" class="search-input-1" id="ingredients-input">
+        <span>&#10095;</span>
+        <ul class="dropdown-menu" id="selected-ingredients"></ul>
+        </button> </div>
+        
+        <div id="dropdown-2">
+        <button type="button" class="drop-btn-2" >
+        <label for ="input-2" class="input-label-2">
+        <input placeholder="Appareils" class="search-input-2" id="appareils-input">   
+        <span>&#10095;</span>
+        <ul class="dropdown-menu" id="selected-appareils"></ul>
+        </button> </div>
+
+        <div id="dropdown-3">
+        <button type="button" class="drop-btn-3" >
+        <label for ="input-3" class="input-label-3">
+        <input placeholder="Ustensiles" class="search-input-3" id="ustensiles-input">   
+        <span>&#10095;</span>
+         <ul class="dropdown-menu" id="selected-ustensiles"></ul>
+        </button> </div>
+        `;
+    dropdownContainer.appendChild(dropdowns);
+}
+exports.default = createDropdowns;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kC2l1":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _data = require("./data");
+var _dataDefault = parcelHelpers.interopDefault(_data);
+var _displayTags = require("./displayTags");
+var _displayTagsDefault = parcelHelpers.interopDefault(_displayTags);
+var _autocompleteSearch = require("./autocompleteSearch");
+var _autocompleteSearchDefault = parcelHelpers.interopDefault(_autocompleteSearch);
+let allAppareil = [];
+let allIngredients = [];
+let allUstensils = [];
+function displayDropdown() {
+    const ingredientDropdown = document.getElementById("dropdown-1");
+    const appareilDropdown = document.getElementById("dropdown-2");
+    const ustensilDropdown = document.getElementById("dropdown-3");
+    const IngredientsList = document.querySelector("#selected-ingredients");
+    const AppareilsList = document.querySelector("#selected-appareils");
+    const UstensilesList = document.querySelector("#selected-ustensiles");
+    _dataDefault.default.filter((recipe)=>{
+        recipe.ingredients.map((ingredient)=>{
+            allIngredients.push(ingredient.ingredient.toLowerCase());
+        });
+        allAppareil.push(recipe.appliance.toLowerCase());
+        recipe.ustensils.map((item)=>{
+            allUstensils.push(item.toLowerCase());
+        });
+    });
+    // Filtered Ingredients (no repeat ingredients)
+    const filteredIngredients = allIngredients.filter(function(ele, pos) {
+        return allIngredients.indexOf(ele) == pos;
+    });
+    function showIngredientList() {
+        IngredientsList.innerHTML = "";
+        for (let value of filteredIngredients.sort()){
+            let li = document.createElement("li");
+            li.className = "element dropdown-item";
+            li.innerHTML = value;
+            li.dataType = "ingredient";
+            IngredientsList.appendChild(li);
+            li.addEventListener("click", _displayTagsDefault.default);
+        }
+        IngredientsList.classList.toggle("show");
+        AppareilsList.classList.remove("show");
+        UstensilesList.classList.remove("show");
+    }
+    ingredientDropdown.addEventListener("click", showIngredientList);
+    // Filtered Appareils (no repeat item):
+    const filteredAppareil = allAppareil.filter(function(ele, pos) {
+        return allAppareil.indexOf(ele) == pos;
+    });
+    function showAppareilList() {
+        AppareilsList.innerHTML = "";
+        for (let value of filteredAppareil.sort()){
+            let li = document.createElement("li");
+            li.className = "element dropdown-item";
+            li.innerHTML = value;
+            li.dataType = "appareils";
+            AppareilsList.appendChild(li);
+            li.addEventListener("click", _displayTagsDefault.default);
+        }
+        AppareilsList.classList.toggle("show");
+        IngredientsList.classList.remove("show");
+        UstensilesList.classList.remove("show");
+    }
+    appareilDropdown.addEventListener("click", showAppareilList);
+    // Filtered Ustensils (no repeat ustensils):
+    const filteredUstensils = allUstensils.filter(function(ele, pos) {
+        return allUstensils.indexOf(ele) === pos;
+    });
+    function showUstensilsList() {
+        UstensilesList.innerHTML = "";
+        for (let value of filteredUstensils.sort()){
+            let li = document.createElement("li");
+            li.className = "element dropdown-item";
+            li.innerHTML = value;
+            li.dataType = "ustensils";
+            UstensilesList.appendChild(li);
+            li.addEventListener("click", _displayTagsDefault.default);
+        }
+        UstensilesList.classList.toggle("show");
+        IngredientsList.classList.remove("show");
+        AppareilsList.classList.remove("show");
+    }
+    ustensilDropdown.addEventListener("click", showUstensilsList);
+    _autocompleteSearchDefault.default();
+}
+// Close the dropdown if the user clicks outside of it:
+document.addEventListener("click", function(e) {
+    if (!e.target.matches("#ingredients-input, #appareils-input, #ustensiles-input")) {
+        let dropdowns = document.querySelectorAll(".dropdown-menu");
+        for (let dropdown of dropdowns)if (dropdown.classList.contains("show")) dropdown.classList.remove("show");
+    } else if (e.target.matches("#ingredients-input")) document.getElementById("ingredients-input").classList.toggle("show");
+    else if (e.target.matches("#appareils-input")) document.getElementById("appareils-input").classList.toggle("show");
+    else if (e.target.matches("#ustensiles-input")) document.getElementById("ustensiles-input").classList.toggle("show");
+    else console.log("click other place");
+});
+exports.default = displayDropdown;
+
+},{"./data":"9kapS","./displayTags":"fP1Ry","./autocompleteSearch":"k26Jh","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9kapS":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 const recipes = [
@@ -2485,171 +2653,7 @@ const recipes = [
 ];
 exports.default = recipes;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, '__esModule', {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"3yOtV":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-const dropdownContainer = document.getElementById("dropdown-container");
-function createDropdowns() {
-    const dropdowns = document.createElement("div");
-    dropdowns.classList.add("dropdown-input");
-    dropdowns.innerHTML = `<div id="dropdown-1">
-        <button type="button" class="drop-btn-1" >
-        <label for ="input-1" class="input-label-1">
-        <input placeholder="Ingredients" class="search-input-1" id="ingredients-input">
-        <span>&#10095;</span>
-        <ul class="dropdown-menu" id="selected-ingredients"></ul>
-        </button> </div>
-        
-        <div id="dropdown-2">
-        <button type="button" class="drop-btn-2" >
-        <label for ="input-2" class="input-label-2">
-        <input placeholder="Appareils" class="search-input-2" id="appareils-input">   
-        <span>&#10095;</span>
-        <ul class="dropdown-menu" id="selected-appareils"></ul>
-        </button> </div>
-
-        <div id="dropdown-3">
-        <button type="button" class="drop-btn-3" >
-        <label for ="input-3" class="input-label-3">
-        <input placeholder="Ustensiles" class="search-input-3" id="ustensiles-input">   
-        <span>&#10095;</span>
-         <ul class="dropdown-menu" id="selected-ustensiles"></ul>
-        </button> </div>
-        `;
-    dropdownContainer.appendChild(dropdowns);
-}
-exports.default = createDropdowns;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kC2l1":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _data = require("./data");
-var _dataDefault = parcelHelpers.interopDefault(_data);
-var _displayTags = require("./displayTags");
-var _displayTagsDefault = parcelHelpers.interopDefault(_displayTags);
-var _autocompleteSearch = require("./autocompleteSearch");
-var _autocompleteSearchDefault = parcelHelpers.interopDefault(_autocompleteSearch);
-let allAppareil = [];
-let allIngredients = [];
-let allUstensils = [];
-function displayDropdown() {
-    const ingredientDropdown = document.getElementById("dropdown-1");
-    const appareilDropdown = document.getElementById("dropdown-2");
-    const ustensilDropdown = document.getElementById("dropdown-3");
-    const IngredientsList = document.querySelector("#selected-ingredients");
-    const AppareilsList = document.querySelector("#selected-appareils");
-    const UstensilesList = document.querySelector("#selected-ustensiles");
-    _dataDefault.default.filter((recipe)=>{
-        recipe.ingredients.map((ingredient)=>{
-            allIngredients.push(ingredient.ingredient.toLowerCase());
-        });
-        allAppareil.push(recipe.appliance.toLowerCase());
-        recipe.ustensils.map((item)=>{
-            allUstensils.push(item.toLowerCase());
-        });
-    });
-    // Filtered Ingredients (no repeat ingredients)
-    const filteredIngredients = allIngredients.filter(function(ele, pos) {
-        return allIngredients.indexOf(ele) == pos;
-    });
-    function showIngredientList() {
-        IngredientsList.innerHTML = "";
-        for (let value of filteredIngredients.sort()){
-            let li = document.createElement("li");
-            li.className = "element dropdown-item";
-            li.innerHTML = value;
-            li.dataType = "ingredient";
-            IngredientsList.appendChild(li);
-            li.addEventListener("click", _displayTagsDefault.default);
-        }
-        IngredientsList.classList.toggle("show");
-        AppareilsList.classList.remove("show");
-        UstensilesList.classList.remove("show");
-    }
-    ingredientDropdown.addEventListener("click", showIngredientList);
-    // Filtered Appareils (no repeat item):
-    const filteredAppareil = allAppareil.filter(function(ele, pos) {
-        return allAppareil.indexOf(ele) == pos;
-    });
-    function showAppareilList() {
-        AppareilsList.innerHTML = "";
-        for (let value of filteredAppareil.sort()){
-            let li = document.createElement("li");
-            li.className = "element dropdown-item";
-            li.innerHTML = value;
-            li.dataType = "appareils";
-            AppareilsList.appendChild(li);
-            li.addEventListener("click", _displayTagsDefault.default);
-        }
-        AppareilsList.classList.toggle("show");
-        IngredientsList.classList.remove("show");
-        UstensilesList.classList.remove("show");
-    }
-    appareilDropdown.addEventListener("click", showAppareilList);
-    // Filtered Ustensils (no repeat ustensils):
-    const filteredUstensils = allUstensils.filter(function(ele, pos) {
-        return allUstensils.indexOf(ele) === pos;
-    });
-    function showUstensilsList() {
-        UstensilesList.innerHTML = "";
-        for (let value of filteredUstensils.sort()){
-            let li = document.createElement("li");
-            li.className = "element dropdown-item";
-            li.innerHTML = value;
-            li.dataType = "ustensils";
-            UstensilesList.appendChild(li);
-            li.addEventListener("click", _displayTagsDefault.default);
-        }
-        UstensilesList.classList.toggle("show");
-        IngredientsList.classList.remove("show");
-        AppareilsList.classList.remove("show");
-    }
-    ustensilDropdown.addEventListener("click", showUstensilsList);
-    _autocompleteSearchDefault.default();
-}
-// Close the dropdown if the user clicks outside of it:
-document.addEventListener("click", function(e) {
-    if (!e.target.matches("#ingredients-input, #appareils-input, #ustensiles-input")) {
-        let dropdowns = document.querySelectorAll(".dropdown-menu");
-        for (let dropdown of dropdowns)if (dropdown.classList.contains("show")) dropdown.classList.remove("show");
-    } else if (e.target.matches("#ingredients-input")) document.getElementById("ingredients-input").classList.toggle("show");
-    else if (e.target.matches("#appareils-input")) document.getElementById("appareils-input").classList.toggle("show");
-    else if (e.target.matches("#ustensiles-input")) document.getElementById("ustensiles-input").classList.toggle("show");
-    else console.log("click other place");
-});
-exports.default = displayDropdown;
-
-},{"./data":"9kapS","./displayTags":"fP1Ry","./autocompleteSearch":"k26Jh","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fP1Ry":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fP1Ry":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 /*Reference for Keys : 
@@ -2703,7 +2707,7 @@ function closeTags(event) {
 }
 exports.default = createTags;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./filterTag":"iFdaD"}],"iFdaD":[function(require,module,exports) {
+},{"./filterTag":"iFdaD","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iFdaD":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _data = require("./data");
@@ -2721,12 +2725,14 @@ function filterTag() {
         ));
         return acc;
     }, []);
+    //console.log(displayedRecipe);
+    let filteredRecipes = [];
     for (const tag1 of Array.from(tags)){
         let tagValueString = tag1.querySelectorAll(".tag-value")[0].innerHTML;
         let tagType = tag1.dataset.type;
         tagsValue[tagType].push(tagValueString);
         console.log(tagsValue);
-        /** ==========Filter by value ========= */ const filteredRecipes = displayedRecipe.filter((recipe)=>{
+        /** ==========Filter by value ========= */ filteredRecipes = displayedRecipe.filter((recipe)=>{
             const ingredients1 = recipe.ingredients.map((ingredients)=>ingredients.ingredient.toLowerCase()
             );
             const appareils = recipe.appliance.toLowerCase();
@@ -2741,10 +2747,18 @@ function filterTag() {
         });
         console.log(filteredRecipes); // filtered recipes object
     }
-    /** ========== Display results ========= */ const displayedCard = Array.from(recipeCard).filter((card)=>{
-        //console.log(card);
-        card.style.display; // show 50 recipes cards
-    });
+    const filteredRecipesId = filteredRecipes.map((recipe)=>recipe.id
+    );
+    console.log(filteredRecipesId);
+    /** ========== Display results ========= */ for (const recipe1 of displayedRecipe){
+        const card = document.getElementById(recipe1.id);
+        // recupere la carte qui associe a id de la recette
+        console.log(filteredRecipesId);
+        console.log(recipe1.id);
+        console.log(filteredRecipesId.includes(recipe1.id));
+        if (!filteredRecipesId.includes(recipe1.id)) // si id n'est pas dans les recettes filtered
+        card.classList.add("tag-hidden");
+    }
 }
 exports.default = filterTag;
 
@@ -2759,8 +2773,6 @@ var _displayTags = require("./displayTags");
 var _displayTagsDefault = parcelHelpers.interopDefault(_displayTags);
 var _filterTag = require("./filterTag");
 var _filterTagDefault = parcelHelpers.interopDefault(_filterTag);
-var _displayDropdown = require("./displayDropdown");
-var _displayDropdownDefault = parcelHelpers.interopDefault(_displayDropdown);
 let allAppareil = [];
 let allIngredients = [];
 let allUstensils = [];
@@ -2881,7 +2893,7 @@ function autocomplete() {
 }
 exports.default = autocomplete;
 
-},{"./data":"9kapS","./createTags":"kV1Ls","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./filterTag":"iFdaD","./displayTags":"fP1Ry","./displayDropdown":"kC2l1"}],"jxcd3":[function(require,module,exports) {
+},{"./data":"9kapS","./createTags":"kV1Ls","./displayTags":"fP1Ry","./filterTag":"iFdaD","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jxcd3":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "onSearch", ()=>onSearch

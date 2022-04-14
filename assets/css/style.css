@@ -11190,7 +11190,8 @@ nav {
   text-transform: uppercase;
 }
 
-.close-icon, .close-tag {
+.close-icon,
+.close-tag {
   font-size: 1rem;
   margin-left: 5px;
   margin-right: 5px;
@@ -11221,6 +11222,11 @@ nav {
 
 .tag-input::first-letter {
   text-transform: uppercase;
+}
+
+.tag-hidden {
+  width: 0;
+  overflow: hidden;
 }
 
 *:focus {

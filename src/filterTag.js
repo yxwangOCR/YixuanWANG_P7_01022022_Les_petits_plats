@@ -15,7 +15,9 @@ function filterTag() {
     }
     return acc;
   }, []);
+  //console.log(displayedRecipe);
 
+  let filteredRecipes = [];
   for (const tag of Array.from(tags)) {
     let tagValueString = tag.querySelectorAll(".tag-value")[0].innerHTML;
     let tagType = tag.dataset.type;
@@ -23,7 +25,7 @@ function filterTag() {
     console.log(tagsValue);
 
     /** ==========Filter by value ========= */
-    const filteredRecipes = displayedRecipe.filter((recipe) => {
+    filteredRecipes = displayedRecipe.filter((recipe) => {
       const ingredients = recipe.ingredients.map((ingredients) =>
         ingredients.ingredient.toLowerCase()
       );
@@ -48,12 +50,23 @@ function filterTag() {
 
     console.log(filteredRecipes); // filtered recipes object
   }
+  const filteredRecipesId = filteredRecipes.map((recipe) => recipe.id);
+  console.log(filteredRecipesId);
 
   /** ========== Display results ========= */
-  const displayedCard = Array.from(recipeCard).filter((card) => {
-    //console.log(card);
-    card.style.display !== "none"; // show 50 recipes cards
-  });
+
+  for (const recipe of displayedRecipe) {
+    const card = document.getElementById(recipe.id);
+    // recupere la carte qui associe a id de la recette
+    console.log(filteredRecipesId);
+    console.log(recipe.id);
+    console.log(filteredRecipesId.includes(recipe.id));
+    
+    if (!filteredRecipesId.includes(recipe.id)) {
+      // si id n'est pas dans les recettes filtered
+      card.classList.add("tag-hidden");
+    }
+  }
 }
 
 export default filterTag;

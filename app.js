@@ -3,8 +3,9 @@ import createDropdowns from "./src/createDropdowns";
 import displayDropdown from "./src/displayDropdown";
 import { onSearch } from "./src/algo_1";
 import { inSearch } from "./src/algo_2";
+import recipes from "./src/data";
 
-createRecipes();
+createRecipes(recipes);
 createDropdowns();
 displayDropdown();
 
