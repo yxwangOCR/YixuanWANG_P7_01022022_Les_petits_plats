@@ -2929,13 +2929,11 @@ const onSearch = (event)=>{
     _createRecipesDefault.default(searchRecipe);
 };
 
-},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./createRecipes":"hMoWw"}],"kJ5JD":[function(require,module,exports) {
+},{"./data":"9kapS","./createRecipes":"hMoWw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kJ5JD":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "inSearch", ()=>inSearch
 );
-var _data = require("./data");
-var _dataDefault = parcelHelpers.interopDefault(_data);
 const inSearch = ()=>{
     const searchText = document.getElementById("searchbar").value.toUpperCase(); // convert to uppercase
     const recipeCard = document.querySelectorAll(".recipeCard");
@@ -2953,6 +2951,6 @@ const inSearch = ()=>{
     }
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./data":"9kapS"}]},["d5kvp","igcvL"], "igcvL", "parcelRequiredaa1")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["d5kvp","igcvL"], "igcvL", "parcelRequiredaa1")
 
 //# sourceMappingURL=index.5baa4167.js.map

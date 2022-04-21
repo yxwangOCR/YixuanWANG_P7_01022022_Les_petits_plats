@@ -1,4 +1,4 @@
-import recipes from "./data";
+//import recipes from "./data";
 
 export const inSearch = () => {
   const searchText = document.getElementById("searchbar").value.toUpperCase(); // convert to uppercase
