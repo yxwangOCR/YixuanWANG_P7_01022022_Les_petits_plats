@@ -547,6 +547,7 @@ function createRecipes(recipes) {
     // recipes: au lieu de l'importer, le mettre comme parametre de fonction
     //Cela impacte sur comment structuer la page.
     //Baser sur table de recipes (vs. element HTML), lire dans tableau, chaque fois recree tableau de recette filtee, createRecipes() mettra a jour.
+    cards.innerHTML = "";
     recipes.forEach((recipe)=>{
         const cardWrapper = document.createElement("div");
         cardWrapper.id = recipe.id;
@@ -2672,7 +2673,6 @@ function displayTags(e) {
     tags.appendChild(tagValue);
     //console.log(tags);
     _filterTagDefault.default();
-//reset();
 }
 exports.default = displayTags;
 
@@ -2681,19 +2681,9 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 // Close Tags:
 parcelHelpers.export(exports, "closeTags", ()=>closeTags
-) /*
-export function reset() {
-  tag.forEach(function (tag) {
-    tag.parentElement.removeChild(tag);
-    console.log(tag.parentElement);
-    console.log(tag);
-  });
-}
-*/ ;
+);
 var _filterTag = require("./filterTag");
 var _filterTagDefault = parcelHelpers.interopDefault(_filterTag);
-var _autocompleteSearch = require("./autocompleteSearch");
-var _autocompleteSearchDefault = parcelHelpers.interopDefault(_autocompleteSearch);
 const closeBtn = document.querySelector(".close-icon");
 const tag = document.querySelector(".tag");
 function createTags(label, type) {
@@ -2714,23 +2704,15 @@ function createTags(label, type) {
 }
 exports.default = createTags;
 function closeTags(event) {
-    event.target.parentElement.style.display = "none";
-    const value = event.target.value;
-    const index = tag.indexOf(value);
-    ingredient = [
-        ...tag.slice(0, index),
-        ...tag.slice(index + 1)
-    ];
-    console.log(tag);
+    event.target.parentElement.remove();
+    _filterTagDefault.default();
 }
 
-},{"./filterTag":"iFdaD","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./autocompleteSearch":"k26Jh"}],"iFdaD":[function(require,module,exports) {
+},{"./filterTag":"iFdaD","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iFdaD":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _data = require("./data");
 var _dataDefault = parcelHelpers.interopDefault(_data);
-var _createTags = require("./createTags");
-var _createTagsDefault = parcelHelpers.interopDefault(_createTags);
 function filterTag() {
     const recipeCard = document.querySelectorAll(".recipeCard");
     const tags = document.querySelectorAll(".tag");
@@ -2750,38 +2732,33 @@ function filterTag() {
         let tagValueString = tag1.querySelectorAll(".tag-value")[0].innerHTML;
         let tagType = tag1.dataset.type;
         tagsValue[tagType].push(tagValueString);
-        console.log(tagsValue);
-        /** ==========Filter by value ========= */ filteredRecipes = displayedRecipe.filter((recipe)=>{
-            const ingredients1 = recipe.ingredients.map((ingredients)=>ingredients.ingredient.toLowerCase()
-            );
-            const appareils = recipe.appliance.toLowerCase();
-            const ustensils1 = recipe.ustensils.map((ustensils)=>ustensils.toLowerCase()
-            );
-            return(// verifier si tag du type proposé inclue dans la recette:
-            //annuler les autres recettes et afficher uniquement les recettes qui repondent aux toutes les conditions avec ces tags:
-            (tagsValue.ingredient.length > 0 ? tagsValue.ingredient.some((tag)=>ingredients1.includes(tag)
-            ) : true) && (tagsValue.appareils.length > 0 ? tagsValue.appareils.some((tag)=>appareils.includes(tag)
-            ) : true) && (tagsValue.ustensils.length > 0 ? tagsValue.ustensils.some((tag)=>ustensils1.includes(tag)
-            ) : true));
-        });
-        console.log(filteredRecipes); // filtered recipes object
     }
+    /** ==========Filter by value ========= */ filteredRecipes = displayedRecipe.filter((recipe)=>{
+        const ingredients1 = recipe.ingredients.map((ingredients)=>ingredients.ingredient.toLowerCase()
+        );
+        const appareils = recipe.appliance.toLowerCase();
+        const ustensils1 = recipe.ustensils.map((ustensils)=>ustensils.toLowerCase()
+        );
+        return(// verifier si tag du type proposé inclue dans la recette:
+        //annuler les autres recettes et afficher uniquement les recettes qui repondent aux toutes les conditions avec ces tags:
+        (tagsValue.ingredient.length > 0 ? tagsValue.ingredient.some((tag)=>ingredients1.includes(tag)
+        ) : true) && (tagsValue.appareils.length > 0 ? tagsValue.appareils.some((tag)=>appareils.includes(tag)
+        ) : true) && (tagsValue.ustensils.length > 0 ? tagsValue.ustensils.some((tag)=>ustensils1.includes(tag)
+        ) : true));
+    });
     const filteredRecipesId = filteredRecipes.map((recipe)=>recipe.id
     );
-    console.log(filteredRecipesId);
     /** ========== Display results ========= */ for (const recipe1 of displayedRecipe){
         const card = document.getElementById(recipe1.id);
         // recupere la carte qui associe a id de la recette
-        console.log(filteredRecipesId);
-        console.log(recipe1.id);
-        console.log(filteredRecipesId.includes(recipe1.id));
         if (!filteredRecipesId.includes(recipe1.id)) // si id n'est pas dans les recettes filtered
         card.classList.add("tag-hidden");
+        else card.classList.remove("tag-hidden");
     }
 }
 exports.default = filterTag;
 
-},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./createTags":"kV1Ls"}],"k26Jh":[function(require,module,exports) {
+},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"k26Jh":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _data = require("./data");
@@ -2919,75 +2896,40 @@ parcelHelpers.export(exports, "onSearch", ()=>onSearch
 );
 var _data = require("./data");
 var _dataDefault = parcelHelpers.interopDefault(_data);
+var _createRecipes = require("./createRecipes");
+var _createRecipesDefault = parcelHelpers.interopDefault(_createRecipes);
+const filterByName = (recipes, filtre)=>recipes.filter((recipe)=>recipe.name.toLowerCase().includes(filtre.toLowerCase())
+    )
+;
+const filterByIngredient = (recipes, filtre)=>recipes.filter((recipe)=>recipe.ingredients.find((ingredient)=>ingredient.ingredient.toLowerCase().includes(filtre.toLowerCase())
+        )
+    )
+;
+/*
+const getUnique = (arr, key) => [
+  ...new Map(arr.map((item) => [item[key], item])).value(),
+];
+Message erreur ==> Uncaught TypeError: Map.value is not a function or its return value is not iterable
+*/ function getUnique(arr, key) {
+    return [
+        ...new Map(arr.map((item)=>[
+                item[key],
+                item
+            ]
+        )).values()
+    ];
+}
 const onSearch = (event)=>{
     event.preventDefault();
-    const searchValue1 = event.target.value.toLowerCase().trim(); // convert input value to lower case and trim
-    let recipeWrapper = [];
-    const name = (recipes, searchValue)=>recipes.filter((recipe)=>recipe.name.includes(searchValue)
-        )
-    ;
-    const ingredients1 = (recipes, searchValue)=>recipes.filter((recipe)=>recipe.ingredients.map((ingredients)=>ingredients.ingredient
-            ).includes(searchValue)
-        )
-    ;
-    const description = (recipes, searchValue)=>recipes.filter((recipe)=>recipe.description.includes(searchValue)
-        )
-    ;
-    console.log(searchValue1);
-    //console.log(name);
-    //console.log(ingredients);
-    //console.log(description);
-    console.log(name(_dataDefault.default, searchValue1));
-    console.log(ingredients1(_dataDefault.default, searchValue1));
-    console.log(description(_dataDefault.default, searchValue1));
-    recipeWrapper.push(searchValue1);
-    console.log(recipeWrapper);
-}; /*
+    const searchValue = event.target.value.toLowerCase().trim(); // convert input value to lower case and trim
+    let searchRecipe = [];
+    const resultByName = filterByName(_dataDefault.default, searchValue);
+    const resultByIngredient = filterByIngredient(_dataDefault.default, searchValue);
+    searchRecipe = getUnique(resultByName.concat(resultByIngredient, resultByName), key = "id");
+    _createRecipesDefault.default(searchRecipe);
+};
 
- recipes.filter((recipe) => {
-    const name = (recipe, searchValue) => recipe.name.includes(searchValue);
-    const ingredients = (recipe, searchValue) =>
-      recipe.ingredients
-        .map((ingredients) => ingredients.ingredient)
-        .includes(searchValue);
-    const description = (recipe, searchValue) =>
-      recipe.description.includes(searchValue);
-
-    console.log(searchValue);
-    console.log(name);
-    console.log(ingredients);
-    console.log(description);
-
-    recipeWrapper.push(recipe);
-    console.log(recipeWrapper);
-  });
-
-
- const filteded =
-      name.includes(searchValue) ||
-      ingredients.includes(searchValue) ||
-      description.includes(searchValue);
-
-const cards = document.getElementById("cards");
-function displayRecipes(recipes) {
-  cards.innerHTML = "";
-}
-
- recipeWrapper.forEach((recipeCard) => {
-    //console.log(recipeCard);
-    //cards.innerHTML = "";
-    cards.append(recipeCard);
-    //console.log(cards);
-  });
-
-  //console.log(recipeWrapper);
-  //console.log(typeof recipeWrapper);
-
-  //cards.innerHTML = `${recipeWrapper}`;
-  //cards.append(recipeWrapper);
-*/ 
-
-},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kJ5JD":[function(require,module,exports) {
+},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./createRecipes":"hMoWw"}],"kJ5JD":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "inSearch", ()=>inSearch
@@ -3011,6 +2953,6 @@ const inSearch = ()=>{
     }
 };
 
-},{"./data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["d5kvp","igcvL"], "igcvL", "parcelRequiredaa1")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./data":"9kapS"}]},["d5kvp","igcvL"], "igcvL", "parcelRequiredaa1")
 
 //# sourceMappingURL=index.5baa4167.js.map

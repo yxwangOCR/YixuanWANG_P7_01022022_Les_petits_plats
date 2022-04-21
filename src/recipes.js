@@ -1,14 +1,10 @@
-//import recipes from "./data";
+/*
+import recipes from "./data";
 const cards = document.getElementById("cards");
 
-function createRecipes(recipes) {
-  // recipes: au lieu de l'importer, le mettre comme parametre de fonction
-  //Cela impacte sur comment structuer la page.
-  //Baser sur table de recipes (vs. element HTML), lire dans tableau, chaque fois recree tableau de recette filtee, createRecipes() mettra a jour.
-  cards.innerHTML = "";
+function displayRecipes() {
   recipes.forEach((recipe) => {
     const cardWrapper = document.createElement("div");
-    cardWrapper.id = recipe.id;
     const ingredientsWrapper = document.createElement("div");
     const ingredients = recipe.ingredients;
     ingredients.forEach((ingredient) => {
@@ -41,4 +37,5 @@ function createRecipes(recipes) {
   });
 }
 
-export default createRecipes;
+export default displayRecipes;
+*/

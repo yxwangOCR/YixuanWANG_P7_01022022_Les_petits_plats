@@ -10489,6 +10489,7 @@ nav {
 .tag-hidden {
   width: 0;
   overflow: hidden;
+  visibility: hidden;
 }
 *:focus {
   outline: none;

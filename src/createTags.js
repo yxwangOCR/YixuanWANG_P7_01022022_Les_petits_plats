@@ -1,5 +1,4 @@
 import filterTag from "./filterTag";
-import autocomplete from "./autocompleteSearch";
 
 const closeBtn = document.querySelector(".close-icon");
 const tag = document.querySelector(".tag");
@@ -29,19 +28,6 @@ export default createTags;
 
 // Close Tags:
 export function closeTags(event) {
-  event.target.parentElement.style.display = "none";
-  const value = event.target.value;
-  const index = tag.indexOf(value);
-  ingredient = [...tag.slice(0, index), ...tag.slice(index + 1)];
-  console.log(tag);
+  event.target.parentElement.remove();
+  filterTag();
 }
-
-/*
-export function reset() {
-  tag.forEach(function (tag) {
-    tag.parentElement.removeChild(tag);
-    console.log(tag.parentElement);
-    console.log(tag);
-  });
-}
-*/
