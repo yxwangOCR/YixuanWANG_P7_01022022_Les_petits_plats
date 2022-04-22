@@ -2769,6 +2769,7 @@ var _displayTags = require("./displayTags");
 var _displayTagsDefault = parcelHelpers.interopDefault(_displayTags);
 var _filterTag = require("./filterTag");
 var _filterTagDefault = parcelHelpers.interopDefault(_filterTag);
+//import closeTags from "./createTags";
 let allAppareil = [];
 let allIngredients = [];
 let allUstensils = [];
@@ -2905,6 +2906,13 @@ const filterByIngredient = (recipes, filtre)=>recipes.filter((recipe)=>recipe.in
         )
     )
 ;
+const filterByAppliance = (recipes, filtre)=>recipes.filter((recipe)=>recipe.appliance.toLowerCase().includes(filtre.toLowerCase())
+    )
+;
+const filterByUstensil = (recipes, filtre)=>recipes.filter((recipe)=>recipe.ustensils.find((ustensil)=>ustensil.toLowerCase().includes(filtre.toLowerCase())
+        )
+    )
+;
 /*
 const getUnique = (arr, key) => [
   ...new Map(arr.map((item) => [item[key], item])).value(),
@@ -2925,7 +2933,9 @@ const onSearch = (event)=>{
     let searchRecipe = [];
     const resultByName = filterByName(_dataDefault.default, searchValue);
     const resultByIngredient = filterByIngredient(_dataDefault.default, searchValue);
-    searchRecipe = getUnique(resultByName.concat(resultByIngredient, resultByName), key = "id");
+    const resultByAppliance = filterByAppliance(_dataDefault.default, searchValue);
+    const resultByUstensil = filterByUstensil(_dataDefault.default, searchValue);
+    searchRecipe = getUnique(resultByName.concat(resultByIngredient, resultByAppliance, resultByUstensil), key = "id");
     _createRecipesDefault.default(searchRecipe);
 };
 

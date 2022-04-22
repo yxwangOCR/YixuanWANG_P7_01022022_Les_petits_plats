@@ -2,7 +2,7 @@ import recipes from "./data";
 import createTags from "./createTags";
 import displayTags from "./displayTags";
 import filterTag from "./filterTag";
-import closeTags from "./createTags";
+//import closeTags from "./createTags";
 
 let allAppareil = [];
 let allIngredients = [];

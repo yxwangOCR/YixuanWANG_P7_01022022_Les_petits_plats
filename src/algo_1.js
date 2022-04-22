@@ -13,6 +13,18 @@ const filterByIngredient = (recipes, filtre) =>
     )
   );
 
+const filterByAppliance = (recipes, filtre) =>
+  recipes.filter((recipe) =>
+    recipe.appliance.toLowerCase().includes(filtre.toLowerCase())
+  );
+
+const filterByUstensil = (recipes, filtre) =>
+  recipes.filter((recipe) =>
+    recipe.ustensils.find((ustensil) =>
+      ustensil.toLowerCase().includes(filtre.toLowerCase())
+    )
+  );
+
 /*
 const getUnique = (arr, key) => [
   ...new Map(arr.map((item) => [item[key], item])).value(),
@@ -31,9 +43,15 @@ export const onSearch = (event) => {
 
   const resultByName = filterByName(recipes, searchValue);
   const resultByIngredient = filterByIngredient(recipes, searchValue);
+  const resultByAppliance = filterByAppliance(recipes, searchValue);
+  const resultByUstensil = filterByUstensil(recipes, searchValue);
 
   searchRecipe = getUnique(
-    resultByName.concat(resultByIngredient, resultByName),
+    resultByName.concat(
+      resultByIngredient,
+      resultByAppliance,
+      resultByUstensil
+    ),
     (key = "id")
   );
   createRecipes(searchRecipe);
