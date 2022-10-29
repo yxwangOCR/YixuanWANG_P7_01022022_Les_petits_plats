@@ -535,8 +535,9 @@ _createDropdownsDefault.default();
 _displayDropdownDefault.default();
 const searchBar = document.getElementById("searchbar");
 //Algo_1:
-searchBar.addEventListener("keyup", _algo1.onSearch); //Algo_2:
- //searchBar.addEventListener("keyup", inSearch);
+//searchBar.addEventListener("keyup", onSearch);
+//Algo_2:
+searchBar.addEventListener("keyup", _algo2.inSearch);
 
 },{"./src/createRecipes":"hMoWw","./src/createDropdowns":"3yOtV","./src/displayDropdown":"kC2l1","./src/algo_1":"jxcd3","./src/algo_2":"kJ5JD","./src/data":"9kapS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hMoWw":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");

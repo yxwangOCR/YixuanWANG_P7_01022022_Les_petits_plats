@@ -11,7 +11,7 @@ displayDropdown();
 
 const searchBar = document.getElementById("searchbar");
 //Algo_1:
-searchBar.addEventListener("keyup", onSearch);
+//searchBar.addEventListener("keyup", onSearch);
 
 //Algo_2:
-//searchBar.addEventListener("keyup", inSearch);
+searchBar.addEventListener("keyup", inSearch);
